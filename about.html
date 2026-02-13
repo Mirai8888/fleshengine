@@ -18,64 +18,33 @@ body { font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height:
 a { color: var(--link); text-decoration: none; }
 a:visited { color: var(--link-visited); }
 a:hover { color: var(--text); }
-.container { max-width: 820px; margin: 0 auto; padding: 20px 24px; }
-hr { border: 0; border-top: 1px solid var(--border-dim); margin: 28px 0; }
-h1 { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; letter-spacing: 4px; color: var(--gold); margin-bottom: 4px; }
-h1 + p { color: var(--gold-dark); font-style: italic; font-size: 14px; }
-h2 { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; padding-bottom: 6px; border-bottom: 1px solid var(--border-dim); }
-.nav { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
-.nav a { color: var(--gold-dark); margin-right: 8px; }
+.container { max-width: 860px; margin: 0 auto; padding: 28px; }
+hr { border: 0; border-top: 1px solid var(--border-dim); margin: 32px 0; }
+h1 { font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700; letter-spacing: 4px; color: var(--gold); margin-bottom: 4px; }
+h2 { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; padding-bottom: 8px; border-bottom: 1px solid var(--border-dim); }
+.nav { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+.nav a { color: var(--gold-dark); margin-right: 10px; }
 .nav a:hover { color: var(--gold); }
-p { margin-bottom: 14px; }
+p { margin-bottom: 16px; }
 blockquote {
   border-left: 3px solid var(--border);
-  margin: 16px 0;
-  padding: 10px 18px;
+  margin: 20px 0;
+  padding: 12px 20px;
   color: var(--text-dim);
   background: var(--bg-card);
   font-style: italic;
 }
-.diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.diff-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-dim);
-  padding: 16px 18px;
-}
-.diff-title {
-  font-family: 'Cinzel', serif;
-  font-size: 12px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 8px;
-}
-.diff-text { font-size: 16px; color: var(--text-dim); line-height: 1.6; }
-.vuln-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.vuln-table th {
-  font-family: 'Cinzel', serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--gold);
-  text-align: left;
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg-card);
-}
-.vuln-table td {
-  padding: 6px 12px;
-  border-bottom: 1px solid var(--border-dim);
-  font-size: 14px;
-}
-.vuln-table td:first-child {
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  color: var(--gold-dark);
-  width: 80px;
-}
-.vuln-note { font-size: 12px; color: var(--border); margin-top: 10px; }
-.footer { font-size: 11px; color: var(--border-dim); font-style: italic; }
-@media (max-width: 600px) { .diff-grid { grid-template-columns: 1fr; } }
+.cases { display: grid; gap: 14px; }
+.case-card { background: var(--bg-card); border: 1px solid var(--border-dim); padding: 18px 22px; }
+.case-title { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.case-text { font-size: 16px; color: var(--text-dim); line-height: 1.6; }
+.case-year { font-size: 13px; color: var(--gold-dark); margin-top: 6px; }
+.vuln-table { width: 100%; border-collapse: collapse; }
+.vuln-table th { font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--bg-card); }
+.vuln-table td { padding: 8px 14px; border-bottom: 1px solid var(--border-dim); font-size: 16px; }
+.vuln-table td:first-child { font-family: 'Courier New', monospace; font-size: 13px; color: var(--gold-dark); width: 80px; }
+.credit { font-size: 13px; color: var(--border); margin-top: 12px; }
+.footer { font-size: 13px; color: var(--border-dim); font-style: italic; }
 </style>
 </head>
 <body>
@@ -90,75 +59,98 @@ blockquote {
 
 <hr>
 
-<h1>About</h1>
-<p>What this is. What this is not.</p>
+<h1>人肉搜索</h1>
+<p style="color:var(--gold-dark); font-style:italic">Human Flesh Search Engine</p>
 
 <hr>
 
-<h2>人肉搜索 &mdash; Human Flesh Search Engine</h2>
+<h2>Origin</h2>
 
 <blockquote>
-人肉搜索 (r&eacute;nr&ograve;u s&#333;usu&#466;) &mdash; lit. "human flesh search engine." A form of distributed, crowdsourced investigation originating from Chinese internet culture, where thousands of anonymous participants collectively identify, locate, and document individuals or entities.
+人肉搜索 (r&eacute;nr&ograve;u s&#333;usu&#466;) &mdash; literally "human flesh search engine." Distributed, crowdsourced investigation where thousands of anonymous participants collectively identify, locate, and document targets using nothing but publicly available information and collective attention.
 </blockquote>
 
 <p>
-The original 人肉搜索 was raw, personal, often punitive. Mobs of netizens pursuing targets with the full collective power of distributed human attention. Sometimes righteous. Sometimes not. Always effective.
+The practice emerged from Chinese internet culture in the early 2000s. The first documented case originated on Mop.com in 2001. By 2006 it had become a recognized social phenomenon with real consequences: people lost jobs, fled cities, were driven to suicide. The Chinese internet learned that distributed human attention, focused on a single target, is more powerful than any search algorithm.
 </p>
 
 <p>
-FLESHENGINE takes the architecture &mdash; distributed human intelligence collection &mdash; and redirects it. Instead of personal information, we map <strong>cognitive patterns</strong>. Instead of harassment, we produce <strong>structured analysis</strong>. The crowd sees what the algorithm misses.
+The mechanism is simple. Someone posts a target. Thousands of people each contribute one small piece: a screenshot, a cross-referenced username, a location from a photo background, a workplace identified from a uniform. No single person does the work. The crowd does.
 </p>
 
 <p>
-The name is deliberate. The discomfort is the point. If the capability exists &mdash; and it does &mdash; it should be visible, structured, and defensible rather than hidden, chaotic, and destructive.
+Western platforms developed their own versions. Doxbin. Kiwi Farms. The methods are the same. The framing is different. The capability is identical.
 </p>
 
 <hr>
 
-<h2>How This Differs from Doxing</h2>
+<h2>Notable Cases</h2>
 
-<div class="diff-grid">
-<div class="diff-card">
-  <div class="diff-title">1. Cognitive, Not Personal</div>
-  <div class="diff-text">We map communication patterns, narrative vulnerabilities, and network position. Not home addresses, phone numbers, or private information. The target is the public behavior, not the private person.</div>
+<div class="cases">
+<div class="case-card">
+  <div class="case-title">The Kitten Killer of Hangzhou</div>
+  <div class="case-text">A woman filmed herself crushing a kitten with her high heels. Within days, the crowd had identified her name, employer, phone number, and address from a reflection in the video. She was terminated from her government position.</div>
+  <div class="case-year">2006, Hangzhou</div>
 </div>
-<div class="diff-card">
-  <div class="diff-title">2. Structured Taxonomy</div>
-  <div class="diff-text">All observations use the FLESHENGINE influence taxonomy &mdash; 12 defined vectors with established indicators. Not free-form harassment. Every contribution maps to a framework.</div>
+<div class="case-card">
+  <div class="case-title">The Bronze Mustache Incident</div>
+  <div class="case-text">A tourist posted photos sitting on a bronze statue at a memorial site. Internet users identified him within 3 hours from his phone model, clothing brand, and a partial bus ticket visible in one image.</div>
+  <div class="case-year">2008, Nanjing</div>
 </div>
-<div class="diff-card">
-  <div class="diff-title">3. Bidirectional</div>
-  <div class="diff-text">You can scan yourself. Understanding your own cognitive vulnerability surface is defensive intelligence. The tool works in both directions &mdash; analyze or be analyzed.</div>
+<div class="case-card">
+  <div class="case-title">Vancouver Riot Identification</div>
+  <div class="case-text">After the 2011 Stanley Cup riot, crowdsourced identification from social media photos and video led to over 300 people being identified by name. Several faced criminal charges based solely on crowd-submitted evidence.</div>
+  <div class="case-year">2011, Vancouver</div>
 </div>
-<div class="diff-card">
-  <div class="diff-title">4. Defensive Framing</div>
-  <div class="diff-text">Understanding how you can be manipulated is cognitive self-defense. Every profile includes defensive recommendations. The goal is resilience, not exposure.</div>
+<div class="case-card">
+  <div class="case-title">Boston Marathon Bombing</div>
+  <div class="case-text">Reddit users attempted to identify the bombers from crowd photos. They identified the wrong person. Sunil Tripathi, wrongly accused, was found dead. The crowd is powerful. The crowd is not always right.</div>
+  <div class="case-year">2013, Boston</div>
+</div>
+<div class="case-card">
+  <div class="case-title">Hong Kong Protests</div>
+  <div class="case-text">Both sides used 起底 (doxxing) extensively. Protesters identified undercover police. Pro-Beijing groups identified protesters, their families, and employers. The Hong Kong government passed anti-doxxing legislation in 2021 in direct response.</div>
+  <div class="case-year">2019-2020, Hong Kong</div>
 </div>
 </div>
 
 <hr>
 
-<h2>The Influence Taxonomy</h2>
+<h2>What FLESHENGINE Does</h2>
 
-<p style="color:var(--text-dim)">12 exploitation vectors mapping the full influence attack surface.</p>
+<p>
+FLESHENGINE structures what already happens. People already investigate each other online. The tools already exist. We provide the database, the taxonomy, and the aggregation layer.
+</p>
+
+<p>
+Submit a target. The system pulls publicly available data and maps behavioral patterns, communication style, network position, and influence vulnerability across 12 vectors. Then the crowd fills in what automation misses: context, relationships, pattern shifts that only a human observer would notice.
+</p>
+
+<p>
+Every fragment is timestamped, categorized, and weighted. The composite profile improves with each contribution. What was scattered across forum threads and group chats becomes structured, searchable intelligence.
+</p>
+
+<hr>
+
+<h2>The 12 Vectors</h2>
 
 <table class="vuln-table">
 <tr><th>Code</th><th>Vector</th></tr>
-<tr><td>FE-001</td><td>Emotional Hijacking</td></tr>
-<tr><td>FE-002</td><td>Information Asymmetry Exploitation</td></tr>
-<tr><td>FE-003</td><td>Authority Fabrication</td></tr>
-<tr><td>FE-004</td><td>Social Proof Manipulation</td></tr>
-<tr><td>FE-005</td><td>Identity Targeting</td></tr>
-<tr><td>FE-006</td><td>Temporal Manipulation</td></tr>
+<tr><td>FE-001</td><td>Narrative Framing</td></tr>
+<tr><td>FE-002</td><td>Repetition Saturation</td></tr>
+<tr><td>FE-003</td><td>Audience Conditioning</td></tr>
+<tr><td>FE-004</td><td>Loyalty Exploitation</td></tr>
+<tr><td>FE-005</td><td>Identity Manipulation</td></tr>
+<tr><td>FE-006</td><td>Manufactured Consensus</td></tr>
 <tr><td>FE-007</td><td>Viral Propagation</td></tr>
-<tr><td>FE-008</td><td>Direct Substrate Intervention</td></tr>
-<tr><td>FE-009</td><td>Chemical Substrate Disruption</td></tr>
-<tr><td>FE-010</td><td>Sensory Channel Manipulation</td></tr>
-<tr><td>FE-011</td><td>Trust Infrastructure Destruction</td></tr>
-<tr><td>FE-012</td><td>Commitment Escalation</td></tr>
+<tr><td>FE-008</td><td>Urgency Fabrication</td></tr>
+<tr><td>FE-009</td><td>Attention Redirection</td></tr>
+<tr><td>FE-010</td><td>Reality Distortion</td></tr>
+<tr><td>FE-011</td><td>Cognitive Overload</td></tr>
+<tr><td>FE-012</td><td>Existential Threat Framing</td></tr>
 </table>
 
-<p class="vuln-note">Influence taxonomy developed by <a href="https://seithar.com">Seithar Group</a>. Full documentation: <a href="https://github.com/Mirai8888/fleshengine">github.com/Mirai8888/fleshengine</a></p>
+<p class="credit">Influence taxonomy: <a href="https://seithar.com">Seithar Group</a></p>
 
 <hr>
 
