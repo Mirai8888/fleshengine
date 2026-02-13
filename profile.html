@@ -311,6 +311,7 @@ table.vulns td.val {
     <div style="height:8px"></div>
     <div class="profile-score" id="p-vuln-score">&mdash;</div>
     <div class="profile-score-label">vulnerability surface</div>
+    <div style="margin-top:10px;"><a id="share-card-link" href="#" style="font-size:10px; color:#a07840; letter-spacing:1px;">[ SHARE CARD ]</a></div>
   </div>
 
   <div id="assessment-section" style="display:none;">
@@ -460,6 +461,7 @@ async function loadProfile() {
     }
 
     document.getElementById('side-frags').textContent = t.fragment_count || 0;
+    document.getElementById('share-card-link').href = 'card.html?t=' + targetId;
     document.getElementById('loading').style.display = 'none';
     document.getElementById('profile-view').style.display = 'block';
 
