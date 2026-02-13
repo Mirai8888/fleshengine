@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLESHENGINE — 人肉搜索 — Distributed Cognitive Profiling</title>
+<meta name="description" content="Human flesh search engine for cognitive profiling. Distributed intelligence collection with structured vulnerability mapping.">
+<style>
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
+    background-color: #000000;
+    color: #00ff00;
+    margin: 0;
+    padding: 20px;
+}
+a { color: #00ff00; }
+a:visited { color: #009900; }
+a:hover { color: #ffffff; }
+hr { border: 0; border-top: 1px solid #00ff00; margin: 15px 0; }
+h1 { font-size: 28px; font-weight: normal; letter-spacing: 8px; }
+h2 { font-size: 16px; font-weight: normal; letter-spacing: 4px; text-transform: uppercase; }
+h3 { font-size: 14px; font-weight: bold; }
+table { border-collapse: collapse; }
+td, th { border: 1px solid #006600; padding: 6px 10px; text-align: left; font-size: 13px; }
+th { background-color: #001a00; }
+input[type="text"] {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    background: #001a00;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 8px 12px;
+    width: 400px;
+}
+input[type="submit"], button {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 13px;
+    background: #003300;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+input[type="submit"]:hover, button:hover { background: #00ff00; color: #000000; }
+.blink { animation: blink 1.5s step-start infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.container { max-width: 780px; margin: 0 auto; }
+.mono { font-family: 'Courier New', monospace; }
+.dim { color: #006600; }
+.bright { color: #33ff33; }
+pre { font-size: 12px; line-height: 1.4; }
+.status-bar {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #006600;
+    border-bottom: 1px solid #003300;
+    padding: 4px 0;
+    margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="status-bar">
+SYS.ACTIVE // NODE_COUNT: 4,891 // FRAGMENTS_COLLECTED: 127,443 // UPTIME: 1,247d
+</div>
+
+<pre class="dim">
+  _____ _     _____ ____  _   _ _____ _   _  ____ ___ _   _ _____ 
+ |  ___| |   | ____/ ___|| | | | ____| \ | |/ ___|_ _| \ | | ____|
+ | |_  | |   |  _| \___ \| |_| |  _| |  \| | |  _ | ||  \| |  _|  
+ |  _| | |___| |___ ___) |  _  | |___| |\  | |_| || || |\  | |___ 
+ |_|   |_____|_____|____/|_| |_|_____|_| \_|\____|___|_| \_|_____|
+</pre>
+
+<h1>人肉搜索</h1>
+<p><i>ren rou sou suo</i> &mdash; human flesh search engine</p>
+<p>Distributed cognitive profiling for the open internet.</p>
+
+<hr>
+
+<h2>SUBMIT TARGET</h2>
+
+<form onsubmit="submitTarget(event)">
+<p>
+<input type="text" id="target-input" placeholder="@handle, URL, or name" autofocus>
+<input type="submit" value="INITIATE SCAN">
+</p>
+</form>
+
+<p id="submit-msg" style="display:none" class="mono">
+<span class="blink">&#9608;</span> TARGET ACCEPTED. AUTOMATED SCAN QUEUED. DISTRIBUTED COLLECTION INITIALIZED.<br>
+ESTIMATED COMPOSITE PROFILE: 24-48 HRS DEPENDING ON CONTRIBUTOR DENSITY.
+</p>
+
+<hr>
+
+<h2>PIPELINE</h2>
+
+<pre>
+  TARGET SUBMITTED
+       |
+       v
+  [1] AUTOMATED SCAN ............. public data extraction, communication
+       |                           pattern analysis, network mapping
+       v
+  [2] SCT VULNERABILITY MAP ...... 12-code cognitive attack surface
+       |                           assessment (SCT-001 through SCT-012)
+       v
+  [3] DISTRIBUTED COLLECTION ..... human observers contribute behavioral
+       |                           fragments, relationship dynamics,
+       |                           narrative pattern shifts
+       v
+  [4] AGGREGATION ENGINE ......... weighted merge of automated +
+       |                           human intelligence fragments
+       v
+  [5] COMPOSITE PROFILE .......... cognitive vulnerability brief,
+                                   engagement vectors, network position
+</pre>
+
+<hr>
+
+<h2>ACTIVE PROFILES</h2>
+
+<table width="100%">
+<tr>
+<th>TARGET</th>
+<th>THREAT SCORE</th>
+<th>TOP VECTORS</th>
+<th>FRAGMENTS</th>
+<th>STATUS</th>
+</tr>
+<tr>
+<td class="mono">@influencer_v</td>
+<td>73/100</td>
+<td>SCT-005, SCT-004, SCT-007</td>
+<td>847</td>
+<td class="bright">ACTIVE</td>
+</tr>
+<tr>
+<td class="mono">@policy_think_dc</td>
+<td>61/100</td>
+<td>SCT-001, SCT-006, SCT-003</td>
+<td>412</td>
+<td class="bright">ACTIVE</td>
+</tr>
+<tr>
+<td class="mono">@narrative_ops</td>
+<td>88/100</td>
+<td>SCT-007, SCT-010, SCT-002</td>
+<td>1,203</td>
+<td class="bright">ACTIVE</td>
+</tr>
+<tr>
+<td class="mono">@crypto_prophet</td>
+<td>54/100</td>
+<td>SCT-008, SCT-012, SCT-004</td>
+<td>289</td>
+<td>COLLECTION</td>
+</tr>
+<tr>
+<td class="mono">@media_bureau_7</td>
+<td>79/100</td>
+<td>SCT-001, SCT-009, SCT-006</td>
+<td>631</td>
+<td class="bright">ACTIVE</td>
+</tr>
+</table>
+
+<p class="dim" style="font-size:12px">[click any target to view full composite profile]</p>
+
+<hr>
+
+<h2>RECENT FRAGMENTS</h2>
+
+<pre class="dim">
+[2026-02-13 01:47:22] CONTRIBUTOR #4421 → @narrative_ops
+  TYPE: behavioral_pattern
+  "posting frequency increases 340% within 2hrs of any NATO
+   announcement. content pre-drafted. coordination probable."
+  CONFIDENCE: high
+
+[2026-02-13 01:12:08] CONTRIBUTOR #2847 → @influencer_v  
+  TYPE: relationship_dynamic
+  "consistent amplification of @crypto_prophet content despite
+   no public interaction. shared narrative cluster on 3 topics."
+  CONFIDENCE: medium
+
+[2026-02-12 23:55:41] CONTRIBUTOR #0091 → @policy_think_dc
+  TYPE: tone_shift
+  "switched from analytical to emotional framing on immigration
+   topics starting jan 2026. vocabulary overlap with known
+   coordinated campaigns (see fragment #2201)."
+  CONFIDENCE: high
+</pre>
+
+<hr>
+
+<h2>NAVIGATION</h2>
+
+<p>
+[ <a href="index.html">HOME</a> ]
+[ <a href="profile.html">SAMPLE PROFILE</a> ]
+[ <a href="scanner.html">SCT SCANNER</a> ]
+[ <a href="about.html">ABOUT</a> ]
+[ <a href="https://github.com/Mirai8888/fleshengine">SOURCE</a> ]
+</p>
+
+<hr>
+
+<p class="dim" style="font-size:11px">
+人肉搜索 // FLESHENGINE v0.1 // distributed cognitive profiling<br>
+every public account is a readable substrate<br>
+the crowd sees what the algorithm misses
+</p>
+
+</div>
+
+<script>
+function submitTarget(e) {
+    e.preventDefault();
+    var val = document.getElementById('target-input').value.trim();
+    if (!val) return;
+    document.getElementById('submit-msg').style.display = 'block';
+    document.getElementById('target-input').value = '';
+}
+</script>
+</body>
+</html>

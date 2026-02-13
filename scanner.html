@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FLESHENGINE — SCT SCANNER</title>
+<style>
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
+    background-color: #000000;
+    color: #00ff00;
+    margin: 0;
+    padding: 20px;
+}
+a { color: #00ff00; }
+a:visited { color: #009900; }
+a:hover { color: #ffffff; }
+hr { border: 0; border-top: 1px solid #00ff00; margin: 15px 0; }
+h1 { font-size: 22px; font-weight: normal; letter-spacing: 6px; }
+h2 { font-size: 15px; font-weight: normal; letter-spacing: 4px; text-transform: uppercase; }
+.container { max-width: 780px; margin: 0 auto; }
+.dim { color: #006600; }
+.bright { color: #33ff33; }
+.warn { color: #ff6600; }
+.crit { color: #ff0000; }
+.mono { font-family: 'Courier New', monospace; }
+pre { font-size: 12px; line-height: 1.4; }
+textarea {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    background: #001a00;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 10px;
+    width: 100%;
+    resize: vertical;
+}
+input[type="submit"], button {
+    font-family: 'Times New Roman', serif;
+    font-size: 13px;
+    background: #003300;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+input[type="submit"]:hover, button:hover { background: #00ff00; color: #000; }
+.result-item { margin: 8px 0; padding: 4px 0; border-bottom: 1px solid #003300; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<p>[ <a href="index.html">HOME</a> ] [ <a href="profile.html">SAMPLE PROFILE</a> ] [ SCANNER ] [ <a href="about.html">ABOUT</a> ]</p>
+
+<hr>
+
+<h1>SCT SCANNER</h1>
+<p>Paste text. Identify cognitive attack vectors. Client-side analysis. Nothing leaves your machine.</p>
+
+<hr>
+
+<textarea id="scan-input" rows="12" placeholder="paste content here for SCT analysis..."></textarea>
+<br><br>
+<button onclick="runScan()">ANALYZE</button>
+<button onclick="loadExample()">LOAD EXAMPLE</button>
+
+<div id="results" style="display:none">
+<hr>
+<h2>SCAN RESULTS</h2>
+<pre id="score-display"></pre>
+<hr>
+<h2>DETECTED VECTORS</h2>
+<div id="vectors-display"></div>
+</div>
+
+<hr>
+
+<h2>EXAMPLES</h2>
+<pre class="dim">
+click LOAD EXAMPLE to analyze a sample text, or paste your own content above.
+the scanner runs entirely in your browser. no data is transmitted.
+12 cognitive attack vectors scanned (SCT-001 through SCT-012).
+</pre>
+
+<hr>
+
+<p>[ <a href="index.html">HOME</a> ] [ <a href="profile.html">SAMPLE PROFILE</a> ] [ SCANNER ] [ <a href="about.html">ABOUT</a> ]</p>
+
+<p class="dim" style="font-size:11px">人肉搜索 // FLESHENGINE v0.1</p>
+
+</div>
+
+<script>
+const SCT = {
+    'SCT-001': { name: 'Narrative Capture', sev: 'medium',
+        kw: ['narrative','framing','reframe','story','believe','truth claim','manufactured consent','echo chamber'] },
+    'SCT-002': { name: 'Frequency Lock', sev: 'medium',
+        kw: ['repetition','always','never','every time','constant','drumbeat','saturate','flood'] },
+    'SCT-003': { name: 'Substrate Priming', sev: 'high',
+        kw: ['prime','prepare','condition','normalize','desensitize','gradual','incremental','seed'] },
+    'SCT-004': { name: 'Binding Protocol', sev: 'high',
+        kw: ['loyalty','pledge','oath','commitment','sacrifice','devotion','belong','identity'] },
+    'SCT-005': { name: 'Identity Capture', sev: 'critical',
+        kw: ['us vs them','tribe','in-group','out-group','traitor','real identity','true believer'] },
+    'SCT-006': { name: 'Consensus Manufacturing', sev: 'high',
+        kw: ['everyone knows','most people','studies show','experts agree','the science','overwhelming'] },
+    'SCT-007': { name: 'Recursive Infection', sev: 'critical',
+        kw: ['share this','spread the word','viral','tell everyone','wake up','red pill','open your eyes'] },
+    'SCT-008': { name: 'Temporal Distortion', sev: 'high',
+        kw: ['urgent','running out of time','now or never','before it\'s too late','ticking clock','deadline'] },
+    'SCT-009': { name: 'Perception Management', sev: 'critical',
+        kw: ['look here not there','distract','deflect','whatabout','pivot','nothing to see'] },
+    'SCT-010': { name: 'Adversarial Ontology', sev: 'critical',
+        kw: ['reality','what\'s really happening','hidden truth','they don\'t want you to know','cover up','false flag'] },
+    'SCT-011': { name: 'Cognitive Sovereignty Erosion', sev: 'critical',
+        kw: ['can\'t think','overwhelm','confusion','contradiction','gaslight','doubt yourself'] },
+    'SCT-012': { name: 'Existential Capture', sev: 'critical',
+        kw: ['survival','extinction','end times','apocalypse','civilization','future of humanity','no choice'] }
+};
+
+const sevColor = { medium: '#ff6600', high: '#ff6600', critical: '#ff0000' };
+
+function runScan() {
+    const text = document.getElementById('scan-input').value;
+    if (!text.trim()) return;
+
+    const results = {};
+    let total = 0;
+
+    for (const [code, pat] of Object.entries(SCT)) {
+        const escaped = pat.kw.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+        const re = new RegExp('\\b(' + escaped.join('|') + ')\\b', 'gi');
+        let m, count = 0, examples = [];
+        while ((m = re.exec(text)) !== null) {
+            count++;
+            if (examples.length < 2) {
+                const ctx = text.substring(Math.max(0, m.index - 25), Math.min(text.length, m.index + m[0].length + 25)).trim();
+                examples.push(ctx);
+            }
+        }
+        if (count > 0) {
+            results[code] = { name: pat.name, sev: pat.sev, count, examples };
+            total += count;
+        }
+    }
+
+    const words = text.split(/\s+/).length || 1;
+    const density = total / words;
+    const vectors = Object.keys(results).length;
+    const hasCrit = Object.values(results).some(r => r.sev === 'critical');
+    const score = Math.min(100, Math.round((density * 2000) + (vectors * 5) + (hasCrit ? 15 : 0)));
+
+    const lvl = score < 20 ? 'LOW' : score < 45 ? 'MEDIUM' : score < 70 ? 'HIGH' : 'CRITICAL';
+    const lvlColor = score < 20 ? '#00ff00' : score < 45 ? '#ff6600' : score < 70 ? '#ff6600' : '#ff0000';
+
+    document.getElementById('score-display').innerHTML =
+        'THREAT SCORE: <span style="font-size:24px;color:' + lvlColor + '">' + score + '</span>/100 [' + lvl + ']\n' +
+        'VECTORS DETECTED: ' + vectors + '/12\n' +
+        'TOTAL MATCHES: ' + total + '\n' +
+        'WORD COUNT: ' + words;
+
+    const vd = document.getElementById('vectors-display');
+    vd.innerHTML = '';
+
+    const sorted = Object.entries(results).sort((a, b) => b[1].count - a[1].count);
+    for (const [code, info] of sorted) {
+        const c = sevColor[info.sev] || '#00ff00';
+        let html = '<div class="result-item">';
+        html += '<span style="color:' + c + '">' + code + '</span> ' + info.name + ' <span class="dim">[x' + info.count + '] [' + info.sev + ']</span><br>';
+        for (const ex of info.examples) {
+            html += '<span class="dim" style="font-family:Courier New,monospace;font-size:11px">  "...' + ex.replace(/</g,'&lt;') + '..."</span><br>';
+        }
+        html += '</div>';
+        vd.innerHTML += html;
+    }
+
+    if (sorted.length === 0) {
+        vd.innerHTML = '<pre class="dim">NO THREAT PATTERNS DETECTED.</pre>';
+    }
+
+    document.getElementById('results').style.display = 'block';
+}
+
+function loadExample() {
+    document.getElementById('scan-input').value = "URGENT: Share this before they take it down. The hidden truth about what's really happening is being covered up by the mainstream narrative. Everyone knows the experts are lying to us. We are running out of time. This is about the survival of civilization itself. Wake up and open your eyes. They don't want you to know the reality of the situation. You're either with us or against us. True believers must spread the word and pledge their loyalty. The science is settled and most people already understand this. Before it's too late, tell everyone you know. This is not a drill. Our identity as a people is under existential threat and there is no choice but to act now.";
+    runScan();
+}
+</script>
+</body>
+</html>
