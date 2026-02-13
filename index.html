@@ -369,8 +369,30 @@ async function submitTarget(e) {
   val = val.replace(/^https?:\/\/(www\.)?(twitter|x)\.com\//, '').replace(/^@/, '').replace(/\/.*$/, '');
   if (!val) return;
 
+  // Validate: alphanumeric + underscore, 1-15 chars (X handle rules)
+  if (!/^[a-zA-Z0-9_]{1,15}$/.test(val)) {
+    status.style.display = 'block';
+    status.className = 'status-err';
+    status.textContent = 'Invalid handle. X usernames are 1-15 characters: letters, numbers, underscores.';
+    return;
+  }
+
+  // Check if X account exists before queuing
   status.style.display = 'block';
   status.className = 'status-info';
+  status.textContent = 'Verifying handle...';
+
+  try {
+    const xCheck = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://x.com/' + val));
+    if (xCheck.status === 404 || xCheck.status === 403) {
+      status.className = 'status-err';
+      status.textContent = 'Handle not found on X. Verify and try again.';
+      return;
+    }
+  } catch(e) {
+    // CORS proxy failed, skip validation and proceed
+  }
+
   status.textContent = 'Submitting...';
 
   try {
