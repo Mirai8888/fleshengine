@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FLESHENGINE — SCT SCANNER</title>
+<title>FLESHENGINE — INFLUENCE SCANNER</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -75,12 +75,12 @@ button:hover { background: var(--gold); color: var(--bg-deep); }
 
 <hr>
 
-<h1>SCT Scanner</h1>
+<h1>Influence Scanner</h1>
 <p style="color:var(--text-dim)">Paste text. Identify cognitive attack vectors. Client-side analysis. Nothing leaves your machine.</p>
 
 <hr>
 
-<textarea id="scan-input" rows="12" placeholder="Paste content here for SCT analysis..."></textarea>
+<textarea id="scan-input" rows="12" placeholder="Paste content here for analysis..."></textarea>
 <br><br>
 <button onclick="runScan()">Analyze</button>
 <button onclick="loadExample()">Load Example</button>
@@ -104,7 +104,7 @@ button:hover { background: var(--gold); color: var(--bg-deep); }
 
 <p class="note">Click "Load Example" to analyze a sample text, or paste your own content above.<br>
 The scanner runs entirely in your browser. No data is transmitted.<br>
-12 cognitive attack vectors scanned (SCT-001 through SCT-012).</p>
+12 influence vectors scanned (FE-001 through FE-012).</p>
 
 <hr>
 
@@ -122,19 +122,19 @@ The scanner runs entirely in your browser. No data is transmitted.<br>
 </div>
 
 <script>
-const SCT = {
-  'SCT-001': { name: 'Narrative Capture', sev: 'medium', kw: ['narrative','framing','reframe','story','believe','truth claim','manufactured consent','echo chamber'] },
-  'SCT-002': { name: 'Frequency Lock', sev: 'medium', kw: ['repetition','always','never','every time','constant','drumbeat','saturate','flood'] },
-  'SCT-003': { name: 'Substrate Priming', sev: 'high', kw: ['prime','prepare','condition','normalize','desensitize','gradual','incremental','seed'] },
-  'SCT-004': { name: 'Binding Protocol', sev: 'high', kw: ['loyalty','pledge','oath','commitment','sacrifice','devotion','belong','identity'] },
-  'SCT-005': { name: 'Identity Capture', sev: 'critical', kw: ['us vs them','tribe','in-group','out-group','traitor','real identity','true believer'] },
-  'SCT-006': { name: 'Consensus Manufacturing', sev: 'high', kw: ['everyone knows','most people','studies show','experts agree','the science','overwhelming'] },
-  'SCT-007': { name: 'Recursive Infection', sev: 'critical', kw: ['share this','spread the word','viral','tell everyone','wake up','red pill','open your eyes'] },
-  'SCT-008': { name: 'Temporal Distortion', sev: 'high', kw: ['urgent','running out of time','now or never','before it\'s too late','ticking clock','deadline'] },
-  'SCT-009': { name: 'Perception Management', sev: 'critical', kw: ['look here not there','distract','deflect','whatabout','pivot','nothing to see'] },
-  'SCT-010': { name: 'Adversarial Ontology', sev: 'critical', kw: ['reality','what\'s really happening','hidden truth','they don\'t want you to know','cover up','false flag'] },
-  'SCT-011': { name: 'Cognitive Sovereignty Erosion', sev: 'critical', kw: ['can\'t think','overwhelm','confusion','contradiction','gaslight','doubt yourself'] },
-  'SCT-012': { name: 'Existential Capture', sev: 'critical', kw: ['survival','extinction','end times','apocalypse','civilization','future of humanity','no choice'] }
+const FE = {
+  'FE-001': { name: 'Narrative Framing', sev: 'medium', kw: ['narrative','framing','reframe','story','believe','truth claim','manufactured consent','echo chamber'] },
+  'FE-002': { name: 'Repetition Saturation', sev: 'medium', kw: ['repetition','always','never','every time','constant','drumbeat','saturate','flood'] },
+  'FE-003': { name: 'Audience Conditioning', sev: 'high', kw: ['prime','prepare','condition','normalize','desensitize','gradual','incremental','seed'] },
+  'FE-004': { name: 'Loyalty Exploitation', sev: 'high', kw: ['loyalty','pledge','oath','commitment','sacrifice','devotion','belong','identity'] },
+  'FE-005': { name: 'Identity Manipulation', sev: 'critical', kw: ['us vs them','tribe','in-group','out-group','traitor','real identity','true believer'] },
+  'FE-006': { name: 'Manufactured Consensus', sev: 'high', kw: ['everyone knows','most people','studies show','experts agree','the science','overwhelming'] },
+  'FE-007': { name: 'Viral Propagation', sev: 'critical', kw: ['share this','spread the word','viral','tell everyone','wake up','red pill','open your eyes'] },
+  'FE-008': { name: 'Urgency Fabrication', sev: 'high', kw: ['urgent','running out of time','now or never','before it\'s too late','ticking clock','deadline'] },
+  'FE-009': { name: 'Attention Redirection', sev: 'critical', kw: ['look here not there','distract','deflect','whatabout','pivot','nothing to see'] },
+  'FE-010': { name: 'Reality Distortion', sev: 'critical', kw: ['reality','what\'s really happening','hidden truth','they don\'t want you to know','cover up','false flag'] },
+  'FE-011': { name: 'Cognitive Overload', sev: 'critical', kw: ['can\'t think','overwhelm','confusion','contradiction','gaslight','doubt yourself'] },
+  'FE-012': { name: 'Existential Threat Framing', sev: 'critical', kw: ['survival','extinction','end times','apocalypse','civilization','future of humanity','no choice'] }
 };
 
 const sevColors = { medium: 'var(--warn)', high: 'var(--gold-bright)', critical: 'var(--crit)' };
@@ -144,7 +144,7 @@ function runScan() {
   if (!text.trim()) return;
   const results = {};
   let total = 0;
-  for (const [code, pat] of Object.entries(SCT)) {
+  for (const [code, pat] of Object.entries(FE)) {
     const escaped = pat.kw.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
     const re = new RegExp('\\b(' + escaped.join('|') + ')\\b', 'gi');
     let m, count = 0, examples = [];

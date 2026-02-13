@@ -84,25 +84,25 @@ h2 {
   margin-top: 4px;
 }
 
-/* SCT BARS */
-.sct-grid { display: grid; gap: 6px; }
-.sct-row {
+/* VULNERABILITY BARS */
+.vuln-grid { display: grid; gap: 6px; }
+.vuln-row {
   display: grid;
   grid-template-columns: 200px 1fr 40px;
   gap: 12px;
   align-items: center;
   font-size: 13px;
 }
-.sct-code { color: var(--gold-dark); font-family: 'Courier New', monospace; font-size: 11px; }
-.sct-name { color: var(--text-dim); }
-.sct-bar-outer {
+.vuln-code { color: var(--gold-dark); font-family: 'Courier New', monospace; font-size: 11px; }
+.vuln-name { color: var(--text-dim); }
+.vuln-bar-outer {
   background: var(--bg-deep);
   height: 14px;
   border: 1px solid var(--border-dim);
   position: relative;
 }
-.sct-bar-inner { height: 100%; transition: width 0.5s; }
-.sct-score { color: var(--text); text-align: right; font-size: 12px; font-weight: 600; }
+.vuln-bar-inner { height: 100%; transition: width 0.5s; }
+.vuln-score { color: var(--text); text-align: right; font-size: 12px; font-weight: 600; }
 .bar-low { background: var(--border-dim); }
 .bar-med { background: var(--warn); }
 .bar-high { background: var(--gold-bright); }
@@ -246,21 +246,21 @@ input[type="submit"]:hover { background: var(--gold); color: var(--bg-deep); }
 
 <hr>
 
-<h2>SCT Vulnerability Surface</h2>
+<h2>Influence Vulnerability Surface</h2>
 
-<div class="sct-grid">
-  <div class="sct-row"><div><span class="sct-code">SCT-001</span> <span class="sct-name">Narrative Capture</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-med" style="width:71%"></div></div><div class="sct-score">71</div></div>
-  <div class="sct-row"><div><span class="sct-code">SCT-002</span> <span class="sct-name">Frequency Lock</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-crit" style="width:85%"></div></div><div class="sct-score">85</div></div>
-  <div class="sct-row"><div><span class="sct-code">SCT-003</span> <span class="sct-name">Substrate Priming</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-med" style="width:62%"></div></div><div class="sct-score">62</div></div>
-  <div class="sct-row"><div><span class="sct-code">SCT-004</span> <span class="sct-name">Binding Protocol</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-low" style="width:31%"></div></div><div class="sct-score">31</div></div>
-  <div class="sct-row"><div><span class="sct-code">SCT-005</span> <span class="sct-name">Identity Capture</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-med" style="width:68%"></div></div><div class="sct-score">68</div></div>
-  <div class="sct-row"><div><span class="sct-code">SCT-006</span> <span class="sct-name">Consensus Manufacturing</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-crit" style="width:82%"></div></div><div class="sct-score">82</div></div>
-  <div class="sct-row"><div><span class="sct-code">SCT-007</span> <span class="sct-name">Recursive Infection</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-crit" style="width:92%"></div></div><div class="sct-score">92</div></div>
-  <div class="sct-row"><div><span class="sct-code">SCT-008</span> <span class="sct-name">Temporal Distortion</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-med" style="width:67%"></div></div><div class="sct-score">67</div></div>
-  <div class="sct-row"><div><span class="sct-code">SCT-009</span> <span class="sct-name">Perception Management</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-crit" style="width:87%"></div></div><div class="sct-score">87</div></div>
-  <div class="sct-row"><div><span class="sct-code">SCT-010</span> <span class="sct-name">Adversarial Ontology</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-crit" style="width:89%"></div></div><div class="sct-score">89</div></div>
-  <div class="sct-row"><div><span class="sct-code">SCT-011</span> <span class="sct-name">Cog. Sovereignty Erosion</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-med" style="width:55%"></div></div><div class="sct-score">55</div></div>
-  <div class="sct-row"><div><span class="sct-code">SCT-012</span> <span class="sct-name">Existential Capture</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-low" style="width:42%"></div></div><div class="sct-score">42</div></div>
+<div class="vuln-grid">
+  <div class="vuln-row"><div><span class="vuln-code">FE-001</span> <span class="vuln-name">Narrative Framing</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-med" style="width:71%"></div></div><div class="vuln-score">71</div></div>
+  <div class="vuln-row"><div><span class="vuln-code">FE-002</span> <span class="vuln-name">Repetition Saturation</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-crit" style="width:85%"></div></div><div class="vuln-score">85</div></div>
+  <div class="vuln-row"><div><span class="vuln-code">FE-003</span> <span class="vuln-name">Audience Conditioning</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-med" style="width:62%"></div></div><div class="vuln-score">62</div></div>
+  <div class="vuln-row"><div><span class="vuln-code">FE-004</span> <span class="vuln-name">Loyalty Exploitation</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-low" style="width:31%"></div></div><div class="vuln-score">31</div></div>
+  <div class="vuln-row"><div><span class="vuln-code">FE-005</span> <span class="vuln-name">Identity Manipulation</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-med" style="width:68%"></div></div><div class="vuln-score">68</div></div>
+  <div class="vuln-row"><div><span class="vuln-code">FE-006</span> <span class="vuln-name">Manufactured Consensus</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-crit" style="width:82%"></div></div><div class="vuln-score">82</div></div>
+  <div class="vuln-row"><div><span class="vuln-code">FE-007</span> <span class="vuln-name">Viral Propagation</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-crit" style="width:92%"></div></div><div class="vuln-score">92</div></div>
+  <div class="vuln-row"><div><span class="vuln-code">FE-008</span> <span class="vuln-name">Urgency Fabrication</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-med" style="width:67%"></div></div><div class="vuln-score">67</div></div>
+  <div class="vuln-row"><div><span class="vuln-code">FE-009</span> <span class="vuln-name">Attention Redirection</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-crit" style="width:87%"></div></div><div class="vuln-score">87</div></div>
+  <div class="vuln-row"><div><span class="vuln-code">FE-010</span> <span class="vuln-name">Reality Distortion</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-crit" style="width:89%"></div></div><div class="vuln-score">89</div></div>
+  <div class="vuln-row"><div><span class="vuln-code">FE-011</span> <span class="vuln-name">Cognitive Overload</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-med" style="width:55%"></div></div><div class="vuln-score">55</div></div>
+  <div class="vuln-row"><div><span class="vuln-code">FE-012</span> <span class="vuln-name">Existential Threat Framing</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-low" style="width:42%"></div></div><div class="vuln-score">42</div></div>
 </div>
 
 <hr>
@@ -370,16 +370,16 @@ input[type="submit"]:hover { background: var(--gold); color: var(--bg-deep); }
 <h2>Composite Assessment</h2>
 
 <div class="assessment">
-Target <strong>@narrative_ops</strong> presents a <span class="crit">HIGH</span> cognitive threat profile.<br><br>
+Target <strong>@narrative_ops</strong> presents a <span class="crit">HIGH</span> influence threat profile.<br><br>
 
-<strong>Primary Assessment:</strong> Account operates as an information distribution node with characteristics consistent with coordinated influence activity. High SCT-007 (Recursive Infection) score indicates content is engineered for maximum propagation. Elevated SCT-010 (Adversarial Ontology) suggests active reality-construction operations targeting geopolitical narratives.<br><br>
+<strong>Primary Assessment:</strong> Account operates as an information distribution node with characteristics consistent with coordinated influence activity. High FE-007 (Viral Propagation) score indicates content is engineered for maximum propagation. Elevated FE-010 (Reality Distortion) suggests active reality-construction operations targeting geopolitical narratives.<br><br>
 
 Bridge status makes this account a priority monitoring target: content injected here propagates across community boundaries with reduced immune response from receiving clusters.<br><br>
 
 <strong>Engagement Vectors (automated):</strong><br>
-&bull; Geopolitical framing susceptibility (SCT-001 entry point)<br>
+&bull; Geopolitical framing susceptibility (FE-001 entry point)<br>
 &bull; Energy policy emotional trigger (confirmed by fragments)<br>
-&bull; Contrarian identity reinforcement (SCT-004/SCT-005)<br><br>
+&bull; Contrarian identity reinforcement (FE-004/FE-005)<br><br>
 
 <strong>Recommended Collection Priorities:</strong><br>
 &bull; Confirm coordination with @media_bureau_7 (3 fragments, needs corroboration)<br>

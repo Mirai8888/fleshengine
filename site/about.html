@@ -48,11 +48,11 @@ blockquote {
   color: var(--gold); margin-bottom: 8px;
 }
 .diff-text { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
-.sct-table {
+.vuln-table {
   width: 100%;
   border-collapse: collapse;
 }
-.sct-table th {
+.vuln-table th {
   font-family: 'Cinzel', serif;
   font-size: 11px; font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase;
@@ -62,18 +62,18 @@ blockquote {
   border-bottom: 1px solid var(--border);
   background: var(--bg-card);
 }
-.sct-table td {
+.vuln-table td {
   padding: 6px 12px;
   border-bottom: 1px solid var(--border-dim);
   font-size: 14px;
 }
-.sct-table td:first-child {
+.vuln-table td:first-child {
   font-family: 'Courier New', monospace;
   font-size: 12px;
   color: var(--gold-dark);
   width: 80px;
 }
-.sct-note { font-size: 12px; color: var(--border); margin-top: 10px; }
+.vuln-note { font-size: 12px; color: var(--border); margin-top: 10px; }
 .footer { font-size: 11px; color: var(--border-dim); font-style: italic; }
 @media (max-width: 600px) { .diff-grid { grid-template-columns: 1fr; } }
 </style>
@@ -124,7 +124,7 @@ The name is deliberate. The discomfort is the point. If the capability exists &m
 </div>
 <div class="diff-card">
   <div class="diff-title">2. Structured Taxonomy</div>
-  <div class="diff-text">All observations use the SCT (Seithar Cognitive Threat) taxonomy &mdash; 12 defined vectors with established indicators. Not free-form harassment. Every contribution maps to a framework.</div>
+  <div class="diff-text">All observations use the FLESHENGINE influence taxonomy &mdash; 12 defined vectors with established indicators. Not free-form harassment. Every contribution maps to a framework.</div>
 </div>
 <div class="diff-card">
   <div class="diff-title">3. Bidirectional</div>
@@ -138,27 +138,27 @@ The name is deliberate. The discomfort is the point. If the capability exists &m
 
 <hr>
 
-<h2>The SCT Taxonomy</h2>
+<h2>The Influence Taxonomy</h2>
 
-<p style="color:var(--text-dim)">12 exploitation vectors mapping the full cognitive attack surface.</p>
+<p style="color:var(--text-dim)">12 exploitation vectors mapping the full influence attack surface.</p>
 
-<table class="sct-table">
+<table class="vuln-table">
 <tr><th>Code</th><th>Vector</th></tr>
-<tr><td>SCT-001</td><td>Emotional Hijacking</td></tr>
-<tr><td>SCT-002</td><td>Information Asymmetry Exploitation</td></tr>
-<tr><td>SCT-003</td><td>Authority Fabrication</td></tr>
-<tr><td>SCT-004</td><td>Social Proof Manipulation</td></tr>
-<tr><td>SCT-005</td><td>Identity Targeting</td></tr>
-<tr><td>SCT-006</td><td>Temporal Manipulation</td></tr>
-<tr><td>SCT-007</td><td>Recursive Infection</td></tr>
-<tr><td>SCT-008</td><td>Direct Substrate Intervention</td></tr>
-<tr><td>SCT-009</td><td>Chemical Substrate Disruption</td></tr>
-<tr><td>SCT-010</td><td>Sensory Channel Manipulation</td></tr>
-<tr><td>SCT-011</td><td>Trust Infrastructure Destruction</td></tr>
-<tr><td>SCT-012</td><td>Commitment Escalation</td></tr>
+<tr><td>FE-001</td><td>Emotional Hijacking</td></tr>
+<tr><td>FE-002</td><td>Information Asymmetry Exploitation</td></tr>
+<tr><td>FE-003</td><td>Authority Fabrication</td></tr>
+<tr><td>FE-004</td><td>Social Proof Manipulation</td></tr>
+<tr><td>FE-005</td><td>Identity Targeting</td></tr>
+<tr><td>FE-006</td><td>Temporal Manipulation</td></tr>
+<tr><td>FE-007</td><td>Viral Propagation</td></tr>
+<tr><td>FE-008</td><td>Direct Substrate Intervention</td></tr>
+<tr><td>FE-009</td><td>Chemical Substrate Disruption</td></tr>
+<tr><td>FE-010</td><td>Sensory Channel Manipulation</td></tr>
+<tr><td>FE-011</td><td>Trust Infrastructure Destruction</td></tr>
+<tr><td>FE-012</td><td>Commitment Escalation</td></tr>
 </table>
 
-<p class="sct-note">SCT taxonomy by <a href="https://seithar.com">Seithar Group</a>. Full documentation: <a href="https://github.com/Mirai8888/seithar-cogdef">github.com/Mirai8888/seithar-cogdef</a></p>
+<p class="vuln-note">Influence taxonomy developed by <a href="https://seithar.com">Seithar Group</a>. Full documentation: <a href="https://github.com/Mirai8888/fleshengine">github.com/Mirai8888/fleshengine</a></p>
 
 <hr>
 
