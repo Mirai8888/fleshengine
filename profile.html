@@ -306,11 +306,32 @@ table.vulns td.val {
   <div class="profile-card">
     <div class="profile-handle" id="p-handle"></div>
     <div class="profile-status" id="p-status"></div>
-    <div class="profile-score" id="p-score">&mdash;</div>
-    <div class="profile-score-label">vulnerability composite</div>
+    <div class="profile-score" id="p-threat-score">&mdash;</div>
+    <div class="profile-score-label">influence output</div>
+    <div style="height:8px"></div>
+    <div class="profile-score" id="p-vuln-score">&mdash;</div>
+    <div class="profile-score-label">vulnerability surface</div>
   </div>
 
+  <div id="assessment-section" style="display:none;">
+    <h2>Assessment</h2>
+    <div class="assessment-box" id="p-assessment"></div>
+  </div>
+
+  <h2>Influence Output</h2>
+  <div style="font-size:11px; color:#6b4420; margin-bottom:8px;">What techniques this person <em>deploys</em> against others.</div>
+
+  <table class="vulns" id="usage-table">
+    <tr>
+      <th>Code</th>
+      <th>Vector</th>
+      <th>Level</th>
+      <th style="width:40%"></th>
+    </tr>
+  </table>
+
   <h2>Vulnerability Surface</h2>
+  <div style="font-size:11px; color:#6b4420; margin-bottom:8px;">What techniques <em>work on</em> this person. How to target them.</div>
 
   <table class="vulns" id="vuln-table">
     <tr>
@@ -320,11 +341,6 @@ table.vulns td.val {
       <th style="width:40%"></th>
     </tr>
   </table>
-
-  <div id="assessment-section" style="display:none;">
-    <h2>Assessment</h2>
-    <div class="assessment-box" id="p-assessment"></div>
-  </div>
 
   <h2>Collected Fragments</h2>
   <div id="fragments-list">
@@ -394,24 +410,48 @@ async function loadProfile() {
     statusEl.className = 'profile-status st-' + (t.status || 'queued');
     document.getElementById('side-status').textContent = (t.status || 'queued').toUpperCase();
 
-    const scoreEl = document.getElementById('p-score');
+    // Influence output score
+    const threatEl = document.getElementById('p-threat-score');
     if (t.threat_score != null) {
-      scoreEl.textContent = t.threat_score;
-      if (t.threat_score >= 70) scoreEl.classList.add('high');
-      else if (t.threat_score >= 40) scoreEl.classList.add('med');
+      threatEl.textContent = t.threat_score;
+      if (t.threat_score >= 70) threatEl.classList.add('high');
+      else if (t.threat_score >= 40) threatEl.classList.add('med');
     }
 
-    // Vulnerability table
-    const table = document.getElementById('vuln-table');
+    // Vulnerability score
+    const vulnEl = document.getElementById('p-vuln-score');
+    if (t.vuln_composite != null) {
+      vulnEl.textContent = t.vuln_composite;
+      if (t.vuln_composite >= 70) vulnEl.classList.add('high');
+      else if (t.vuln_composite >= 40) vulnEl.classList.add('med');
+    }
+
+    // Influence output table (what they deploy)
+    const usageTable = document.getElementById('usage-table');
     VULNS.forEach(([key, code, name]) => {
       const val = t[key] || 0;
       const cls = val >= 70 ? 'high' : val >= 40 ? 'med' : '';
-      const row = table.insertRow();
+      const row = usageTable.insertRow();
       row.innerHTML = '<td class="code">' + code + '</td>' +
         '<td>' + name + '</td>' +
         '<td class="val">' + val + '</td>' +
         '<td><div class="bar-bg"><div class="bar-fill ' + cls + '" style="width:' + val + '%"></div></div></td>';
     });
+
+    // Vulnerability table (what works on them)
+    // Note: vuln scores not yet stored per-vector in DB, but vuln_composite + vuln_top_vectors are.
+    // For now, show the composite and top vectors in a summary row.
+    const vulnTable = document.getElementById('vuln-table');
+    if (t.vuln_composite > 0 || t.vuln_top_vectors) {
+      const row = vulnTable.insertRow();
+      row.innerHTML = '<td class="code" style="color:#c8a060">COMPOSITE</td>' +
+        '<td>' + (t.vuln_top_vectors || 'Assessment pending') + '</td>' +
+        '<td class="val">' + (t.vuln_composite || 0) + '</td>' +
+        '<td><div class="bar-bg"><div class="bar-fill ' + ((t.vuln_composite||0) >= 70 ? 'high' : (t.vuln_composite||0) >= 40 ? 'med' : '') + '" style="width:' + (t.vuln_composite||0) + '%"></div></div></td>';
+    } else {
+      const row = vulnTable.insertRow();
+      row.innerHTML = '<td colspan="4" style="color:#6b4420; font-style:italic; padding:8px 0;">Vulnerability assessment pending. Rescan to generate.</td>';
+    }
 
     // Assessment
     if (t.assessment) {
