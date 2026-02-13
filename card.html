@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人肉搜索 — Scan Card</title>
+<style>
+body {
+  background: #2a1408;
+  color: #e8d5b5;
+  font-family: 'Trebuchet MS', Verdana, Arial, sans-serif;
+  font-size: 13px;
+  margin: 0; padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 500px;
+  background: #38160d;
+  border: 1px solid #6b4420;
+  padding: 0;
+}
+
+.card-header {
+  background: #1a0a02;
+  border-bottom: 1px solid #6b4420;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header .brand {
+  font-family: Georgia, serif;
+  font-size: 14px;
+  color: #c8a060;
+  letter-spacing: 3px;
+}
+
+.card-header .kanji {
+  font-size: 12px;
+  color: #8a6a3a;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-handle {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  color: #e8d5b5;
+  margin-bottom: 12px;
+}
+
+.card-scores {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.score-box {
+  flex: 1;
+  background: #1a0a02;
+  border: 1px solid #4a2a10;
+  padding: 12px;
+  text-align: center;
+}
+
+.score-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8a6a3a;
+  margin-bottom: 4px;
+}
+
+.score-num {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.score-num.high { color: #c04030; }
+.score-num.med { color: #c89030; }
+.score-num.low { color: #8a6a3a; }
+
+.card-vectors {
+  margin-bottom: 16px;
+}
+
+.vector-label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #8a6a3a;
+  margin-bottom: 4px;
+}
+
+.vector-list {
+  font-size: 12px;
+  color: #d4a76a;
+  line-height: 1.6;
+}
+
+.card-bar {
+  margin-bottom: 6px;
+}
+
+.card-bar-label {
+  font-size: 10px;
+  color: #8a6a3a;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.card-bar-bg {
+  height: 4px;
+  background: #1a0a02;
+  border: 1px solid #4a2a10;
+}
+
+.card-bar-fill {
+  height: 100%;
+  background: #c8a060;
+}
+
+.card-bar-fill.high { background: #c04030; }
+.card-bar-fill.med { background: #c89030; }
+
+.card-footer {
+  border-top: 1px solid #4a2a10;
+  padding: 10px 20px;
+  font-size: 10px;
+  color: #6b4420;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-footer a {
+  color: #a07840;
+  text-decoration: none;
+}
+
+#loading { text-align: center; color: #6b4420; padding: 40px; }
+#notfound { text-align: center; color: #6b4420; padding: 40px; display: none; }
+</style>
+</head>
+<body>
+
+<div id="loading">Retrieving profile...</div>
+<div id="notfound">Target not found.</div>
+
+<div class="card" id="scan-card" style="display:none;">
+  <div class="card-header">
+    <span class="brand">FLESHENGINE</span>
+    <span class="kanji">人肉搜索</span>
+  </div>
+  <div class="card-body">
+    <div class="card-handle" id="c-handle"></div>
+    <div class="card-scores">
+      <div class="score-box">
+        <div class="score-label">Influence Output</div>
+        <div class="score-num" id="c-threat"></div>
+      </div>
+      <div class="score-box">
+        <div class="score-label">Vulnerability</div>
+        <div class="score-num" id="c-vuln"></div>
+      </div>
+    </div>
+    <div class="card-vectors">
+      <div class="vector-label">Deploys</div>
+      <div class="vector-list" id="c-top-vectors"></div>
+    </div>
+    <div class="card-vectors">
+      <div class="vector-label">Vulnerable To</div>
+      <div class="vector-list" id="c-vuln-vectors"></div>
+    </div>
+    <div id="c-bars"></div>
+  </div>
+  <div class="card-footer">
+    <span>fleshengine.online</span>
+    <a href="https://seithar.com">seithar.com</a>
+  </div>
+</div>
+
+<script>
+const API = 'https://kwrrdptfpqgiwktbgefb.supabase.co/rest/v1';
+const KEY = 'sb_publishable_uRPJlC4dcLKvbGKLMp8u1g_FkIQH6Or';
+const H = { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY };
+
+const FE = [
+  ['fe_001', 'Narrative Framing'],
+  ['fe_002', 'Repetition Saturation'],
+  ['fe_003', 'Audience Conditioning'],
+  ['fe_004', 'Loyalty Exploitation'],
+  ['fe_005', 'Identity Manipulation'],
+  ['fe_006', 'Manufactured Consensus'],
+  ['fe_007', 'Viral Propagation'],
+  ['fe_008', 'Urgency Fabrication'],
+  ['fe_009', 'Attention Redirection'],
+  ['fe_010', 'Reality Distortion'],
+  ['fe_011', 'Cognitive Overload'],
+  ['fe_012', 'Existential Threat Framing'],
+];
+
+async function load() {
+  const params = new URLSearchParams(window.location.search);
+  const tid = params.get('t');
+  if (!tid) { document.getElementById('loading').style.display='none'; document.getElementById('notfound').style.display='block'; return; }
+
+  try {
+    const r = await fetch(API + '/targets?id=eq.' + tid + '&select=*&limit=1', { headers: H });
+    const data = await r.json();
+    if (!data || !data.length) { document.getElementById('loading').style.display='none'; document.getElementById('notfound').style.display='block'; return; }
+    const t = data[0];
+
+    document.getElementById('c-handle').textContent = '@' + (t.display_handle || t.handle);
+
+    const threatEl = document.getElementById('c-threat');
+    threatEl.textContent = t.threat_score || 0;
+    threatEl.className = 'score-num ' + ((t.threat_score||0) >= 70 ? 'high' : (t.threat_score||0) >= 40 ? 'med' : 'low');
+
+    const vulnEl = document.getElementById('c-vuln');
+    vulnEl.textContent = t.vuln_composite || 0;
+    vulnEl.className = 'score-num ' + ((t.vuln_composite||0) >= 70 ? 'high' : (t.vuln_composite||0) >= 40 ? 'med' : 'low');
+
+    document.getElementById('c-top-vectors').textContent = t.top_vectors || 'None detected';
+    document.getElementById('c-vuln-vectors').textContent = t.vuln_top_vectors || 'Assessment pending';
+
+    // Top 5 bars
+    const bars = FE.map(([key, name]) => ({ key, name, val: t[key] || 0 }))
+      .sort((a, b) => b.val - a.val)
+      .slice(0, 5)
+      .filter(b => b.val > 0);
+
+    const barsEl = document.getElementById('c-bars');
+    bars.forEach(b => {
+      const cls = b.val >= 70 ? 'high' : b.val >= 40 ? 'med' : '';
+      barsEl.innerHTML += '<div class="card-bar">' +
+        '<div class="card-bar-label"><span>' + b.name + '</span><span>' + b.val + '</span></div>' +
+        '<div class="card-bar-bg"><div class="card-bar-fill ' + cls + '" style="width:' + b.val + '%"></div></div></div>';
+    });
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('scan-card').style.display = 'block';
+  } catch(e) {
+    console.error(e);
+    document.getElementById('loading').style.display='none';
+    document.getElementById('notfound').style.display='block';
+  }
+}
+
+load();
+</script>
+</body>
+</html>
