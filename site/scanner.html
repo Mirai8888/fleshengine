@@ -2,191 +2,198 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FLESHENGINE — SCT SCANNER</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-body {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 14px;
-    background-color: #000000;
-    color: #00ff00;
-    margin: 0;
-    padding: 20px;
+:root {
+  --bg: #2a1408; --bg-deep: #1e0e05; --bg-card: #38160d;
+  --text: #fee6cf; --text-dim: #c8882a;
+  --gold: #bd965d; --gold-bright: #cca800; --gold-dark: #a57125;
+  --link: #db956a; --link-visited: #c8882a;
+  --border: #907e2f; --border-dim: #5a3a1a;
+  --green: #6b8a3d; --warn: #c87830; --crit: #a83020;
 }
-a { color: #00ff00; }
-a:visited { color: #009900; }
-a:hover { color: #ffffff; }
-hr { border: 0; border-top: 1px solid #00ff00; margin: 15px 0; }
-h1 { font-size: 22px; font-weight: normal; letter-spacing: 6px; }
-h2 { font-size: 15px; font-weight: normal; letter-spacing: 4px; text-transform: uppercase; }
-.container { max-width: 780px; margin: 0 auto; }
-.dim { color: #006600; }
-.bright { color: #33ff33; }
-.warn { color: #ff6600; }
-.crit { color: #ff0000; }
-.mono { font-family: 'Courier New', monospace; }
-pre { font-size: 12px; line-height: 1.4; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'EB Garamond', Georgia, serif; font-size: 15px; line-height: 1.6; background: var(--bg); color: var(--text); }
+a { color: var(--link); text-decoration: none; }
+a:visited { color: var(--link-visited); }
+a:hover { color: var(--text); }
+.container { max-width: 820px; margin: 0 auto; padding: 20px 24px; }
+hr { border: 0; border-top: 1px solid var(--border-dim); margin: 28px 0; }
+h1 { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; letter-spacing: 4px; color: var(--gold); }
+h2 { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; padding-bottom: 6px; border-bottom: 1px solid var(--border-dim); }
+.nav { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+.nav a { color: var(--gold-dark); margin-right: 8px; }
+.nav a:hover { color: var(--gold); }
 textarea {
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    background: #001a00;
-    color: #00ff00;
-    border: 1px solid #00ff00;
-    padding: 10px;
-    width: 100%;
-    resize: vertical;
+  font-family: 'Courier New', monospace; font-size: 13px;
+  background: var(--bg-deep); color: var(--text);
+  border: 1px solid var(--border-dim); padding: 12px; width: 100%; resize: vertical;
 }
-input[type="submit"], button {
-    font-family: 'Times New Roman', serif;
-    font-size: 13px;
-    background: #003300;
-    color: #00ff00;
-    border: 1px solid #00ff00;
-    padding: 8px 16px;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+textarea:focus { outline: none; border-color: var(--gold); }
+button {
+  font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700;
+  background: var(--border-dim); color: var(--gold);
+  border: 1px solid var(--border); padding: 10px 20px;
+  cursor: pointer; text-transform: uppercase; letter-spacing: 3px;
+  margin-right: 8px; transition: all 0.2s;
 }
-input[type="submit"]:hover, button:hover { background: #00ff00; color: #000; }
-.result-item { margin: 8px 0; padding: 4px 0; border-bottom: 1px solid #003300; }
+button:hover { background: var(--gold); color: var(--bg-deep); }
+#results { display: none; }
+.score-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  padding: 18px 22px; display: grid;
+  grid-template-columns: 1fr auto; gap: 20px;
+}
+.score-details { font-size: 14px; line-height: 1.8; }
+.score-details .label { color: var(--gold-dark); }
+.score-box { text-align: center; }
+.score-num { font-family: 'Cinzel', serif; font-size: 48px; font-weight: 700; line-height: 1; }
+.score-level { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dark); margin-top: 4px; }
+.result-item {
+  background: var(--bg-card); border: 1px solid var(--border-dim);
+  border-left: 3px solid var(--border); padding: 10px 14px; margin-bottom: 8px;
+}
+.result-code { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 600; }
+.result-name { color: var(--text); font-size: 14px; }
+.result-meta { font-size: 11px; color: var(--gold-dark); margin-left: 8px; }
+.result-ctx { font-family: 'Courier New', monospace; font-size: 11px; color: var(--text-dim); margin-top: 4px; font-style: italic; }
+.note { font-size: 13px; color: var(--gold-dark); font-style: italic; }
+.footer { font-size: 11px; color: var(--border-dim); font-style: italic; }
 </style>
 </head>
 <body>
 <div class="container">
 
-<p>[ <a href="index.html">HOME</a> ] [ <a href="profile.html">SAMPLE PROFILE</a> ] [ SCANNER ] [ <a href="about.html">ABOUT</a> ]</p>
+<div class="nav">
+[ <a href="index.html">Home</a> ]
+[ <a href="profile.html">Sample Profile</a> ]
+[ Scanner ]
+[ <a href="about.html">About</a> ]
+</div>
 
 <hr>
 
-<h1>SCT SCANNER</h1>
-<p>Paste text. Identify cognitive attack vectors. Client-side analysis. Nothing leaves your machine.</p>
+<h1>SCT Scanner</h1>
+<p style="color:var(--text-dim)">Paste text. Identify cognitive attack vectors. Client-side analysis. Nothing leaves your machine.</p>
 
 <hr>
 
-<textarea id="scan-input" rows="12" placeholder="paste content here for SCT analysis..."></textarea>
+<textarea id="scan-input" rows="12" placeholder="Paste content here for SCT analysis..."></textarea>
 <br><br>
-<button onclick="runScan()">ANALYZE</button>
-<button onclick="loadExample()">LOAD EXAMPLE</button>
+<button onclick="runScan()">Analyze</button>
+<button onclick="loadExample()">Load Example</button>
 
-<div id="results" style="display:none">
+<div id="results">
 <hr>
-<h2>SCAN RESULTS</h2>
-<pre id="score-display"></pre>
+<h2>Scan Results</h2>
+<div id="score-card" class="score-card">
+  <div class="score-details" id="score-details"></div>
+  <div class="score-box">
+    <div class="score-num" id="score-num"></div>
+    <div class="score-level" id="score-level"></div>
+  </div>
+</div>
 <hr>
-<h2>DETECTED VECTORS</h2>
+<h2>Detected Vectors</h2>
 <div id="vectors-display"></div>
 </div>
 
 <hr>
 
-<h2>EXAMPLES</h2>
-<pre class="dim">
-click LOAD EXAMPLE to analyze a sample text, or paste your own content above.
-the scanner runs entirely in your browser. no data is transmitted.
-12 cognitive attack vectors scanned (SCT-001 through SCT-012).
-</pre>
+<p class="note">Click "Load Example" to analyze a sample text, or paste your own content above.<br>
+The scanner runs entirely in your browser. No data is transmitted.<br>
+12 cognitive attack vectors scanned (SCT-001 through SCT-012).</p>
 
 <hr>
 
-<p>[ <a href="index.html">HOME</a> ] [ <a href="profile.html">SAMPLE PROFILE</a> ] [ SCANNER ] [ <a href="about.html">ABOUT</a> ]</p>
+<div class="nav">
+[ <a href="index.html">Home</a> ]
+[ <a href="profile.html">Sample Profile</a> ]
+[ Scanner ]
+[ <a href="about.html">About</a> ]
+</div>
 
-<p class="dim" style="font-size:11px">人肉搜索 // FLESHENGINE v0.1</p>
+<hr>
+
+<div class="footer">人肉搜索 // FLESHENGINE v0.1</div>
 
 </div>
 
 <script>
 const SCT = {
-    'SCT-001': { name: 'Narrative Capture', sev: 'medium',
-        kw: ['narrative','framing','reframe','story','believe','truth claim','manufactured consent','echo chamber'] },
-    'SCT-002': { name: 'Frequency Lock', sev: 'medium',
-        kw: ['repetition','always','never','every time','constant','drumbeat','saturate','flood'] },
-    'SCT-003': { name: 'Substrate Priming', sev: 'high',
-        kw: ['prime','prepare','condition','normalize','desensitize','gradual','incremental','seed'] },
-    'SCT-004': { name: 'Binding Protocol', sev: 'high',
-        kw: ['loyalty','pledge','oath','commitment','sacrifice','devotion','belong','identity'] },
-    'SCT-005': { name: 'Identity Capture', sev: 'critical',
-        kw: ['us vs them','tribe','in-group','out-group','traitor','real identity','true believer'] },
-    'SCT-006': { name: 'Consensus Manufacturing', sev: 'high',
-        kw: ['everyone knows','most people','studies show','experts agree','the science','overwhelming'] },
-    'SCT-007': { name: 'Recursive Infection', sev: 'critical',
-        kw: ['share this','spread the word','viral','tell everyone','wake up','red pill','open your eyes'] },
-    'SCT-008': { name: 'Temporal Distortion', sev: 'high',
-        kw: ['urgent','running out of time','now or never','before it\'s too late','ticking clock','deadline'] },
-    'SCT-009': { name: 'Perception Management', sev: 'critical',
-        kw: ['look here not there','distract','deflect','whatabout','pivot','nothing to see'] },
-    'SCT-010': { name: 'Adversarial Ontology', sev: 'critical',
-        kw: ['reality','what\'s really happening','hidden truth','they don\'t want you to know','cover up','false flag'] },
-    'SCT-011': { name: 'Cognitive Sovereignty Erosion', sev: 'critical',
-        kw: ['can\'t think','overwhelm','confusion','contradiction','gaslight','doubt yourself'] },
-    'SCT-012': { name: 'Existential Capture', sev: 'critical',
-        kw: ['survival','extinction','end times','apocalypse','civilization','future of humanity','no choice'] }
+  'SCT-001': { name: 'Narrative Capture', sev: 'medium', kw: ['narrative','framing','reframe','story','believe','truth claim','manufactured consent','echo chamber'] },
+  'SCT-002': { name: 'Frequency Lock', sev: 'medium', kw: ['repetition','always','never','every time','constant','drumbeat','saturate','flood'] },
+  'SCT-003': { name: 'Substrate Priming', sev: 'high', kw: ['prime','prepare','condition','normalize','desensitize','gradual','incremental','seed'] },
+  'SCT-004': { name: 'Binding Protocol', sev: 'high', kw: ['loyalty','pledge','oath','commitment','sacrifice','devotion','belong','identity'] },
+  'SCT-005': { name: 'Identity Capture', sev: 'critical', kw: ['us vs them','tribe','in-group','out-group','traitor','real identity','true believer'] },
+  'SCT-006': { name: 'Consensus Manufacturing', sev: 'high', kw: ['everyone knows','most people','studies show','experts agree','the science','overwhelming'] },
+  'SCT-007': { name: 'Recursive Infection', sev: 'critical', kw: ['share this','spread the word','viral','tell everyone','wake up','red pill','open your eyes'] },
+  'SCT-008': { name: 'Temporal Distortion', sev: 'high', kw: ['urgent','running out of time','now or never','before it\'s too late','ticking clock','deadline'] },
+  'SCT-009': { name: 'Perception Management', sev: 'critical', kw: ['look here not there','distract','deflect','whatabout','pivot','nothing to see'] },
+  'SCT-010': { name: 'Adversarial Ontology', sev: 'critical', kw: ['reality','what\'s really happening','hidden truth','they don\'t want you to know','cover up','false flag'] },
+  'SCT-011': { name: 'Cognitive Sovereignty Erosion', sev: 'critical', kw: ['can\'t think','overwhelm','confusion','contradiction','gaslight','doubt yourself'] },
+  'SCT-012': { name: 'Existential Capture', sev: 'critical', kw: ['survival','extinction','end times','apocalypse','civilization','future of humanity','no choice'] }
 };
 
-const sevColor = { medium: '#ff6600', high: '#ff6600', critical: '#ff0000' };
+const sevColors = { medium: 'var(--warn)', high: 'var(--gold-bright)', critical: 'var(--crit)' };
 
 function runScan() {
-    const text = document.getElementById('scan-input').value;
-    if (!text.trim()) return;
-
-    const results = {};
-    let total = 0;
-
-    for (const [code, pat] of Object.entries(SCT)) {
-        const escaped = pat.kw.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-        const re = new RegExp('\\b(' + escaped.join('|') + ')\\b', 'gi');
-        let m, count = 0, examples = [];
-        while ((m = re.exec(text)) !== null) {
-            count++;
-            if (examples.length < 2) {
-                const ctx = text.substring(Math.max(0, m.index - 25), Math.min(text.length, m.index + m[0].length + 25)).trim();
-                examples.push(ctx);
-            }
-        }
-        if (count > 0) {
-            results[code] = { name: pat.name, sev: pat.sev, count, examples };
-            total += count;
-        }
+  const text = document.getElementById('scan-input').value;
+  if (!text.trim()) return;
+  const results = {};
+  let total = 0;
+  for (const [code, pat] of Object.entries(SCT)) {
+    const escaped = pat.kw.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const re = new RegExp('\\b(' + escaped.join('|') + ')\\b', 'gi');
+    let m, count = 0, examples = [];
+    while ((m = re.exec(text)) !== null) {
+      count++;
+      if (examples.length < 2) {
+        const ctx = text.substring(Math.max(0, m.index - 25), Math.min(text.length, m.index + m[0].length + 25)).trim();
+        examples.push(ctx);
+      }
     }
+    if (count > 0) { results[code] = { name: pat.name, sev: pat.sev, count, examples }; total += count; }
+  }
+  const words = text.split(/\s+/).length || 1;
+  const density = total / words;
+  const vectors = Object.keys(results).length;
+  const hasCrit = Object.values(results).some(r => r.sev === 'critical');
+  const score = Math.min(100, Math.round((density * 2000) + (vectors * 5) + (hasCrit ? 15 : 0)));
+  const lvl = score < 20 ? 'LOW' : score < 45 ? 'MEDIUM' : score < 70 ? 'HIGH' : 'CRITICAL';
+  const lvlColor = score < 20 ? 'var(--green)' : score < 45 ? 'var(--warn)' : score < 70 ? 'var(--gold-bright)' : 'var(--crit)';
 
-    const words = text.split(/\s+/).length || 1;
-    const density = total / words;
-    const vectors = Object.keys(results).length;
-    const hasCrit = Object.values(results).some(r => r.sev === 'critical');
-    const score = Math.min(100, Math.round((density * 2000) + (vectors * 5) + (hasCrit ? 15 : 0)));
+  document.getElementById('score-num').style.color = lvlColor;
+  document.getElementById('score-num').textContent = score;
+  document.getElementById('score-level').textContent = lvl;
+  document.getElementById('score-details').innerHTML =
+    '<span class="label">Vectors Detected:</span> ' + vectors + '/12<br>' +
+    '<span class="label">Total Matches:</span> ' + total + '<br>' +
+    '<span class="label">Word Count:</span> ' + words;
 
-    const lvl = score < 20 ? 'LOW' : score < 45 ? 'MEDIUM' : score < 70 ? 'HIGH' : 'CRITICAL';
-    const lvlColor = score < 20 ? '#00ff00' : score < 45 ? '#ff6600' : score < 70 ? '#ff6600' : '#ff0000';
-
-    document.getElementById('score-display').innerHTML =
-        'THREAT SCORE: <span style="font-size:24px;color:' + lvlColor + '">' + score + '</span>/100 [' + lvl + ']\n' +
-        'VECTORS DETECTED: ' + vectors + '/12\n' +
-        'TOTAL MATCHES: ' + total + '\n' +
-        'WORD COUNT: ' + words;
-
-    const vd = document.getElementById('vectors-display');
-    vd.innerHTML = '';
-
-    const sorted = Object.entries(results).sort((a, b) => b[1].count - a[1].count);
-    for (const [code, info] of sorted) {
-        const c = sevColor[info.sev] || '#00ff00';
-        let html = '<div class="result-item">';
-        html += '<span style="color:' + c + '">' + code + '</span> ' + info.name + ' <span class="dim">[x' + info.count + '] [' + info.sev + ']</span><br>';
-        for (const ex of info.examples) {
-            html += '<span class="dim" style="font-family:Courier New,monospace;font-size:11px">  "...' + ex.replace(/</g,'&lt;') + '..."</span><br>';
-        }
-        html += '</div>';
-        vd.innerHTML += html;
+  const vd = document.getElementById('vectors-display');
+  vd.innerHTML = '';
+  const sorted = Object.entries(results).sort((a, b) => b[1].count - a[1].count);
+  for (const [code, info] of sorted) {
+    let html = '<div class="result-item">';
+    html += '<span class="result-code" style="color:' + (sevColors[info.sev]||'var(--text)') + '">' + code + '</span> ';
+    html += '<span class="result-name">' + info.name + '</span>';
+    html += '<span class="result-meta">[x' + info.count + '] [' + info.sev + ']</span>';
+    for (const ex of info.examples) {
+      html += '<div class="result-ctx">"...' + ex.replace(/</g,'&lt;') + '..."</div>';
     }
-
-    if (sorted.length === 0) {
-        vd.innerHTML = '<pre class="dim">NO THREAT PATTERNS DETECTED.</pre>';
-    }
-
-    document.getElementById('results').style.display = 'block';
+    html += '</div>';
+    vd.innerHTML += html;
+  }
+  if (sorted.length === 0) { vd.innerHTML = '<p class="note">No threat patterns detected.</p>'; }
+  document.getElementById('results').style.display = 'block';
 }
 
 function loadExample() {
-    document.getElementById('scan-input').value = "URGENT: Share this before they take it down. The hidden truth about what's really happening is being covered up by the mainstream narrative. Everyone knows the experts are lying to us. We are running out of time. This is about the survival of civilization itself. Wake up and open your eyes. They don't want you to know the reality of the situation. You're either with us or against us. True believers must spread the word and pledge their loyalty. The science is settled and most people already understand this. Before it's too late, tell everyone you know. This is not a drill. Our identity as a people is under existential threat and there is no choice but to act now.";
-    runScan();
+  document.getElementById('scan-input').value = "URGENT: Share this before they take it down. The hidden truth about what's really happening is being covered up by the mainstream narrative. Everyone knows the experts are lying to us. We are running out of time. This is about the survival of civilization itself. Wake up and open your eyes. They don't want you to know the reality of the situation. You're either with us or against us. True believers must spread the word and pledge their loyalty. The science is settled and most people already understand this. Before it's too late, tell everyone you know. This is not a drill. Our identity as a people is under existential threat and there is no choice but to act now.";
+  runScan();
 }
 </script>
 </body>

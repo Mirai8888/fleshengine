@@ -2,282 +2,413 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FLESHENGINE — TARGET: @narrative_ops</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
+:root {
+  --bg: #2a1408;
+  --bg-deep: #1e0e05;
+  --bg-card: #38160d;
+  --text: #fee6cf;
+  --text-dim: #c8882a;
+  --gold: #bd965d;
+  --gold-bright: #cca800;
+  --gold-dark: #a57125;
+  --link: #db956a;
+  --link-visited: #c8882a;
+  --border: #907e2f;
+  --border-dim: #5a3a1a;
+  --green: #6b8a3d;
+  --warn: #c87830;
+  --crit: #a83020;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 14px;
-    background-color: #000000;
-    color: #00ff00;
-    margin: 0;
-    padding: 20px;
+  font-family: 'EB Garamond', 'Times New Roman', Georgia, serif;
+  font-size: 15px;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text);
 }
-a { color: #00ff00; }
-a:visited { color: #009900; }
-a:hover { color: #ffffff; }
-hr { border: 0; border-top: 1px solid #00ff00; margin: 15px 0; }
-h1 { font-size: 22px; font-weight: normal; letter-spacing: 6px; }
-h2 { font-size: 15px; font-weight: normal; letter-spacing: 4px; text-transform: uppercase; }
-.container { max-width: 780px; margin: 0 auto; }
-.dim { color: #006600; }
-.bright { color: #33ff33; }
-.warn { color: #ff6600; }
-.crit { color: #ff0000; }
-.mono { font-family: 'Courier New', monospace; }
-pre { font-size: 12px; line-height: 1.4; }
-table { border-collapse: collapse; width: 100%; }
-td, th { border: 1px solid #006600; padding: 6px 10px; text-align: left; font-size: 13px; }
-th { background-color: #001a00; }
-textarea {
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    background: #001a00;
-    color: #00ff00;
-    border: 1px solid #00ff00;
-    padding: 8px;
-    width: 100%;
-    resize: vertical;
+a { color: var(--link); text-decoration: none; }
+a:visited { color: var(--link-visited); }
+a:hover { color: var(--text); }
+.container { max-width: 820px; margin: 0 auto; padding: 20px 24px; }
+hr { border: 0; border-top: 1px solid var(--border-dim); margin: 28px 0; }
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 22px; font-weight: 700;
+  letter-spacing: 4px; color: var(--gold);
 }
-input[type="text"], input[type="url"], select {
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    background: #001a00;
-    color: #00ff00;
-    border: 1px solid #00ff00;
-    padding: 6px 10px;
+h1 .handle { font-family: 'Courier New', monospace; color: var(--text); }
+h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+  padding-bottom: 6px; border-bottom: 1px solid var(--border-dim);
 }
-select { width: 200px; }
+.nav {
+  font-family: 'Cinzel', serif;
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.nav a { color: var(--gold-dark); margin-right: 8px; }
+.nav a:hover { color: var(--gold); }
+
+/* META CARD */
+.meta-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 18px 22px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+}
+.meta-rows { display: grid; gap: 6px; }
+.meta-row { display: flex; gap: 12px; font-size: 14px; }
+.meta-label { color: var(--gold-dark); min-width: 130px; }
+.meta-value { color: var(--text); }
+.meta-value.active { color: var(--green); }
+.score-box { text-align: center; }
+.score-num {
+  font-family: 'Cinzel', serif;
+  font-size: 48px; font-weight: 700;
+  color: var(--gold-bright);
+  line-height: 1;
+}
+.score-label {
+  font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold-dark);
+  margin-top: 4px;
+}
+
+/* SCT BARS */
+.sct-grid { display: grid; gap: 6px; }
+.sct-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 40px;
+  gap: 12px;
+  align-items: center;
+  font-size: 13px;
+}
+.sct-code { color: var(--gold-dark); font-family: 'Courier New', monospace; font-size: 11px; }
+.sct-name { color: var(--text-dim); }
+.sct-bar-outer {
+  background: var(--bg-deep);
+  height: 14px;
+  border: 1px solid var(--border-dim);
+  position: relative;
+}
+.sct-bar-inner { height: 100%; transition: width 0.5s; }
+.sct-score { color: var(--text); text-align: right; font-size: 12px; font-weight: 600; }
+.bar-low { background: var(--border-dim); }
+.bar-med { background: var(--warn); }
+.bar-high { background: var(--gold-bright); }
+.bar-crit { background: #a83020; }
+
+/* COMM STYLE */
+.comm-row {
+  display: grid;
+  grid-template-columns: 200px 50px 1fr;
+  gap: 12px;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.comm-name { color: var(--text-dim); }
+.comm-weight { color: var(--text); text-align: right; font-size: 12px; }
+.comm-bar-outer {
+  background: var(--bg-deep);
+  height: 10px;
+  border: 1px solid var(--border-dim);
+}
+.comm-bar-inner { height: 100%; background: var(--gold); }
+
+/* NETWORK CARD */
+.network-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  padding: 16px 20px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.network-card .label { color: var(--gold-dark); }
+.network-card .val { color: var(--text); }
+.network-card .alert { color: var(--gold-bright); font-weight: 600; }
+
+/* FRAGMENTS */
+.fragment {
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  border-left: 3px solid var(--border);
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+.fragment-header {
+  font-size: 11px; color: var(--gold-dark);
+  font-family: 'Courier New', monospace; margin-bottom: 6px;
+}
+.fragment-body { font-size: 13px; color: var(--text-dim); font-style: italic; line-height: 1.5; }
+.fragment-confidence { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; }
+.conf-high { color: var(--gold-bright); }
+.conf-medium { color: var(--gold-dark); }
+.conf-low { color: var(--border); }
+
+/* CONTRIBUTE FORM */
+.contribute-form {
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  padding: 18px 22px;
+}
+.form-row { display: grid; grid-template-columns: 110px 1fr; gap: 12px; margin-bottom: 10px; align-items: start; }
+.form-label { font-size: 12px; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 1px; padding-top: 8px; }
+textarea, input[type="url"], input[type="text"], select {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  background: var(--bg-deep);
+  color: var(--text);
+  border: 1px solid var(--border-dim);
+  padding: 8px 10px;
+  width: 100%;
+}
+textarea { resize: vertical; }
+select { width: auto; min-width: 200px; }
+textarea:focus, input:focus, select:focus { outline: none; border-color: var(--gold); }
 input[type="submit"] {
-    font-family: 'Times New Roman', serif;
-    font-size: 13px;
-    background: #003300;
-    color: #00ff00;
-    border: 1px solid #00ff00;
-    padding: 8px 16px;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px; font-weight: 700;
+  background: var(--border-dim);
+  color: var(--gold);
+  border: 1px solid var(--border);
+  padding: 10px 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
-input[type="submit"]:hover { background: #00ff00; color: #000; }
-.bar-outer { background: #001a00; height: 12px; width: 200px; display: inline-block; vertical-align: middle; }
-.bar-inner { background: #00ff00; height: 12px; }
-.blink { animation: blink 1.5s step-start infinite; }
-@keyframes blink { 50% { opacity: 0; } }
+input[type="submit"]:hover { background: var(--gold); color: var(--bg-deep); }
+#frag-msg {
+  display: none;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--green);
+  padding: 12px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-dim);
+  margin-top: 12px;
+}
+
+/* ASSESSMENT */
+.assessment {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 18px 22px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+.assessment strong { color: var(--text); }
+.assessment .crit { color: var(--gold-bright); font-weight: 600; }
+
+.footer { font-size: 11px; color: var(--border-dim); font-style: italic; }
 </style>
 </head>
 <body>
 <div class="container">
 
-<p>[ <a href="index.html">HOME</a> ] [ PROFILE ] [ <a href="scanner.html">SCANNER</a> ] [ <a href="about.html">ABOUT</a> ]</p>
+<div class="nav">
+[ <a href="index.html">Home</a> ]
+[ Profile ]
+[ <a href="scanner.html">Scanner</a> ]
+[ <a href="about.html">About</a> ]
+</div>
 
 <hr>
 
-<h1>TARGET: <span class="mono">@narrative_ops</span></h1>
+<h1>TARGET: <span class="handle">@narrative_ops</span></h1>
 
-<table>
-<tr><td width="180">THREAT SCORE</td><td><span class="crit" style="font-size:24px">88</span><span class="dim">/100</span></td></tr>
-<tr><td>STATUS</td><td class="bright">ACTIVE COLLECTION</td></tr>
-<tr><td>FRAGMENTS</td><td>1,203</td></tr>
-<tr><td>CONTRIBUTORS</td><td>47</td></tr>
-<tr><td>FIRST SCAN</td><td>2026-01-15 09:22:41 UTC</td></tr>
-<tr><td>LAST UPDATE</td><td class="mono">2026-02-13 01:47:22 UTC</td></tr>
-</table>
-
-<hr>
-
-<h2>SCT VULNERABILITY SURFACE</h2>
-
-<pre>
-SCT-001  Narrative Capture        <span class="warn">██████████████░░░░░░</span>  71
-SCT-002  Frequency Lock           <span class="crit">█████████████████░░░</span>  85
-SCT-003  Substrate Priming        <span class="warn">████████████░░░░░░░░</span>  62
-SCT-004  Binding Protocol         <span class="dim">██████░░░░░░░░░░░░░░</span>  31
-SCT-005  Identity Capture         <span class="warn">██████████████░░░░░░</span>  68
-SCT-006  Consensus Manufacturing  <span class="crit">████████████████░░░░</span>  82
-SCT-007  Recursive Infection      <span class="crit">██████████████████░░</span>  92
-SCT-008  Temporal Distortion      <span class="warn">█████████████░░░░░░░</span>  67
-SCT-009  Perception Management    <span class="crit">█████████████████░░░</span>  87
-SCT-010  Adversarial Ontology     <span class="crit">██████████████████░░</span>  89
-SCT-011  Cog. Sovereignty Erosion <span class="warn">███████████░░░░░░░░░</span>  55
-SCT-012  Existential Capture      <span class="dim">████████░░░░░░░░░░░░</span>  42
-</pre>
-
-<hr>
-
-<h2>COMMUNICATION STYLE</h2>
-
-<table>
-<tr><th>CATEGORY</th><th>WEIGHT</th><th></th></tr>
-<tr><td>Analytical / Observational</td><td>0.08</td><td><div class="bar-outer"><div class="bar-inner" style="width:8%"></div></div></td></tr>
-<tr><td>Passionate / Advocacy</td><td>0.34</td><td><div class="bar-outer"><div class="bar-inner" style="width:34%"></div></div></td></tr>
-<tr><td>Technical / Insider</td><td>0.12</td><td><div class="bar-outer"><div class="bar-inner" style="width:12%"></div></div></td></tr>
-<tr><td>Contrarian / Provocative</td><td>0.28</td><td><div class="bar-outer"><div class="bar-inner" style="width:28%"></div></div></td></tr>
-<tr><td>Nurturing / Community</td><td>0.04</td><td><div class="bar-outer"><div class="bar-inner" style="width:4%"></div></div></td></tr>
-<tr><td>Authoritative / Declarative</td><td>0.11</td><td><div class="bar-outer"><div class="bar-inner" style="width:11%"></div></div></td></tr>
-<tr><td>Ironic / Detached</td><td>0.03</td><td><div class="bar-outer"><div class="bar-inner" style="width:3%"></div></div></td></tr>
-</table>
-
-<hr>
-
-<h2>NETWORK POSITION</h2>
-
-<pre>
-  COMMUNITY:      Cluster 2 (Geopolitical / Information Operations)
-  PAGERANK:       0.0089 (top 4% of mapped network)
-  BETWEENNESS:    0.0142 (BRIDGE ACCOUNT — connects 3 clusters)
-  IN-DEGREE:      2,847 followers within mapped network
-  OUT-DEGREE:     412 following within mapped network
-  MUTUAL:         89 bidirectional connections
-  
-  BRIDGE STATUS:  <span class="crit">HIGH VALUE TARGET</span>
-  Connects: Cluster 2 (Geopolitical) ↔ Cluster 4 (Crypto/Finance)
-            Cluster 2 (Geopolitical) ↔ Cluster 1 (Media/Journalism)
-  
-  Content from this node bypasses community immune responses
-  in at least 2 adjacent clusters.
-</pre>
-
-<hr>
-
-<h2>INTELLIGENCE FRAGMENTS</h2>
-
-<pre class="dim">
-[2026-02-13 01:47:22] CONTRIBUTOR #4421
-  TYPE: behavioral_pattern | CONFIDENCE: high
-  "posting frequency increases 340% within 2hrs of any NATO
-   announcement. content pre-drafted. coordination probable.
-   compared timestamps of 14 posts against NATO press release
-   schedule: average lag 23 minutes."
-
-[2026-02-12 19:33:10] CONTRIBUTOR #1102
-  TYPE: narrative_shift | CONFIDENCE: high
-  "vocabulary pivot detected week of jan 27. previously used
-   'conflict' — switched to 'regime operation' across all
-   ukraine-related content simultaneously. 47 posts analyzed."
-
-[2026-02-12 14:05:33] CONTRIBUTOR #0091
-  TYPE: relationship_dynamic | CONFIDENCE: medium
-  "amplifies @media_bureau_7 content within 15min of posting.
-   never interacts publicly. no mutual follows visible.
-   parallel posting on same topics 3x this week."
-
-[2026-02-11 22:18:44] CONTRIBUTOR #3309
-  TYPE: tone_analysis | CONFIDENCE: high
-  "emotional register shifts from analytical to urgent when
-   topic = energy policy. specific trigger: any mention of
-   nordstream. 8 instances documented."
-
-[2026-02-10 16:42:01] CONTRIBUTOR #2847
-  TYPE: network_activity | CONFIDENCE: medium
-  "gained 340 followers in 48hrs following retweet by
-   @policy_think_dc. follower accounts show creation date
-   clustering (60% created oct-nov 2025). possible synthetic
-   amplification network."
-
-[2026-02-09 08:11:55] CONTRIBUTOR #0444
-  TYPE: behavioral_pattern | CONFIDENCE: low
-  "goes silent 00:00-06:00 UTC consistently except during
-   active geopolitical events. timezone suggests eastern
-   europe or western russia. correlate with other fragments."
-</pre>
-
-<hr>
-
-<h2>CONTRIBUTE OBSERVATION</h2>
-
-<form onsubmit="submitFragment(event)">
-<table>
-<tr>
-<td>TYPE:</td>
-<td>
-<select id="obs-type">
-<option value="behavioral_pattern">behavioral_pattern</option>
-<option value="relationship_dynamic">relationship_dynamic</option>
-<option value="narrative_shift">narrative_shift</option>
-<option value="tone_analysis">tone_analysis</option>
-<option value="network_activity">network_activity</option>
-<option value="other">other</option>
-</select>
-</td>
-</tr>
-<tr>
-<td>OBSERVATION:</td>
-<td><textarea id="obs-text" rows="4" maxlength="500" placeholder="describe what you observed (500 char max)"></textarea></td>
-</tr>
-<tr>
-<td>EVIDENCE:</td>
-<td><input type="url" id="obs-evidence" placeholder="link to specific post/content" style="width:100%"></td>
-</tr>
-<tr>
-<td>TIMEFRAME:</td>
-<td><input type="text" id="obs-time" placeholder="when was this observed" style="width:100%"></td>
-</tr>
-<tr>
-<td>CONFIDENCE:</td>
-<td>
-<select id="obs-conf">
-<option value="low">low</option>
-<option value="medium" selected>medium</option>
-<option value="high">high</option>
-</select>
-</td>
-</tr>
-</table>
 <br>
-<input type="submit" value="SUBMIT FRAGMENT">
+
+<div class="meta-card">
+  <div class="meta-rows">
+    <div class="meta-row"><span class="meta-label">Status</span><span class="meta-value active">Active Collection</span></div>
+    <div class="meta-row"><span class="meta-label">Fragments</span><span class="meta-value">1,203</span></div>
+    <div class="meta-row"><span class="meta-label">Contributors</span><span class="meta-value">47</span></div>
+    <div class="meta-row"><span class="meta-label">First Scan</span><span class="meta-value">2026-01-15 09:22:41 UTC</span></div>
+    <div class="meta-row"><span class="meta-label">Last Update</span><span class="meta-value" style="font-family:'Courier New',monospace;font-size:13px">2026-02-13 01:47:22 UTC</span></div>
+  </div>
+  <div class="score-box">
+    <div class="score-num">88</div>
+    <div class="score-label">Threat Score</div>
+  </div>
+</div>
+
+<hr>
+
+<h2>SCT Vulnerability Surface</h2>
+
+<div class="sct-grid">
+  <div class="sct-row"><div><span class="sct-code">SCT-001</span> <span class="sct-name">Narrative Capture</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-med" style="width:71%"></div></div><div class="sct-score">71</div></div>
+  <div class="sct-row"><div><span class="sct-code">SCT-002</span> <span class="sct-name">Frequency Lock</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-crit" style="width:85%"></div></div><div class="sct-score">85</div></div>
+  <div class="sct-row"><div><span class="sct-code">SCT-003</span> <span class="sct-name">Substrate Priming</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-med" style="width:62%"></div></div><div class="sct-score">62</div></div>
+  <div class="sct-row"><div><span class="sct-code">SCT-004</span> <span class="sct-name">Binding Protocol</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-low" style="width:31%"></div></div><div class="sct-score">31</div></div>
+  <div class="sct-row"><div><span class="sct-code">SCT-005</span> <span class="sct-name">Identity Capture</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-med" style="width:68%"></div></div><div class="sct-score">68</div></div>
+  <div class="sct-row"><div><span class="sct-code">SCT-006</span> <span class="sct-name">Consensus Manufacturing</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-crit" style="width:82%"></div></div><div class="sct-score">82</div></div>
+  <div class="sct-row"><div><span class="sct-code">SCT-007</span> <span class="sct-name">Recursive Infection</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-crit" style="width:92%"></div></div><div class="sct-score">92</div></div>
+  <div class="sct-row"><div><span class="sct-code">SCT-008</span> <span class="sct-name">Temporal Distortion</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-med" style="width:67%"></div></div><div class="sct-score">67</div></div>
+  <div class="sct-row"><div><span class="sct-code">SCT-009</span> <span class="sct-name">Perception Management</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-crit" style="width:87%"></div></div><div class="sct-score">87</div></div>
+  <div class="sct-row"><div><span class="sct-code">SCT-010</span> <span class="sct-name">Adversarial Ontology</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-crit" style="width:89%"></div></div><div class="sct-score">89</div></div>
+  <div class="sct-row"><div><span class="sct-code">SCT-011</span> <span class="sct-name">Cog. Sovereignty Erosion</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-med" style="width:55%"></div></div><div class="sct-score">55</div></div>
+  <div class="sct-row"><div><span class="sct-code">SCT-012</span> <span class="sct-name">Existential Capture</span></div><div class="sct-bar-outer"><div class="sct-bar-inner bar-low" style="width:42%"></div></div><div class="sct-score">42</div></div>
+</div>
+
+<hr>
+
+<h2>Communication Style</h2>
+
+<div>
+  <div class="comm-row"><span class="comm-name">Analytical / Observational</span><span class="comm-weight">0.08</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:8%"></div></div></div>
+  <div class="comm-row"><span class="comm-name">Passionate / Advocacy</span><span class="comm-weight">0.34</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:34%"></div></div></div>
+  <div class="comm-row"><span class="comm-name">Technical / Insider</span><span class="comm-weight">0.12</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:12%"></div></div></div>
+  <div class="comm-row"><span class="comm-name">Contrarian / Provocative</span><span class="comm-weight">0.28</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:28%"></div></div></div>
+  <div class="comm-row"><span class="comm-name">Nurturing / Community</span><span class="comm-weight">0.04</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:4%"></div></div></div>
+  <div class="comm-row"><span class="comm-name">Authoritative / Declarative</span><span class="comm-weight">0.11</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:11%"></div></div></div>
+  <div class="comm-row"><span class="comm-name">Ironic / Detached</span><span class="comm-weight">0.03</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:3%"></div></div></div>
+</div>
+
+<hr>
+
+<h2>Network Position</h2>
+
+<div class="network-card">
+  <span class="label">Community:</span> <span class="val">Cluster 2 (Geopolitical / Information Operations)</span><br>
+  <span class="label">PageRank:</span> <span class="val">0.0089</span> (top 4% of mapped network)<br>
+  <span class="label">Betweenness:</span> <span class="val">0.0142</span> <span class="alert">BRIDGE ACCOUNT</span><br>
+  <span class="label">In-Degree:</span> <span class="val">2,847</span> followers within mapped network<br>
+  <span class="label">Out-Degree:</span> <span class="val">412</span> following within mapped network<br>
+  <span class="label">Mutual:</span> <span class="val">89</span> bidirectional connections<br><br>
+  <span class="alert">BRIDGE STATUS: HIGH VALUE TARGET</span><br>
+  <span class="label">Connects:</span> Cluster 2 (Geopolitical) &#8596; Cluster 4 (Crypto/Finance)<br>
+  <span style="margin-left:72px">Cluster 2 (Geopolitical) &#8596; Cluster 1 (Media/Journalism)</span><br><br>
+  <em style="color:var(--gold-dark)">Content from this node bypasses community immune responses in at least 2 adjacent clusters.</em>
+</div>
+
+<hr>
+
+<h2>Intelligence Fragments</h2>
+
+<div class="fragment">
+  <div class="fragment-header">[2026-02-13 01:47:22] CONTRIBUTOR #4421 &rarr; behavioral_pattern</div>
+  <div class="fragment-body">"Posting frequency increases 340% within 2hrs of any NATO announcement. Content pre-drafted. Coordination probable. Compared timestamps of 14 posts against NATO press release schedule: average lag 23 minutes."</div>
+  <div class="fragment-confidence conf-high">Confidence: HIGH</div>
+</div>
+
+<div class="fragment">
+  <div class="fragment-header">[2026-02-12 19:33:10] CONTRIBUTOR #1102 &rarr; narrative_shift</div>
+  <div class="fragment-body">"Vocabulary pivot detected week of Jan 27. Previously used 'conflict', switched to 'regime operation' across all Ukraine-related content simultaneously. 47 posts analyzed."</div>
+  <div class="fragment-confidence conf-high">Confidence: HIGH</div>
+</div>
+
+<div class="fragment">
+  <div class="fragment-header">[2026-02-12 14:05:33] CONTRIBUTOR #0091 &rarr; relationship_dynamic</div>
+  <div class="fragment-body">"Amplifies @media_bureau_7 content within 15min of posting. Never interacts publicly. No mutual follows visible. Parallel posting on same topics 3x this week."</div>
+  <div class="fragment-confidence conf-medium">Confidence: MEDIUM</div>
+</div>
+
+<div class="fragment">
+  <div class="fragment-header">[2026-02-11 22:18:44] CONTRIBUTOR #3309 &rarr; tone_analysis</div>
+  <div class="fragment-body">"Emotional register shifts from analytical to urgent when topic = energy policy. Specific trigger: any mention of Nordstream. 8 instances documented."</div>
+  <div class="fragment-confidence conf-high">Confidence: HIGH</div>
+</div>
+
+<div class="fragment">
+  <div class="fragment-header">[2026-02-10 16:42:01] CONTRIBUTOR #2847 &rarr; network_activity</div>
+  <div class="fragment-body">"Gained 340 followers in 48hrs following retweet by @policy_think_dc. Follower accounts show creation date clustering (60% created Oct-Nov 2025). Possible synthetic amplification network."</div>
+  <div class="fragment-confidence conf-medium">Confidence: MEDIUM</div>
+</div>
+
+<div class="fragment">
+  <div class="fragment-header">[2026-02-09 08:11:55] CONTRIBUTOR #0444 &rarr; behavioral_pattern</div>
+  <div class="fragment-body">"Goes silent 00:00-06:00 UTC consistently except during active geopolitical events. Timezone suggests Eastern Europe or Western Russia. Correlate with other fragments."</div>
+  <div class="fragment-confidence conf-low">Confidence: LOW</div>
+</div>
+
+<hr>
+
+<h2>Contribute Observation</h2>
+
+<div class="contribute-form">
+<form onsubmit="submitFragment(event)">
+  <div class="form-row"><span class="form-label">Type</span>
+    <select id="obs-type">
+      <option value="behavioral_pattern">behavioral_pattern</option>
+      <option value="relationship_dynamic">relationship_dynamic</option>
+      <option value="narrative_shift">narrative_shift</option>
+      <option value="tone_analysis">tone_analysis</option>
+      <option value="network_activity">network_activity</option>
+      <option value="other">other</option>
+    </select>
+  </div>
+  <div class="form-row"><span class="form-label">Observation</span><textarea id="obs-text" rows="4" maxlength="500" placeholder="Describe what you observed (500 char max)"></textarea></div>
+  <div class="form-row"><span class="form-label">Evidence</span><input type="url" id="obs-evidence" placeholder="Link to specific post or content"></div>
+  <div class="form-row"><span class="form-label">Timeframe</span><input type="text" id="obs-time" placeholder="When was this observed"></div>
+  <div class="form-row"><span class="form-label">Confidence</span>
+    <select id="obs-conf">
+      <option value="low">low</option>
+      <option value="medium" selected>medium</option>
+      <option value="high">high</option>
+    </select>
+  </div>
+  <div style="margin-top:14px"><input type="submit" value="Submit Fragment"></div>
 </form>
-
-<p id="frag-msg" style="display:none" class="mono">
-<span class="blink">&#9608;</span> FRAGMENT RECORDED. CONTRIBUTOR ID ASSIGNED. AGGREGATION PENDING.
-</p>
+<div id="frag-msg">&#9608; FRAGMENT RECORDED. CONTRIBUTOR ID ASSIGNED. AGGREGATION PENDING.</div>
+</div>
 
 <hr>
 
-<h2>COMPOSITE ASSESSMENT</h2>
+<h2>Composite Assessment</h2>
 
-<pre>
-TARGET @narrative_ops presents a <span class="crit">HIGH</span> cognitive threat profile.
+<div class="assessment">
+Target <strong>@narrative_ops</strong> presents a <span class="crit">HIGH</span> cognitive threat profile.<br><br>
 
-PRIMARY ASSESSMENT:
-Account operates as an information distribution node with
-characteristics consistent with coordinated influence activity.
-High SCT-007 (Recursive Infection) score indicates content
-is engineered for maximum propagation. Elevated SCT-010
-(Adversarial Ontology) suggests active reality-construction
-operations targeting geopolitical narratives.
+<strong>Primary Assessment:</strong> Account operates as an information distribution node with characteristics consistent with coordinated influence activity. High SCT-007 (Recursive Infection) score indicates content is engineered for maximum propagation. Elevated SCT-010 (Adversarial Ontology) suggests active reality-construction operations targeting geopolitical narratives.<br><br>
 
-BRIDGE STATUS makes this account a priority monitoring target:
-content injected here propagates across community boundaries
-with reduced immune response from receiving clusters.
+Bridge status makes this account a priority monitoring target: content injected here propagates across community boundaries with reduced immune response from receiving clusters.<br><br>
 
-ENGAGEMENT VECTORS (automated):
-- Geopolitical framing susceptibility (SCT-001 entry point)
-- Energy policy emotional trigger (confirmed by fragments)
-- Contrarian identity reinforcement (SCT-004/SCT-005)
+<strong>Engagement Vectors (automated):</strong><br>
+&bull; Geopolitical framing susceptibility (SCT-001 entry point)<br>
+&bull; Energy policy emotional trigger (confirmed by fragments)<br>
+&bull; Contrarian identity reinforcement (SCT-004/SCT-005)<br><br>
 
-RECOMMENDED COLLECTION PRIORITIES:
-- Confirm coordination with @media_bureau_7 (3 fragments, 
-  needs corroboration)
-- Map follower acquisition source (synthetic amplification
-  hypothesis unconfirmed)
-- Timezone/activity pattern analysis (1 fragment, low confidence)
+<strong>Recommended Collection Priorities:</strong><br>
+&bull; Confirm coordination with @media_bureau_7 (3 fragments, needs corroboration)<br>
+&bull; Map follower acquisition source (synthetic amplification hypothesis unconfirmed)<br>
+&bull; Timezone/activity pattern analysis (1 fragment, low confidence)<br><br>
 
-Profile confidence: <span class="bright">HIGH</span> (1,203 fragments, 47 contributors)
+Profile confidence: <strong>HIGH</strong> (1,203 fragments, 47 contributors)<br>
 Last composite update: 2026-02-13 02:00:00 UTC
-</pre>
+</div>
 
 <hr>
 
-<p>[ <a href="index.html">HOME</a> ] [ PROFILE ] [ <a href="scanner.html">SCANNER</a> ] [ <a href="about.html">ABOUT</a> ]</p>
+<div class="nav">
+[ <a href="index.html">Home</a> ]
+[ Profile ]
+[ <a href="scanner.html">Scanner</a> ]
+[ <a href="about.html">About</a> ]
+</div>
 
-<p class="dim" style="font-size:11px">人肉搜索 // FLESHENGINE v0.1</p>
+<hr>
+
+<div class="footer">人肉搜索 // FLESHENGINE v0.1</div>
 
 </div>
 
 <script>
 function submitFragment(e) {
-    e.preventDefault();
-    document.getElementById('frag-msg').style.display = 'block';
+  e.preventDefault();
+  document.getElementById('frag-msg').style.display = 'block';
 }
 </script>
 </body>

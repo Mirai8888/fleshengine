@@ -5,60 +5,273 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FLESHENGINE — 人肉搜索 — Distributed Cognitive Profiling</title>
 <meta name="description" content="Human flesh search engine for cognitive profiling. Distributed intelligence collection with structured vulnerability mapping.">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
+:root {
+  --bg: #2a1408;
+  --bg-deep: #1e0e05;
+  --bg-card: #38160d;
+  --text: #fee6cf;
+  --text-dim: #c8882a;
+  --gold: #bd965d;
+  --gold-bright: #cca800;
+  --gold-dark: #a57125;
+  --link: #db956a;
+  --link-visited: #c8882a;
+  --border: #907e2f;
+  --border-dim: #5a3a1a;
+  --green: #6b8a3d;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 14px;
-    background-color: #000000;
-    color: #00ff00;
-    margin: 0;
-    padding: 20px;
+  font-family: 'EB Garamond', 'Times New Roman', Georgia, serif;
+  font-size: 15px;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text);
 }
-a { color: #00ff00; }
-a:visited { color: #009900; }
-a:hover { color: #ffffff; }
-hr { border: 0; border-top: 1px solid #00ff00; margin: 15px 0; }
-h1 { font-size: 28px; font-weight: normal; letter-spacing: 8px; }
-h2 { font-size: 16px; font-weight: normal; letter-spacing: 4px; text-transform: uppercase; }
-h3 { font-size: 14px; font-weight: bold; }
-table { border-collapse: collapse; }
-td, th { border: 1px solid #006600; padding: 6px 10px; text-align: left; font-size: 13px; }
-th { background-color: #001a00; }
-input[type="text"] {
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    background: #001a00;
-    color: #00ff00;
-    border: 1px solid #00ff00;
-    padding: 8px 12px;
-    width: 400px;
-}
-input[type="submit"], button {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 13px;
-    background: #003300;
-    color: #00ff00;
-    border: 1px solid #00ff00;
-    padding: 8px 16px;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-input[type="submit"]:hover, button:hover { background: #00ff00; color: #000000; }
-.blink { animation: blink 1.5s step-start infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-.container { max-width: 780px; margin: 0 auto; }
-.mono { font-family: 'Courier New', monospace; }
-.dim { color: #006600; }
-.bright { color: #33ff33; }
-pre { font-size: 12px; line-height: 1.4; }
+a { color: var(--link); text-decoration: none; }
+a:visited { color: var(--link-visited); }
+a:hover { color: var(--text); }
+.container { max-width: 820px; margin: 0 auto; padding: 20px 24px; }
+
+/* STATUS BAR */
 .status-bar {
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    color: #006600;
-    border-bottom: 1px solid #003300;
-    padding: 4px 0;
-    margin-bottom: 20px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--gold-dark);
+  border-bottom: 1px solid var(--border-dim);
+  padding: 6px 0;
+  margin-bottom: 30px;
+  font-family: 'Courier New', monospace;
+}
+
+/* HEADER */
+.site-title {
+  font-family: 'Cinzel', serif;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.site-subtitle {
+  font-size: 16px;
+  font-style: italic;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+.site-desc {
+  font-size: 14px;
+  color: var(--gold-dark);
+  letter-spacing: 1px;
+}
+
+/* DIVIDERS */
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-dim);
+  margin: 28px 0;
+}
+
+/* SECTION HEADERS */
+h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-dim);
+}
+
+/* SUBMIT BOX */
+.submit-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 20px 24px;
+  margin-bottom: 8px;
+}
+input[type="text"] {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  background: var(--bg-deep);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  width: 400px;
+}
+input[type="text"]::placeholder { color: var(--gold-dark); }
+input[type="text"]:focus { outline: none; border-color: var(--gold); }
+input[type="submit"], button {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--border-dim);
+  color: var(--gold);
+  border: 1px solid var(--border);
+  padding: 10px 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transition: all 0.2s;
+}
+input[type="submit"]:hover, button:hover {
+  background: var(--gold);
+  color: var(--bg-deep);
+}
+#submit-msg {
+  display: none;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--green);
+  padding: 12px 16px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-dim);
+  margin-top: 12px;
+}
+
+/* PIPELINE */
+.pipeline {
+  display: grid;
+  gap: 0;
+}
+.pipe-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 14px;
+  margin-bottom: -1px;
+}
+.pipe-num {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  text-align: center;
+  padding-top: 2px;
+}
+.pipe-title {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.pipe-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* PROFILES TABLE */
+.profiles-grid {
+  display: grid;
+  gap: 12px;
+}
+.profile-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.profile-card:hover { border-color: var(--gold); }
+.profile-handle {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.profile-vectors {
+  font-size: 11px;
+  color: var(--gold-dark);
+  letter-spacing: 1px;
+}
+.profile-right { text-align: right; }
+.threat-score {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold-bright);
+}
+.threat-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+.profile-meta {
+  font-size: 11px;
+  color: var(--gold-dark);
+  margin-top: 4px;
+}
+.status-active { color: var(--green); }
+
+/* FRAGMENTS */
+.fragment {
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  border-left: 3px solid var(--border);
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+.fragment-header {
+  font-size: 11px;
+  color: var(--gold-dark);
+  font-family: 'Courier New', monospace;
+  margin-bottom: 6px;
+}
+.fragment-body {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-style: italic;
+  line-height: 1.5;
+}
+.fragment-confidence {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 6px;
+}
+.conf-high { color: var(--gold-bright); }
+.conf-medium { color: var(--gold-dark); }
+
+/* NAV */
+.nav {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.nav a {
+  color: var(--gold-dark);
+  margin-right: 8px;
+  transition: color 0.2s;
+}
+.nav a:hover { color: var(--gold); }
+
+/* FOOTER */
+.footer {
+  font-size: 11px;
+  color: var(--border-dim);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  input[type="text"] { width: 100%; margin-bottom: 10px; }
+  .profile-card { grid-template-columns: 1fr; }
+  .profile-right { text-align: left; }
 }
 </style>
 </head>
@@ -69,164 +282,172 @@ pre { font-size: 12px; line-height: 1.4; }
 SYS.ACTIVE // NODE_COUNT: 4,891 // FRAGMENTS_COLLECTED: 127,443 // UPTIME: 1,247d
 </div>
 
-<pre class="dim">
-  _____ _     _____ ____  _   _ _____ _   _  ____ ___ _   _ _____ 
- |  ___| |   | ____/ ___|| | | | ____| \ | |/ ___|_ _| \ | | ____|
- | |_  | |   |  _| \___ \| |_| |  _| |  \| | |  _ | ||  \| |  _|  
- |  _| | |___| |___ ___) |  _  | |___| |\  | |_| || || |\  | |___ 
- |_|   |_____|_____|____/|_| |_|_____|_| \_|\____|___|_| \_|_____|
-</pre>
-
-<h1>人肉搜索</h1>
-<p><i>ren rou sou suo</i> &mdash; human flesh search engine</p>
-<p>Distributed cognitive profiling for the open internet.</p>
+<div class="site-title">FLESHENGINE</div>
+<div class="site-subtitle">人肉搜索 &mdash; <i>ren rou sou suo</i></div>
+<div class="site-desc">Distributed cognitive profiling for the open internet.</div>
 
 <hr>
 
-<h2>SUBMIT TARGET</h2>
+<h2>Submit Target</h2>
 
+<div class="submit-box">
 <form onsubmit="submitTarget(event)">
 <p>
 <input type="text" id="target-input" placeholder="@handle, URL, or name" autofocus>
-<input type="submit" value="INITIATE SCAN">
+<input type="submit" value="Initiate Scan">
 </p>
 </form>
-
-<p id="submit-msg" style="display:none" class="mono">
-<span class="blink">&#9608;</span> TARGET ACCEPTED. AUTOMATED SCAN QUEUED. DISTRIBUTED COLLECTION INITIALIZED.<br>
+<div id="submit-msg">
+&#9608; TARGET ACCEPTED. AUTOMATED SCAN QUEUED. DISTRIBUTED COLLECTION INITIALIZED.<br>
 ESTIMATED COMPOSITE PROFILE: 24-48 HRS DEPENDING ON CONTRIBUTOR DENSITY.
-</p>
+</div>
+</div>
 
 <hr>
 
-<h2>PIPELINE</h2>
+<h2>Pipeline</h2>
 
-<pre>
-  TARGET SUBMITTED
-       |
-       v
-  [1] AUTOMATED SCAN ............. public data extraction, communication
-       |                           pattern analysis, network mapping
-       v
-  [2] SCT VULNERABILITY MAP ...... 12-code cognitive attack surface
-       |                           assessment (SCT-001 through SCT-012)
-       v
-  [3] DISTRIBUTED COLLECTION ..... human observers contribute behavioral
-       |                           fragments, relationship dynamics,
-       |                           narrative pattern shifts
-       v
-  [4] AGGREGATION ENGINE ......... weighted merge of automated +
-       |                           human intelligence fragments
-       v
-  [5] COMPOSITE PROFILE .......... cognitive vulnerability brief,
-                                   engagement vectors, network position
-</pre>
-
-<hr>
-
-<h2>ACTIVE PROFILES</h2>
-
-<table width="100%">
-<tr>
-<th>TARGET</th>
-<th>THREAT SCORE</th>
-<th>TOP VECTORS</th>
-<th>FRAGMENTS</th>
-<th>STATUS</th>
-</tr>
-<tr>
-<td class="mono">@influencer_v</td>
-<td>73/100</td>
-<td>SCT-005, SCT-004, SCT-007</td>
-<td>847</td>
-<td class="bright">ACTIVE</td>
-</tr>
-<tr>
-<td class="mono">@policy_think_dc</td>
-<td>61/100</td>
-<td>SCT-001, SCT-006, SCT-003</td>
-<td>412</td>
-<td class="bright">ACTIVE</td>
-</tr>
-<tr>
-<td class="mono">@narrative_ops</td>
-<td>88/100</td>
-<td>SCT-007, SCT-010, SCT-002</td>
-<td>1,203</td>
-<td class="bright">ACTIVE</td>
-</tr>
-<tr>
-<td class="mono">@crypto_prophet</td>
-<td>54/100</td>
-<td>SCT-008, SCT-012, SCT-004</td>
-<td>289</td>
-<td>COLLECTION</td>
-</tr>
-<tr>
-<td class="mono">@media_bureau_7</td>
-<td>79/100</td>
-<td>SCT-001, SCT-009, SCT-006</td>
-<td>631</td>
-<td class="bright">ACTIVE</td>
-</tr>
-</table>
-
-<p class="dim" style="font-size:12px">[click any target to view full composite profile]</p>
+<div class="pipeline">
+<div class="pipe-step">
+  <div class="pipe-num">1</div>
+  <div><div class="pipe-title">Automated Scan</div>
+  <div class="pipe-desc">Public data extraction, communication pattern analysis, network position mapping.</div></div>
+</div>
+<div class="pipe-step">
+  <div class="pipe-num">2</div>
+  <div><div class="pipe-title">SCT Vulnerability Map</div>
+  <div class="pipe-desc">12-code cognitive attack surface assessment. SCT-001 through SCT-012.</div></div>
+</div>
+<div class="pipe-step">
+  <div class="pipe-num">3</div>
+  <div><div class="pipe-title">Distributed Collection</div>
+  <div class="pipe-desc">Human observers contribute behavioral fragments, relationship dynamics, narrative pattern shifts.</div></div>
+</div>
+<div class="pipe-step">
+  <div class="pipe-num">4</div>
+  <div><div class="pipe-title">Aggregation Engine</div>
+  <div class="pipe-desc">Weighted merge of automated and human intelligence fragments into composite profile.</div></div>
+</div>
+<div class="pipe-step">
+  <div class="pipe-num">5</div>
+  <div><div class="pipe-title">Composite Profile</div>
+  <div class="pipe-desc">Cognitive vulnerability brief, engagement vectors, network position analysis.</div></div>
+</div>
+</div>
 
 <hr>
 
-<h2>RECENT FRAGMENTS</h2>
+<h2>Active Profiles</h2>
 
-<pre class="dim">
-[2026-02-13 01:47:22] CONTRIBUTOR #4421 → @narrative_ops
-  TYPE: behavioral_pattern
-  "posting frequency increases 340% within 2hrs of any NATO
-   announcement. content pre-drafted. coordination probable."
-  CONFIDENCE: high
-
-[2026-02-13 01:12:08] CONTRIBUTOR #2847 → @influencer_v  
-  TYPE: relationship_dynamic
-  "consistent amplification of @crypto_prophet content despite
-   no public interaction. shared narrative cluster on 3 topics."
-  CONFIDENCE: medium
-
-[2026-02-12 23:55:41] CONTRIBUTOR #0091 → @policy_think_dc
-  TYPE: tone_shift
-  "switched from analytical to emotional framing on immigration
-   topics starting jan 2026. vocabulary overlap with known
-   coordinated campaigns (see fragment #2201)."
-  CONFIDENCE: high
-</pre>
+<div class="profiles-grid">
+<a href="profile.html" style="text-decoration:none">
+<div class="profile-card">
+  <div>
+    <div class="profile-handle">@narrative_ops</div>
+    <div class="profile-vectors">SCT-007 &middot; SCT-010 &middot; SCT-002</div>
+    <div class="profile-meta">1,203 fragments &middot; <span class="status-active">ACTIVE</span></div>
+  </div>
+  <div class="profile-right">
+    <div class="threat-score">88</div>
+    <div class="threat-label">Threat Score</div>
+  </div>
+</div>
+</a>
+<div class="profile-card">
+  <div>
+    <div class="profile-handle">@media_bureau_7</div>
+    <div class="profile-vectors">SCT-001 &middot; SCT-009 &middot; SCT-006</div>
+    <div class="profile-meta">631 fragments &middot; <span class="status-active">ACTIVE</span></div>
+  </div>
+  <div class="profile-right">
+    <div class="threat-score">79</div>
+    <div class="threat-label">Threat Score</div>
+  </div>
+</div>
+<div class="profile-card">
+  <div>
+    <div class="profile-handle">@influencer_v</div>
+    <div class="profile-vectors">SCT-005 &middot; SCT-004 &middot; SCT-007</div>
+    <div class="profile-meta">847 fragments &middot; <span class="status-active">ACTIVE</span></div>
+  </div>
+  <div class="profile-right">
+    <div class="threat-score">73</div>
+    <div class="threat-label">Threat Score</div>
+  </div>
+</div>
+<div class="profile-card">
+  <div>
+    <div class="profile-handle">@policy_think_dc</div>
+    <div class="profile-vectors">SCT-001 &middot; SCT-006 &middot; SCT-003</div>
+    <div class="profile-meta">412 fragments &middot; <span class="status-active">ACTIVE</span></div>
+  </div>
+  <div class="profile-right">
+    <div class="threat-score">61</div>
+    <div class="threat-label">Threat Score</div>
+  </div>
+</div>
+<div class="profile-card">
+  <div>
+    <div class="profile-handle">@crypto_prophet</div>
+    <div class="profile-vectors">SCT-008 &middot; SCT-012 &middot; SCT-004</div>
+    <div class="profile-meta">289 fragments &middot; COLLECTION</div>
+  </div>
+  <div class="profile-right">
+    <div class="threat-score">54</div>
+    <div class="threat-label">Threat Score</div>
+  </div>
+</div>
+</div>
 
 <hr>
 
-<h2>NAVIGATION</h2>
+<h2>Recent Fragments</h2>
 
-<p>
-[ <a href="index.html">HOME</a> ]
-[ <a href="profile.html">SAMPLE PROFILE</a> ]
-[ <a href="scanner.html">SCT SCANNER</a> ]
-[ <a href="about.html">ABOUT</a> ]
-[ <a href="https://github.com/Mirai8888/fleshengine">SOURCE</a> ]
-</p>
+<div class="fragment">
+  <div class="fragment-header">[2026-02-13 01:47:22] CONTRIBUTOR #4421 &rarr; @narrative_ops</div>
+  <div class="fragment-body">"Posting frequency increases 340% within 2hrs of any NATO announcement. Content pre-drafted. Coordination probable."</div>
+  <div class="fragment-confidence conf-high">Confidence: HIGH</div>
+</div>
+
+<div class="fragment">
+  <div class="fragment-header">[2026-02-13 01:12:08] CONTRIBUTOR #2847 &rarr; @influencer_v</div>
+  <div class="fragment-body">"Consistent amplification of @crypto_prophet content despite no public interaction. Shared narrative cluster on 3 topics."</div>
+  <div class="fragment-confidence conf-medium">Confidence: MEDIUM</div>
+</div>
+
+<div class="fragment">
+  <div class="fragment-header">[2026-02-12 23:55:41] CONTRIBUTOR #0091 &rarr; @policy_think_dc</div>
+  <div class="fragment-body">"Switched from analytical to emotional framing on immigration topics starting Jan 2026. Vocabulary overlap with known coordinated campaigns (see fragment #2201)."</div>
+  <div class="fragment-confidence conf-high">Confidence: HIGH</div>
+</div>
 
 <hr>
 
-<p class="dim" style="font-size:11px">
+<div class="nav">
+[ <a href="index.html">Home</a> ]
+[ <a href="profile.html">Sample Profile</a> ]
+[ <a href="scanner.html">SCT Scanner</a> ]
+[ <a href="about.html">About</a> ]
+[ <a href="https://github.com/Mirai8888/fleshengine">Source</a> ]
+</div>
+
+<hr>
+
+<div class="footer">
 人肉搜索 // FLESHENGINE v0.1 // distributed cognitive profiling<br>
 every public account is a readable substrate<br>
 the crowd sees what the algorithm misses
-</p>
+</div>
 
 </div>
 
 <script>
 function submitTarget(e) {
-    e.preventDefault();
-    var val = document.getElementById('target-input').value.trim();
-    if (!val) return;
-    document.getElementById('submit-msg').style.display = 'block';
-    document.getElementById('target-input').value = '';
+  e.preventDefault();
+  var val = document.getElementById('target-input').value.trim();
+  if (!val) return;
+  document.getElementById('submit-msg').style.display = 'block';
+  document.getElementById('target-input').value = '';
 }
 </script>
 </body>
