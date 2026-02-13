@@ -5,187 +5,161 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>人肉搜索 — Scanner</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
-
 body {
-  background: #1a0a02;
-  color: #c8a878;
-  font-family: 'EB Garamond', Georgia, serif;
-  font-size: 16px;
-  line-height: 1.6;
+  background: #2a1408;
+  color: #e8d5b5;
+  font-family: 'Trebuchet MS', Verdana, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
   margin: 0; padding: 0;
 }
-::selection { background: #6b4420; color: #fee6cf; }
-a { color: #bd965d; text-decoration: none; }
-a:hover { color: #fee6cf; }
-#wrapper { max-width: 800px; margin: 0 auto; min-height: 100vh; }
+a { color: #d4a76a; }
+a:visited { color: #b8894a; }
+a:hover { text-decoration: underline; }
 
+#wrapper { width: 760px; margin: 0 auto; }
 #header {
-  border-bottom: 1px solid #3a1a08;
-  padding: 40px 24px 20px;
-  text-align: center;
+  background: #1a0a02;
+  border-bottom: 2px solid #6b4420;
+  padding: 16px 20px;
 }
 #header h1 {
-  font-family: 'Cinzel', serif;
-  font-size: 36px;
-  font-weight: 400;
-  color: #bd965d;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 28px;
+  font-weight: normal;
+  color: #c8a060;
   margin: 0;
-  letter-spacing: 8px;
+  letter-spacing: 4px;
 }
-#header .sub {
-  font-size: 11px;
-  color: #5a3a18;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  margin-top: 6px;
-}
+#header .subtitle { font-size: 12px; color: #8a6a3a; margin-top: 2px; }
 #nav {
-  text-align: center;
-  padding: 10px;
-  font-family: 'Cinzel', serif;
+  background: #3a1a08;
+  border-bottom: 1px solid #4a2a10;
+  padding: 4px 20px;
   font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  border-bottom: 1px solid #2a1408;
 }
-#nav a { color: #6b4420; margin: 0 14px; }
-#nav a:hover { color: #bd965d; }
+#nav a { color: #a07840; margin-right: 12px; text-decoration: none; }
+#nav a:hover { color: #e8d5b5; }
 
-#content { padding: 30px 24px; }
+#content { padding: 16px 20px; }
 
 h2 {
-  font-family: 'Cinzel', serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: #6b4420;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  border-bottom: 1px solid #2a1408;
-  padding-bottom: 6px;
-  margin: 30px 0 14px;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: #c8a060;
+  border-bottom: 1px solid #4a2a10;
+  padding-bottom: 4px;
+  margin: 16px 0 8px 0;
 }
 
 .intro {
   font-style: italic;
-  color: #6b4420;
-  font-size: 14px;
-  margin-bottom: 20px;
-  border-left: 2px solid #2a1408;
-  padding-left: 14px;
+  color: #8a6a3a;
+  font-size: 12px;
+  margin-bottom: 12px;
+  border-left: 2px solid #4a2a10;
+  padding-left: 10px;
 }
 
 textarea {
-  font-family: 'EB Garamond', Georgia, serif;
-  font-size: 15px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
   background: #0e0600;
-  color: #c8a878;
-  border: 1px solid #2a1408;
-  padding: 14px;
+  color: #e8d5b5;
+  border: 1px solid #4a2a10;
+  padding: 10px;
   width: 100%;
   box-sizing: border-box;
-  height: 180px;
+  height: 160px;
   resize: vertical;
 }
-textarea::placeholder { color: #3a1a08; }
 textarea:focus { outline: none; border-color: #6b4420; }
 
-button {
-  font-family: 'Cinzel', serif;
+input[type="submit"] {
+  font-family: Verdana, sans-serif;
   font-size: 11px;
-  letter-spacing: 2px;
-  background: none;
-  color: #6b4420;
-  border: 1px solid #3a1a08;
-  padding: 8px 18px;
+  background: #3a1a08;
+  color: #c8a060;
+  border: 1px solid #6b4420;
+  padding: 6px 14px;
   cursor: pointer;
-  text-transform: uppercase;
-  margin-top: 8px;
+  margin-top: 6px;
 }
-button:hover { color: #bd965d; border-color: #6b4420; }
+input[type="submit"]:hover { background: #4a2a10; }
 
+.examples {
+  margin: 10px 0;
+}
+.examples a {
+  font-size: 11px;
+  color: #6b4420;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.examples a:hover { color: #c8a060; }
+
+/* RESULTS */
 #results {
-  margin-top: 24px;
   display: none;
+  margin-top: 14px;
 }
 .result-summary {
-  background: #0e0600;
-  border: 1px solid #2a1408;
-  padding: 16px;
-  margin-bottom: 16px;
+  background: #1a0a02;
+  border: 1px solid #4a2a10;
+  padding: 12px;
+  margin-bottom: 12px;
 }
-.result-score {
-  font-family: 'Cinzel', serif;
-  font-size: 42px;
-  color: #bd965d;
-  line-height: 1;
+.result-count {
+  font-family: Georgia, serif;
+  font-size: 28px;
+  color: #c8a060;
 }
-.result-score.high { color: #8a3a2a; }
-.result-score.med { color: #a07840; }
+.result-count.high { color: #c04030; }
+.result-count.med { color: #c89030; }
 .result-label {
   font-size: 10px;
-  color: #5a3a18;
+  color: #6b4420;
   text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
 .detection {
-  background: #0e0600;
-  border: 1px solid #2a1408;
-  padding: 12px 14px;
-  margin: 8px 0;
+  background: #1a0a02;
+  border: 1px solid #4a2a10;
+  padding: 8px 10px;
+  margin: 6px 0;
 }
 .detection .code {
   font-family: 'Courier New', monospace;
-  font-size: 11px;
-  color: #5a3a18;
+  font-size: 10px;
+  color: #6b4420;
 }
 .detection .name {
-  font-size: 14px;
-  color: #bd965d;
-  margin: 2px 0;
-}
-.detection .name.high { color: #8a3a2a; }
-.detection .desc {
   font-size: 13px;
-  color: #6b4420;
-  font-style: italic;
+  color: #c8a060;
+  font-weight: bold;
 }
+.detection .name.high { color: #c04030; }
 .detection .matches {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #5a3a18;
+  margin-top: 4px;
 }
 .detection .match-item {
-  border-left: 2px solid #2a1408;
-  padding-left: 10px;
-  margin: 4px 0;
+  border-left: 2px solid #4a2a10;
+  padding-left: 8px;
+  margin: 3px 0;
+  font-size: 11px;
+  color: #8a6a3a;
+  font-style: italic;
 }
-
-.examples {
-  margin-top: 20px;
-}
-.example-btn {
-  font-family: 'EB Garamond', serif;
-  font-size: 12px;
-  background: none;
-  color: #5a3a18;
-  border: 1px solid #2a1408;
-  padding: 4px 10px;
-  cursor: pointer;
-  margin: 0 4px 4px 0;
-  text-transform: none;
-  letter-spacing: 0;
-}
-.example-btn:hover { color: #bd965d; border-color: #6b4420; }
 
 #footer {
-  border-top: 1px solid #2a1408;
-  padding: 20px 24px;
-  text-align: center;
+  background: #1a0a02;
+  border-top: 1px solid #4a2a10;
+  padding: 8px 20px;
   font-size: 10px;
-  color: #2a1408;
-  letter-spacing: 2px;
+  color: #4a2a10;
+  text-align: center;
+  margin-top: 16px;
 }
 </style>
 </head>
@@ -195,11 +169,11 @@ button:hover { color: #bd965d; border-color: #6b4420; }
 
 <div id="header">
   <h1>人肉搜索</h1>
-  <div class="sub">the flesh remembers what the profile deletes</div>
+  <div class="subtitle">FLESHENGINE &mdash; the flesh remembers what the profile deletes</div>
 </div>
 
 <div id="nav">
-  <a href="index.html">Index</a>
+  <a href="index.html">Home</a>
   <a href="scanner.html">Scanner</a>
   <a href="about.html">About</a>
   <a href="https://github.com/Mirai8888/fleshengine">Source</a>
@@ -209,23 +183,23 @@ button:hover { color: #bd965d; border-color: #6b4420; }
 
   <h2>Influence Scanner</h2>
 
-  <div class="intro">Paste any text. A tweet, an article, a message someone sent you at 3 AM. The scanner identifies which vectors are active. It runs entirely in your browser. Nothing leaves your machine.</div>
+  <div class="intro">Paste any text. A tweet, an article, a message someone sent you at 3 AM. The scanner identifies which vectors are active. Runs entirely in your browser. Nothing leaves your machine.</div>
 
   <textarea id="scan-input" placeholder="Paste the text you want analyzed..."></textarea>
-  <button onclick="runScan()">Analyze</button>
+  <input type="submit" value="Analyze" onclick="runScan()">
 
   <div class="examples">
-    <button class="example-btn" onclick="loadExample(0)">Propaganda excerpt</button>
-    <button class="example-btn" onclick="loadExample(1)">Recruitment message</button>
-    <button class="example-btn" onclick="loadExample(2)">Fear campaign</button>
-    <button class="example-btn" onclick="loadExample(3)">Conspiracy thread</button>
-    <button class="example-btn" onclick="loadExample(4)">Corporate manipulation</button>
+    <a onclick="loadExample(0)">[ propaganda ]</a>
+    <a onclick="loadExample(1)">[ recruitment ]</a>
+    <a onclick="loadExample(2)">[ fear campaign ]</a>
+    <a onclick="loadExample(3)">[ conspiracy ]</a>
+    <a onclick="loadExample(4)">[ corporate ]</a>
   </div>
 
   <div id="results">
     <div class="result-summary">
-      <div class="result-score" id="r-score">0</div>
-      <div class="result-label">vectors detected</div>
+      <span class="result-count" id="r-count">0</span>
+      <span class="result-label"> vectors detected</span>
     </div>
     <div id="detections"></div>
   </div>
@@ -233,7 +207,8 @@ button:hover { color: #bd965d; border-color: #6b4420; }
 </div>
 
 <div id="footer">
-  人肉搜索 &middot; FLESHENGINE &middot; the crowd sees what the algorithm misses
+  人肉搜索 // FLESHENGINE // the crowd sees what the algorithm misses<br>
+  &copy; 2024-2026
 </div>
 
 </div>
@@ -249,7 +224,7 @@ const EXAMPLES = [
 
 const FE = [
   { code:'FE-001', name:'Narrative Framing', patterns:[/mainstream media/i,/they don'?t want you to know/i,/the real story/i,/what they'?re not telling/i,/hidden truth/i,/cover[- ]?up/i,/the narrative/i,/official story/i,/suppressing/i,/won'?t tell you/i] },
-  { code:'FE-002', name:'Repetition Saturation', patterns:[/exposed exposed/i,/\b(\w+)\s+\1\s+\1\b/i,/again and again/i,/over and over/i,/exposed exposed/i] },
+  { code:'FE-002', name:'Repetition Saturation', patterns:[/exposed exposed/i,/\b(\w+)\s+\1\s+\1\b/i,/again and again/i,/over and over/i] },
   { code:'FE-003', name:'Audience Conditioning', patterns:[/everyone knows/i,/people who think like/i,/already knows/i,/if you understand/i,/people who get it/i,/paying attention/i,/those who see/i,/the awake/i,/ready for this/i,/most people aren'?t/i] },
   { code:'FE-004', name:'Loyalty Exploitation', patterns:[/family/i,/trust/i,/loyalty/i,/one of us/i,/betray/i,/unconditional/i,/movement/i,/true believer/i,/you'?re special/i,/perfect fit/i] },
   { code:'FE-005', name:'Identity Manipulation', patterns:[/you clearly get it/i,/not like (the )?others/i,/meant for greatness/i,/you'?re different/i,/real .*(patriot|american|thinker)/i,/your identity/i,/who you really are/i,/you understand/i] },
@@ -258,7 +233,7 @@ const FE = [
   { code:'FE-008', name:'Urgency Fabrication', patterns:[/right now/i,/breaking/i,/urgent/i,/act now/i,/time is running out/i,/48 hours/i,/last chance/i,/this is not a drill/i,/immediately/i,/emergency/i] },
   { code:'FE-009', name:'Attention Redirection', patterns:[/look over here/i,/distract/i,/what they don'?t want you (to see|looking at)/i,/pay no attention/i,/focus on/i,/the real issue/i,/think about it/i,/follow the money/i,/connect the dots/i] },
   { code:'FE-010', name:'Reality Distortion', patterns:[/nothing is (a )?coincidence/i,/once you see it/i,/can'?t unsee/i,/the matrix/i,/simulation/i,/illusion/i,/open your eyes/i,/wake up/i,/red pill/i,/conspiracy theory.*now look/i] },
-  { code:'FE-011', name:'Cognitive Overload', patterns:[/exposed exposed exposed/i,/exposed\s/i,/exposed/gi,/bombshell/i,/shocking/i,/you won'?t believe/i,/mind[- ]?blow/i,/jaw[- ]?drop/i] },
+  { code:'FE-011', name:'Cognitive Overload', patterns:[/exposed exposed exposed/i,/bombshell/i,/shocking/i,/you won'?t believe/i,/mind[- ]?blow/i,/jaw[- ]?drop/i] },
   { code:'FE-012', name:'Existential Threat Framing', patterns:[/your family is at risk/i,/children are in danger/i,/end of .*(world|civilization|society)/i,/extinction/i,/survive/i,/threat to everything/i,/threatens everything/i,/worse than anyone/i] },
 ];
 
@@ -273,35 +248,30 @@ function runScan() {
       const m = text.match(p);
       if (m) matched.push(m[0]);
     });
-    if (matched.length) {
-      hits.push({ ...v, matches: [...new Set(matched)] });
-    }
+    if (matched.length) hits.push({ ...v, matches: [...new Set(matched)] });
   });
 
   const resultsEl = document.getElementById('results');
-  const scoreEl = document.getElementById('r-score');
+  const countEl = document.getElementById('r-count');
   const detectEl = document.getElementById('detections');
 
-  scoreEl.textContent = hits.length;
-  scoreEl.className = 'result-score' + (hits.length >= 6 ? ' high' : hits.length >= 3 ? ' med' : '');
+  countEl.textContent = hits.length;
+  countEl.className = 'result-count' + (hits.length >= 6 ? ' high' : hits.length >= 3 ? ' med' : '');
 
   detectEl.innerHTML = '';
   if (!hits.length) {
-    detectEl.innerHTML = '<div style="color:#5a3a18;font-style:italic;padding:10px 0;">No vectors detected. Either this text is clean, or the patterns are more subtle than the scanner can catch. Trust your instincts.</div>';
+    detectEl.innerHTML = '<div style="color:#6b4420;font-style:italic;padding:8px 0;">No vectors detected. Clean text, or patterns too subtle for the scanner.</div>';
   } else {
     hits.forEach(h => {
       let html = '<div class="detection">';
-      html += '<span class="code">' + h.code + '</span>';
-      html += '<div class="name' + (h.matches.length >= 3 ? ' high' : '') + '">' + h.name + '</div>';
+      html += '<span class="code">' + h.code + '</span> ';
+      html += '<span class="name' + (h.matches.length >= 3 ? ' high' : '') + '">' + h.name + '</span>';
       html += '<div class="matches">';
-      h.matches.forEach(m => {
-        html += '<div class="match-item">"' + m + '"</div>';
-      });
+      h.matches.forEach(m => { html += '<div class="match-item">"' + m + '"</div>'; });
       html += '</div></div>';
       detectEl.innerHTML += html;
     });
   }
-
   resultsEl.style.display = 'block';
 }
 
