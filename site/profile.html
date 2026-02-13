@@ -4,390 +4,216 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FLESHENGINE — Target Profile</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #2a1408; --bg-deep: #1e0e05; --bg-card: #38160d;
-  --text: #fee6cf; --text-dim: #c8882a;
-  --gold: #bd965d; --gold-bright: #cca800; --gold-dark: #a57125;
-  --link: #db956a; --link-visited: #c8882a;
-  --border: #907e2f; --border-dim: #5a3a1a;
-  --green: #6b8a3d; --warn: #c87830; --crit: #a83020;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.6; background: var(--bg); color: var(--text); }
-a { color: var(--link); text-decoration: none; }
-a:visited { color: var(--link-visited); }
-a:hover { color: var(--text); }
-.container { max-width: 860px; margin: 0 auto; padding: 28px; }
-hr { border: 0; border-top: 1px solid var(--border-dim); margin: 32px 0; }
-h1 { font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700; letter-spacing: 4px; color: var(--gold); }
-h1 .handle { font-family: 'Courier New', monospace; color: var(--text); }
-h2 { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; padding-bottom: 8px; border-bottom: 1px solid var(--border-dim); }
-.nav { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
-.nav a { color: var(--gold-dark); margin-right: 10px; }
-.nav a:hover { color: var(--gold); }
+body { background:#2a1408; color:#e8d5b5; font-family:'Trebuchet MS',Verdana,sans-serif; font-size:13px; line-height:1.5; margin:0; }
+a { color:#d4a76a; } a:visited { color:#b8894a; } a:hover { text-decoration:underline; }
+hr { border:none; border-top:1px solid #4a2a10; margin:12px 0; }
+#wrapper { width:760px; margin:0 auto; }
+#header { background:#1a0a02; border-bottom:2px solid #6b4420; padding:16px 20px; }
+#header h1 { font-family:Georgia,serif; font-size:28px; font-weight:normal; color:#c8a060; margin:0; letter-spacing:4px; }
+#header .subtitle { font-size:12px; color:#8a6a3a; margin-top:2px; }
+#nav { background:#3a1a08; border-bottom:1px solid #4a2a10; padding:4px 20px; font-size:11px; }
+#nav a { color:#a07840; margin-right:12px; text-decoration:none; } #nav a:hover { color:#e8d5b5; }
+#content { padding:16px 20px; }
+h2 { font-family:Georgia,serif; font-size:15px; font-weight:bold; color:#c8a060; border-bottom:1px solid #4a2a10; padding-bottom:4px; margin:16px 0 8px 0; }
 
-.meta-card { background: var(--bg-card); border: 1px solid var(--border); padding: 20px 24px; display: grid; grid-template-columns: 1fr auto; gap: 20px; }
-.meta-rows { display: grid; gap: 8px; }
-.meta-row { display: flex; gap: 14px; font-size: 16px; }
-.meta-label { color: var(--gold-dark); min-width: 140px; }
-.meta-value { color: var(--text); }
-.meta-value.active { color: var(--green); }
-.score-box { text-align: center; }
-.score-num { font-family: 'Cinzel', serif; font-size: 52px; font-weight: 700; color: var(--gold-bright); line-height: 1; }
-.score-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dark); margin-top: 4px; }
+table.meta { border-collapse:collapse; font-size:12px; margin:8px 0; }
+table.meta td { padding:3px 10px 3px 0; vertical-align:top; }
+table.meta td.label { color:#8a6a3a; width:120px; }
+.score-big { font-family:Georgia,serif; font-size:36px; font-weight:bold; color:#c8a060; }
+.status-active { color:#7a9a4a; }
 
-.vuln-grid { display: grid; gap: 8px; }
-.vuln-row { display: grid; grid-template-columns: 220px 1fr 44px; gap: 14px; align-items: center; font-size: 15px; }
-.vuln-code { color: var(--gold-dark); font-family: 'Courier New', monospace; font-size: 12px; }
-.vuln-name { color: var(--text-dim); }
-.vuln-bar-outer { background: var(--bg-deep); height: 16px; border: 1px solid var(--border-dim); }
-.vuln-bar-inner { height: 100%; transition: width 0.5s; }
-.vuln-score { color: var(--text); text-align: right; font-size: 14px; font-weight: 600; }
-.bar-low { background: var(--border-dim); }
-.bar-med { background: var(--warn); }
-.bar-high { background: var(--gold-bright); }
-.bar-crit { background: #a83020; }
+table.vuln { width:100%; border-collapse:collapse; font-size:12px; margin:8px 0; }
+table.vuln td { padding:3px 6px; border:1px solid #3a1a08; }
+table.vuln td.code { font-family:'Courier New',monospace; font-size:11px; color:#8a6a3a; width:55px; }
+table.vuln td.name { width:180px; color:#a07840; }
+table.vuln td.bar { width:200px; padding:3px 4px; }
+table.vuln td.val { width:30px; text-align:right; }
+.bar-outer { background:#0e0600; height:10px; border:1px solid #3a1a08; }
+.bar-inner { height:100%; }
+.b-low { background:#4a2a10; }
+.b-med { background:#c89030; }
+.b-high { background:#c8a060; }
+.b-crit { background:#c04030; }
 
-.fragment { background: var(--bg-card); border: 1px solid var(--border-dim); border-left: 3px solid var(--border); padding: 14px 18px; margin-bottom: 12px; }
-.fragment-header { font-size: 12px; color: var(--gold-dark); font-family: 'Courier New', monospace; margin-bottom: 6px; }
-.fragment-body { font-size: 16px; color: var(--text-dim); font-style: italic; line-height: 1.5; }
-.fragment-confidence { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; }
-.conf-high { color: var(--gold-bright); }
-.conf-medium { color: var(--gold-dark); }
-.conf-low { color: var(--border); }
+.fragment { border-left:2px solid #4a2a10; padding:4px 0 4px 10px; margin:6px 0; font-size:12px; }
+.fragment .meta { color:#6b4420; font-family:'Courier New',monospace; font-size:10px; }
+.fragment .body { color:#c8a060; font-style:italic; margin:2px 0; }
+.fragment .conf { font-size:10px; color:#6b4420; }
 
-.contribute-form { background: var(--bg-card); border: 1px solid var(--border-dim); padding: 20px 24px; }
-.form-row { display: grid; grid-template-columns: 120px 1fr; gap: 14px; margin-bottom: 12px; align-items: start; }
-.form-label { font-size: 13px; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 1px; padding-top: 10px; }
-textarea, input[type="url"], input[type="text"], select {
-  font-family: 'Courier New', monospace; font-size: 15px;
-  background: var(--bg-deep); color: var(--text);
-  border: 1px solid var(--border-dim); padding: 10px 12px; width: 100%;
-}
-textarea { resize: vertical; }
-select { width: auto; min-width: 220px; }
-textarea:focus, input:focus, select:focus { outline: none; border-color: var(--gold); }
-input[type="submit"] {
-  font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700;
-  background: var(--border-dim); color: var(--gold);
-  border: 1px solid var(--border); padding: 12px 24px;
-  cursor: pointer; text-transform: uppercase; letter-spacing: 3px;
-}
-input[type="submit"]:hover { background: var(--gold); color: var(--bg-deep); }
-#frag-msg { display: none; font-size: 15px; padding: 14px; background: var(--bg-deep); border: 1px solid var(--border-dim); margin-top: 14px; }
-#frag-msg.success { color: var(--green); border-color: var(--green); }
-#frag-msg.error { color: #a83020; border-color: #a83020; }
+#contribute { background:#1a0a02; border:1px solid #4a2a10; padding:12px; margin:8px 0; }
+#contribute table { font-size:12px; }
+#contribute td { padding:4px 6px; vertical-align:top; }
+#contribute td.label { color:#8a6a3a; width:90px; font-size:11px; }
+textarea, input[type="url"], input[type="text"] { font-family:'Courier New',monospace; font-size:12px; background:#0e0600; color:#e8d5b5; border:1px solid #4a2a10; padding:4px 6px; width:100%; }
+select { font-family:Verdana,sans-serif; font-size:11px; background:#0e0600; color:#e8d5b5; border:1px solid #4a2a10; padding:3px; }
+textarea { resize:vertical; }
+input[type="submit"] { font-family:Verdana,sans-serif; font-size:11px; background:#3a1a08; color:#c8a060; border:1px solid #6b4420; padding:6px 14px; cursor:pointer; }
+input[type="submit"]:hover { background:#4a2a10; }
+#frag-msg { display:none; font-size:12px; padding:6px; margin-top:6px; border:1px solid #4a2a10; }
+.msg-ok { color:#7a9a4a; } .msg-err { color:#c04030; }
 
-.assessment { background: var(--bg-card); border: 1px solid var(--border); padding: 20px 24px; font-size: 17px; line-height: 1.7; color: var(--text-dim); }
-.assessment strong { color: var(--text); }
+.assessment-box { background:#1a0a02; border:1px solid #4a2a10; padding:10px 12px; font-size:12px; color:#a07840; line-height:1.6; }
 
-.empty-state { background: var(--bg-card); border: 1px solid var(--border-dim); padding: 36px 28px; text-align: center; color: var(--gold-dark); font-style: italic; font-size: 17px; }
-.footer { font-size: 13px; color: var(--border-dim); font-style: italic; }
-
-@media (max-width: 600px) {
-  .meta-card { grid-template-columns: 1fr; }
-  .vuln-row { grid-template-columns: 1fr; gap: 4px; }
-  .form-row { grid-template-columns: 1fr; }
-}
+#footer { background:#1a0a02; border-top:1px solid #4a2a10; padding:8px 20px; font-size:10px; color:#4a2a10; text-align:center; margin-top:16px; }
 </style>
 </head>
 <body>
-<div class="container">
-
-<div class="nav">
-[ <a href="index.html">Home</a> ]
-[ Profile ]
-[ <a href="scanner.html">Scanner</a> ]
-[ <a href="about.html">About</a> ]
+<div id="wrapper">
+<div id="header">
+  <h1>人肉搜索</h1>
+  <div class="subtitle" id="page-subtitle">FLESHENGINE &mdash; target profile</div>
 </div>
-
-<hr>
-
-<h1>TARGET: <span class="handle" id="target-handle">Loading...</span></h1>
-
-<br>
-
-<div class="meta-card" id="meta-card">
-  <div class="meta-rows">
-    <div class="meta-row"><span class="meta-label">Status</span><span class="meta-value" id="meta-status">—</span></div>
-    <div class="meta-row"><span class="meta-label">Fragments</span><span class="meta-value" id="meta-fragments">0</span></div>
-    <div class="meta-row"><span class="meta-label">Contributors</span><span class="meta-value" id="meta-contributors">0</span></div>
-    <div class="meta-row"><span class="meta-label">Submitted</span><span class="meta-value" id="meta-created">—</span></div>
-    <div class="meta-row"><span class="meta-label">Last Update</span><span class="meta-value" id="meta-updated">—</span></div>
-  </div>
-  <div class="score-box">
-    <div class="score-num" id="meta-score">—</div>
-    <div class="score-label">Threat Score</div>
-  </div>
+<div id="nav">
+  <a href="index.html">Home</a>
+  <a href="scanner.html">Scanner</a>
+  <a href="about.html">About</a>
+  <a href="https://github.com/Mirai8888/fleshengine">Source</a>
 </div>
+<div id="content">
 
-<hr>
+<h2>Target: <span id="target-handle" style="font-family:'Courier New',monospace;color:#e8d5b5">loading...</span></h2>
+
+<table>
+<tr>
+<td style="vertical-align:top;padding-right:30px">
+<table class="meta">
+  <tr><td class="label">Status</td><td id="m-status">&mdash;</td></tr>
+  <tr><td class="label">Fragments</td><td id="m-frags">0</td></tr>
+  <tr><td class="label">Contributors</td><td id="m-contribs">0</td></tr>
+  <tr><td class="label">Submitted</td><td id="m-created">&mdash;</td></tr>
+  <tr><td class="label">Last update</td><td id="m-updated">&mdash;</td></tr>
+</table>
+</td>
+<td style="vertical-align:top;text-align:center">
+  <span class="score-big" id="m-score">&mdash;</span><br>
+  <span style="font-size:10px;color:#6b4420">THREAT SCORE</span>
+</td>
+</tr>
+</table>
 
 <h2>Influence Vulnerability Surface</h2>
-
-<div class="vuln-grid" id="vuln-grid"></div>
-
-<hr>
+<table class="vuln" id="vuln-table"></table>
 
 <h2>Intelligence Fragments</h2>
-
-<div id="fragments-container">
-  <div class="empty-state" id="fragments-empty">No fragments submitted yet for this target.</div>
-  <div id="fragments-list" style="display:none"></div>
-</div>
-
-<hr>
+<div id="fragments-list"><span style="color:#6b4420;font-size:12px">No fragments yet.</span></div>
 
 <h2>Contribute Observation</h2>
-
-<div class="contribute-form">
-<form id="fragment-form" onsubmit="submitFragment(event)">
-  <input type="hidden" id="frag-target-id" value="">
-  <input type="hidden" id="frag-target-handle" value="">
-  <div class="form-row"><span class="form-label">Type</span>
-    <select id="obs-type">
-      <option value="behavioral_pattern">Behavioral Pattern</option>
-      <option value="relationship_dynamic">Relationship Dynamic</option>
-      <option value="narrative_shift">Narrative Shift</option>
-      <option value="tone_analysis">Tone Analysis</option>
-      <option value="network_activity">Network Activity</option>
-      <option value="other">Other</option>
-    </select>
-  </div>
-  <div class="form-row"><span class="form-label">Observation</span><textarea id="obs-text" rows="4" maxlength="1000" placeholder="Describe what you observed"></textarea></div>
-  <div class="form-row"><span class="form-label">Evidence</span><input type="url" id="obs-evidence" placeholder="Link to specific post or content (optional)"></div>
-  <div class="form-row"><span class="form-label">Timeframe</span><input type="text" id="obs-time" placeholder="When was this observed (optional)"></div>
-  <div class="form-row"><span class="form-label">Confidence</span>
-    <select id="obs-conf">
-      <option value="low">Low</option>
-      <option value="medium" selected>Medium</option>
-      <option value="high">High</option>
-    </select>
-  </div>
-  <div style="margin-top:16px"><input type="submit" value="Submit Fragment"></div>
+<div id="contribute">
+<form onsubmit="submitFragment(event)">
+<input type="hidden" id="frag-tid" value="">
+<input type="hidden" id="frag-thandle" value="">
+<table width="100%">
+<tr><td class="label">Type</td><td><select id="obs-type"><option value="behavioral_pattern">Behavioral Pattern</option><option value="relationship_dynamic">Relationship Dynamic</option><option value="narrative_shift">Narrative Shift</option><option value="tone_analysis">Tone Analysis</option><option value="network_activity">Network Activity</option><option value="other">Other</option></select></td></tr>
+<tr><td class="label">Observation</td><td><textarea id="obs-text" rows="3" maxlength="1000" placeholder="describe what you observed"></textarea></td></tr>
+<tr><td class="label">Evidence</td><td><input type="url" id="obs-evidence" placeholder="link to post (optional)"></td></tr>
+<tr><td class="label">Timeframe</td><td><input type="text" id="obs-time" placeholder="when observed (optional)"></td></tr>
+<tr><td class="label">Confidence</td><td><select id="obs-conf"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select></td></tr>
+<tr><td></td><td><input type="submit" value="Submit Fragment"></td></tr>
+</table>
 </form>
 <div id="frag-msg"></div>
 </div>
 
-<hr>
-
 <h2>Assessment</h2>
+<div class="assessment-box" id="assessment"><i>Assessment generated after sufficient data collection.</i></div>
 
-<div class="assessment" id="assessment">
-  <em style="color:var(--gold-dark)">Assessment will be generated once sufficient data has been collected.</em>
 </div>
-
-<hr>
-
-<div class="nav">
-[ <a href="index.html">Home</a> ]
-[ Profile ]
-[ <a href="scanner.html">Scanner</a> ]
-[ <a href="about.html">About</a> ]
-</div>
-
-<hr>
-<div class="footer">人肉搜索 // FLESHENGINE</div>
-
+<div id="footer">人肉搜索 // FLESHENGINE // &copy; 2024-2026</div>
 </div>
 
 <script>
-const SUPABASE_URL = 'https://kwrrdptfpqgiwktbgefb.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_uRPJlC4dcLKvbGKLMp8u1g_FkIQH6Or';
-let supabase = null;
+const SUPABASE_URL='https://kwrrdptfpqgiwktbgefb.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_uRPJlC4dcLKvbGKLMp8u1g_FkIQH6Or';
+let supabase=null;
 
-const FE_CODES = [
-  { code: 'FE-001', name: 'Narrative Framing' },
-  { code: 'FE-002', name: 'Repetition Saturation' },
-  { code: 'FE-003', name: 'Audience Conditioning' },
-  { code: 'FE-004', name: 'Loyalty Exploitation' },
-  { code: 'FE-005', name: 'Identity Manipulation' },
-  { code: 'FE-006', name: 'Manufactured Consensus' },
-  { code: 'FE-007', name: 'Viral Propagation' },
-  { code: 'FE-008', name: 'Urgency Fabrication' },
-  { code: 'FE-009', name: 'Attention Redirection' },
-  { code: 'FE-010', name: 'Reality Distortion' },
-  { code: 'FE-011', name: 'Cognitive Overload' },
-  { code: 'FE-012', name: 'Existential Threat Framing' },
+const CODES=[
+{code:'FE-001',name:'Narrative Framing',key:'fe_001'},
+{code:'FE-002',name:'Repetition Saturation',key:'fe_002'},
+{code:'FE-003',name:'Audience Conditioning',key:'fe_003'},
+{code:'FE-004',name:'Loyalty Exploitation',key:'fe_004'},
+{code:'FE-005',name:'Identity Manipulation',key:'fe_005'},
+{code:'FE-006',name:'Manufactured Consensus',key:'fe_006'},
+{code:'FE-007',name:'Viral Propagation',key:'fe_007'},
+{code:'FE-008',name:'Urgency Fabrication',key:'fe_008'},
+{code:'FE-009',name:'Attention Redirection',key:'fe_009'},
+{code:'FE-010',name:'Reality Distortion',key:'fe_010'},
+{code:'FE-011',name:'Cognitive Overload',key:'fe_011'},
+{code:'FE-012',name:'Existential Threat Framing',key:'fe_012'}
 ];
 
-function barClass(val) {
-  if (val >= 80) return 'bar-crit';
-  if (val >= 55) return 'bar-med';
-  if (val >= 30) return 'bar-low';
-  return 'bar-low';
+function bc(v){return v>=80?'b-crit':v>=55?'b-med':v>=30?'b-low':'b-low';}
+function fdt(d){if(!d)return'&mdash;';return new Date(d).toISOString().replace('T',' ').substring(0,19)+' UTC';}
+
+async function loadProfile(){
+const tid=new URLSearchParams(window.location.search).get('t');
+if(!tid){document.getElementById('target-handle').textContent='no target specified';return;}
+if(!supabase){document.getElementById('target-handle').textContent='database not connected';return;}
+try{
+const{data:t,error}=await supabase.from('targets').select('*').eq('id',tid).single();
+if(error||!t){document.getElementById('target-handle').textContent='target not found';return;}
+document.title='FLESHENGINE — @'+(t.display_handle||t.handle);
+document.getElementById('target-handle').textContent='@'+(t.display_handle||t.handle);
+document.getElementById('page-subtitle').textContent='FLESHENGINE — @'+(t.display_handle||t.handle);
+const se=document.getElementById('m-status');
+se.textContent=(t.status||'queued').toUpperCase();
+if(t.status==='active')se.className='status-active';
+document.getElementById('m-frags').textContent=t.fragment_count||0;
+document.getElementById('m-contribs').textContent=t.contributor_count||0;
+document.getElementById('m-created').innerHTML=fdt(t.created_at);
+document.getElementById('m-updated').innerHTML=fdt(t.updated_at);
+document.getElementById('m-score').textContent=t.threat_score!=null?t.threat_score:'—';
+// Vuln table
+const vt=document.getElementById('vuln-table');
+vt.innerHTML='';
+CODES.forEach(c=>{
+const v=t[c.key]||0;
+vt.innerHTML+='<tr><td class="code">'+c.code+'</td><td class="name">'+c.name+'</td><td class="bar"><div class="bar-outer"><div class="bar-inner '+bc(v)+'" style="width:'+v+'%"></div></div></td><td class="val">'+v+'</td></tr>';
+});
+if(t.assessment)document.getElementById('assessment').innerHTML=t.assessment;
+document.getElementById('frag-tid').value=t.id;
+document.getElementById('frag-thandle').value=t.handle;
+loadFragments(t.id);
+}catch(e){console.error(e);document.getElementById('target-handle').textContent='error loading';}
 }
 
-function renderVulnGrid(target) {
-  const grid = document.getElementById('vuln-grid');
-  grid.innerHTML = '';
-  FE_CODES.forEach((fe, i) => {
-    const key = 'fe_' + String(i + 1).padStart(3, '0');
-    const val = target[key] || 0;
-    grid.innerHTML += `
-      <div class="vuln-row">
-        <div><span class="vuln-code">${fe.code}</span> <span class="vuln-name">${fe.name}</span></div>
-        <div class="vuln-bar-outer"><div class="vuln-bar-inner ${barClass(val)}" style="width:${val}%"></div></div>
-        <div class="vuln-score">${val}</div>
-      </div>`;
-  });
+async function loadFragments(tid){
+try{
+const{data}=await supabase.from('fragments').select('*').eq('target_id',tid).order('created_at',{ascending:false}).limit(50);
+if(!data||!data.length)return;
+const el=document.getElementById('fragments-list');el.innerHTML='';
+data.forEach(f=>{
+const ts=fdt(f.created_at);
+el.innerHTML+='<div class="fragment"><div class="meta">['+ts+'] '+f.observation_type+'</div><div class="body">"'+f.body+'"</div>'+(f.evidence_url?'<div style="font-size:10px"><a href="'+f.evidence_url+'">evidence</a></div>':'')+'<div class="conf">confidence: '+(f.confidence||'medium')+'</div></div>';
+});
+}catch(e){console.error(e);}
 }
 
-function fmtDate(d) {
-  if (!d) return '—';
-  return new Date(d).toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+async function submitFragment(e){
+e.preventDefault();
+const msg=document.getElementById('frag-msg');
+const tid=document.getElementById('frag-tid').value;
+const th=document.getElementById('frag-thandle').value;
+const body=document.getElementById('obs-text').value.trim();
+if(!body){msg.className='msg-err';msg.style.display='block';msg.textContent='Observation required.';return;}
+if(!supabase||!tid){msg.className='msg-err';msg.style.display='block';msg.textContent='No target loaded.';return;}
+msg.style.display='block';msg.className='';msg.textContent='Submitting...';
+try{
+const{error}=await supabase.from('fragments').insert({target_id:tid,target_handle:th,observation_type:document.getElementById('obs-type').value,body:body,evidence_url:document.getElementById('obs-evidence').value.trim()||null,timeframe:document.getElementById('obs-time').value.trim()||null,confidence:document.getElementById('obs-conf').value});
+if(error)throw error;
+msg.className='msg-ok';msg.textContent='Fragment submitted.';
+document.getElementById('obs-text').value='';
+document.getElementById('obs-evidence').value='';
+document.getElementById('obs-time').value='';
+loadFragments(tid);
+}catch(err){msg.className='msg-err';msg.textContent='Error: '+(err.message||'failed');}
 }
 
-async function loadProfile() {
-  const params = new URLSearchParams(window.location.search);
-  const targetId = params.get('t');
-
-  if (!targetId) {
-    document.getElementById('target-handle').textContent = 'No target specified';
-    return;
-  }
-
-  if (!supabase) {
-    document.getElementById('target-handle').textContent = 'Database not connected';
-    return;
-  }
-
-  try {
-    const { data: target, error } = await supabase
-      .from('targets')
-      .select('*')
-      .eq('id', targetId)
-      .single();
-
-    if (error || !target) {
-      document.getElementById('target-handle').textContent = 'Target not found';
-      return;
-    }
-
-    // Set page title
-    document.title = 'FLESHENGINE — @' + (target.display_handle || target.handle);
-    document.getElementById('target-handle').textContent = '@' + (target.display_handle || target.handle);
-
-    // Meta card
-    const statusEl = document.getElementById('meta-status');
-    statusEl.textContent = (target.status || 'queued').toUpperCase();
-    if (target.status === 'active') statusEl.classList.add('active');
-    document.getElementById('meta-fragments').textContent = target.fragment_count || 0;
-    document.getElementById('meta-contributors').textContent = target.contributor_count || 0;
-    document.getElementById('meta-created').textContent = fmtDate(target.created_at);
-    document.getElementById('meta-updated').textContent = fmtDate(target.updated_at);
-    document.getElementById('meta-score').textContent = target.threat_score != null ? target.threat_score : '—';
-
-    // Vulnerability grid
-    renderVulnGrid(target);
-
-    // Assessment
-    if (target.assessment) {
-      document.getElementById('assessment').innerHTML = target.assessment;
-    }
-
-    // Fragment form hidden fields
-    document.getElementById('frag-target-id').value = target.id;
-    document.getElementById('frag-target-handle').value = target.handle;
-
-    // Load fragments
-    loadFragments(target.id);
-
-  } catch (err) {
-    console.error(err);
-    document.getElementById('target-handle').textContent = 'Error loading profile';
-  }
-}
-
-async function loadFragments(targetId) {
-  try {
-    const { data, error } = await supabase
-      .from('fragments')
-      .select('*')
-      .eq('target_id', targetId)
-      .order('created_at', { ascending: false })
-      .limit(50);
-
-    if (error) throw error;
-    if (!data || data.length === 0) return;
-
-    document.getElementById('fragments-empty').style.display = 'none';
-    const list = document.getElementById('fragments-list');
-    list.style.display = 'block';
-    list.innerHTML = '';
-
-    data.forEach(f => {
-      const ts = fmtDate(f.created_at);
-      const el = document.createElement('div');
-      el.className = 'fragment';
-      el.innerHTML = `
-        <div class="fragment-header">[${ts}] ${f.observation_type}</div>
-        <div class="fragment-body">"${f.body}"</div>
-        ${f.evidence_url ? '<div style="font-size:13px;margin-top:4px"><a href="' + f.evidence_url + '">Evidence link</a></div>' : ''}
-        <div class="fragment-confidence conf-${f.confidence || 'medium'}">Confidence: ${(f.confidence || 'medium').toUpperCase()}</div>
-      `;
-      list.appendChild(el);
-    });
-  } catch (err) {
-    console.error('Failed to load fragments:', err);
-  }
-}
-
-async function submitFragment(e) {
-  e.preventDefault();
-  const msg = document.getElementById('frag-msg');
-  const targetId = document.getElementById('frag-target-id').value;
-  const targetHandle = document.getElementById('frag-target-handle').value;
-  const body = document.getElementById('obs-text').value.trim();
-
-  if (!body) { msg.className = 'error'; msg.style.display = 'block'; msg.textContent = 'Observation text is required.'; return; }
-  if (!targetId) { msg.className = 'error'; msg.style.display = 'block'; msg.textContent = 'No target loaded.'; return; }
-
-  if (!supabase) {
-    msg.className = 'error'; msg.style.display = 'block'; msg.textContent = 'Database not connected.'; return;
-  }
-
-  msg.style.display = 'block'; msg.className = ''; msg.textContent = 'Submitting...';
-
-  try {
-    const { error } = await supabase.from('fragments').insert({
-      target_id: targetId,
-      target_handle: targetHandle,
-      observation_type: document.getElementById('obs-type').value,
-      body: body,
-      evidence_url: document.getElementById('obs-evidence').value.trim() || null,
-      timeframe: document.getElementById('obs-time').value.trim() || null,
-      confidence: document.getElementById('obs-conf').value,
-    });
-
-    if (error) throw error;
-
-    msg.className = 'success';
-    msg.textContent = 'Fragment submitted. Thank you for your contribution.';
-    document.getElementById('obs-text').value = '';
-    document.getElementById('obs-evidence').value = '';
-    document.getElementById('obs-time').value = '';
-    loadFragments(targetId);
-  } catch (err) {
-    msg.className = 'error';
-    msg.textContent = 'Error: ' + (err.message || 'Failed to submit fragment.');
-  }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  if (SUPABASE_URL && SUPABASE_ANON_KEY) {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
-    script.onload = () => {
-      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      loadProfile();
-    };
-    document.head.appendChild(script);
-  } else {
-    document.getElementById('target-handle').textContent = 'Database not configured';
-  }
+document.addEventListener('DOMContentLoaded',()=>{
+const s=document.createElement('script');
+s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+s.onload=()=>{supabase=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);loadProfile();};
+document.head.appendChild(s);
 });
 </script>
 </body>

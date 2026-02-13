@@ -4,137 +4,77 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — FLESHENGINE</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #2a1408; --bg-deep: #1e0e05; --bg-card: #38160d;
-  --text: #fee6cf; --text-dim: #c8882a;
-  --gold: #bd965d; --gold-bright: #cca800; --gold-dark: #a57125;
-  --link: #db956a; --link-visited: #c8882a;
-  --border: #907e2f; --border-dim: #5a3a1a;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.7; background: var(--bg); color: var(--text); }
-a { color: var(--link); text-decoration: none; }
-a:visited { color: var(--link-visited); }
-a:hover { color: var(--text); }
-.container { max-width: 860px; margin: 0 auto; padding: 28px; }
-hr { border: 0; border-top: 1px solid var(--border-dim); margin: 32px 0; }
-h1 { font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700; letter-spacing: 4px; color: var(--gold); margin-bottom: 4px; }
-h2 { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; padding-bottom: 8px; border-bottom: 1px solid var(--border-dim); }
-.nav { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
-.nav a { color: var(--gold-dark); margin-right: 10px; }
-.nav a:hover { color: var(--gold); }
-p { margin-bottom: 16px; }
-blockquote {
-  border-left: 3px solid var(--border);
-  margin: 20px 0;
-  padding: 12px 20px;
-  color: var(--text-dim);
-  background: var(--bg-card);
-  font-style: italic;
-}
-.cases { display: grid; gap: 14px; }
-.case-card { background: var(--bg-card); border: 1px solid var(--border-dim); padding: 18px 22px; }
-.case-title { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-.case-text { font-size: 16px; color: var(--text-dim); line-height: 1.6; }
-.case-year { font-size: 13px; color: var(--gold-dark); margin-top: 6px; }
-.vuln-table { width: 100%; border-collapse: collapse; }
-.vuln-table th { font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--bg-card); }
-.vuln-table td { padding: 8px 14px; border-bottom: 1px solid var(--border-dim); font-size: 16px; }
-.vuln-table td:first-child { font-family: 'Courier New', monospace; font-size: 13px; color: var(--gold-dark); width: 80px; }
-.credit { font-size: 13px; color: var(--border); margin-top: 12px; }
-.footer { font-size: 13px; color: var(--border-dim); font-style: italic; }
+body { background:#2a1408; color:#e8d5b5; font-family:'Trebuchet MS',Verdana,sans-serif; font-size:13px; line-height:1.5; margin:0; }
+a { color:#d4a76a; } a:visited { color:#b8894a; } a:hover { text-decoration:underline; }
+hr { border:none; border-top:1px solid #4a2a10; margin:12px 0; }
+#wrapper { width:760px; margin:0 auto; }
+#header { background:#1a0a02; border-bottom:2px solid #6b4420; padding:16px 20px; }
+#header h1 { font-family:Georgia,serif; font-size:28px; font-weight:normal; color:#c8a060; margin:0; letter-spacing:4px; }
+#header .subtitle { font-size:12px; color:#8a6a3a; margin-top:2px; }
+#nav { background:#3a1a08; border-bottom:1px solid #4a2a10; padding:4px 20px; font-size:11px; }
+#nav a { color:#a07840; margin-right:12px; text-decoration:none; } #nav a:hover { color:#e8d5b5; }
+#content { padding:16px 20px; }
+h2 { font-family:Georgia,serif; font-size:15px; font-weight:bold; color:#c8a060; border-bottom:1px solid #4a2a10; padding-bottom:4px; margin:16px 0 8px 0; }
+blockquote { border-left:2px solid #6b4420; margin:8px 0; padding:6px 12px; color:#c8a060; font-style:italic; }
+table.cases { width:100%; border-collapse:collapse; font-size:12px; margin:8px 0; }
+table.cases td { padding:6px 8px; border:1px solid #3a1a08; vertical-align:top; }
+table.cases td.year { width:60px; color:#6b4420; font-size:11px; }
+table.cases td.title { width:180px; color:#c8a060; font-weight:bold; }
+table.vectors { width:100%; border-collapse:collapse; font-size:12px; }
+table.vectors th { background:#1a0a02; color:#a07840; text-align:left; padding:4px 8px; border:1px solid #4a2a10; font-size:11px; }
+table.vectors td { padding:3px 8px; border:1px solid #3a1a08; }
+table.vectors td:first-child { font-family:'Courier New',monospace; color:#8a6a3a; width:60px; font-size:11px; }
+#footer { background:#1a0a02; border-top:1px solid #4a2a10; padding:8px 20px; font-size:10px; color:#4a2a10; text-align:center; margin-top:16px; }
 </style>
 </head>
 <body>
-<div class="container">
-
-<div class="nav">
-[ <a href="index.html">Home</a> ]
-[ <a href="scanner.html">Scanner</a> ]
-[ <a href="profile.html">Profile</a> ]
-[ About ]
+<div id="wrapper">
+<div id="header">
+  <h1>人肉搜索</h1>
+  <div class="subtitle">FLESHENGINE &mdash; about</div>
 </div>
-
-<hr>
-
-<h1>人肉搜索</h1>
-<p style="color:var(--gold-dark); font-style:italic">Human Flesh Search Engine</p>
-
-<hr>
+<div id="nav">
+  <a href="index.html">Home</a>
+  <a href="scanner.html">Scanner</a>
+  <a href="about.html">About</a>
+  <a href="https://github.com/Mirai8888/fleshengine">Source</a>
+</div>
+<div id="content">
 
 <h2>Origin</h2>
 
 <blockquote>
-人肉搜索 (r&eacute;nr&ograve;u s&#333;usu&#466;) &mdash; literally "human flesh search engine." Distributed, crowdsourced investigation where thousands of anonymous participants collectively identify, locate, and document targets using nothing but publicly available information and collective attention.
+人肉搜索 (r&eacute;nr&ograve;u s&#333;usu&#466;) &mdash; literally "human flesh search engine." Distributed, crowdsourced investigation where thousands of anonymous participants collectively identify, locate, and document targets using publicly available information and collective attention.
 </blockquote>
 
-<p>
-The practice emerged from Chinese internet culture in the early 2000s. The first documented case originated on Mop.com in 2001. By 2006 it had become a recognized social phenomenon with real consequences: people lost jobs, fled cities, were driven to suicide. The Chinese internet learned that distributed human attention, focused on a single target, is more powerful than any search algorithm.
-</p>
+<p>The practice emerged from Chinese internet culture in the early 2000s. The first documented case originated on Mop.com in 2001. By 2006 it had become a recognized social phenomenon with real consequences: people lost jobs, fled cities, were driven to suicide. The Chinese internet learned that distributed human attention, focused on a single target, is more powerful than any search algorithm.</p>
 
-<p>
-The mechanism is simple. Someone posts a target. Thousands of people each contribute one small piece: a screenshot, a cross-referenced username, a location from a photo background, a workplace identified from a uniform. No single person does the work. The crowd does.
-</p>
+<p>The mechanism is simple. Someone posts a target. Thousands of people each contribute one small piece: a screenshot, a cross-referenced username, a location from a photo background, a workplace identified from a uniform. No single person does the work. The crowd does.</p>
 
-<p>
-Western platforms developed their own versions. Doxbin. Kiwi Farms. The methods are the same. The framing is different. The capability is identical.
-</p>
-
-<hr>
+<p>Western platforms developed their own versions. Doxbin. Kiwi Farms. The methods are the same. The framing is different. The capability is identical.</p>
 
 <h2>Notable Cases</h2>
 
-<div class="cases">
-<div class="case-card">
-  <div class="case-title">The Kitten Killer of Hangzhou</div>
-  <div class="case-text">A woman filmed herself crushing a kitten with her high heels. Within days, the crowd had identified her name, employer, phone number, and address from a reflection in the video. She was terminated from her government position.</div>
-  <div class="case-year">2006, Hangzhou</div>
-</div>
-<div class="case-card">
-  <div class="case-title">The Bronze Mustache Incident</div>
-  <div class="case-text">A tourist posted photos sitting on a bronze statue at a memorial site. Internet users identified him within 3 hours from his phone model, clothing brand, and a partial bus ticket visible in one image.</div>
-  <div class="case-year">2008, Nanjing</div>
-</div>
-<div class="case-card">
-  <div class="case-title">Vancouver Riot Identification</div>
-  <div class="case-text">After the 2011 Stanley Cup riot, crowdsourced identification from social media photos and video led to over 300 people being identified by name. Several faced criminal charges based solely on crowd-submitted evidence.</div>
-  <div class="case-year">2011, Vancouver</div>
-</div>
-<div class="case-card">
-  <div class="case-title">Boston Marathon Bombing</div>
-  <div class="case-text">Reddit users attempted to identify the bombers from crowd photos. They identified the wrong person. Sunil Tripathi, wrongly accused, was found dead. The crowd is powerful. The crowd is not always right.</div>
-  <div class="case-year">2013, Boston</div>
-</div>
-<div class="case-card">
-  <div class="case-title">Hong Kong Protests</div>
-  <div class="case-text">Both sides used 起底 (doxxing) extensively. Protesters identified undercover police. Pro-Beijing groups identified protesters, their families, and employers. The Hong Kong government passed anti-doxxing legislation in 2021 in direct response.</div>
-  <div class="case-year">2019-2020, Hong Kong</div>
-</div>
-</div>
-
-<hr>
+<table class="cases">
+<tr><td class="year">2006</td><td class="title">Kitten Killer of Hangzhou</td><td>Woman filmed crushing a kitten with high heels. Identified within days from a reflection in the video. Name, employer, phone number, address. Terminated from government position.</td></tr>
+<tr><td class="year">2008</td><td class="title">Bronze Mustache Incident</td><td>Tourist photographed sitting on memorial statue. Identified within 3 hours from phone model, clothing brand, and a partial bus ticket visible in one image.</td></tr>
+<tr><td class="year">2011</td><td class="title">Vancouver Riot ID</td><td>After the Stanley Cup riot, crowdsourced identification from social media led to 300+ people identified by name. Several faced criminal charges from crowd-submitted evidence alone.</td></tr>
+<tr><td class="year">2013</td><td class="title">Boston Marathon</td><td>Reddit attempted to identify the bombers from crowd photos. Wrong person identified. Sunil Tripathi, wrongly accused, was found dead. The crowd is powerful. The crowd is not always right.</td></tr>
+<tr><td class="year">2019</td><td class="title">Hong Kong &#36215;&#24213;</td><td>Both sides used doxxing extensively. Protesters identified undercover police. Pro-Beijing groups identified protesters, families, and employers. Anti-doxxing legislation passed 2021 in direct response.</td></tr>
+</table>
 
 <h2>What FLESHENGINE Does</h2>
 
-<p>
-FLESHENGINE structures what already happens. People already investigate each other online. The tools already exist. We provide the database, the taxonomy, and the aggregation layer.
-</p>
+<p>FLESHENGINE structures what already happens. People already investigate each other online. The tools already exist. We provide the database, the taxonomy, and the aggregation layer.</p>
 
-<p>
-Submit a target. The system pulls publicly available data and maps behavioral patterns, communication style, network position, and influence vulnerability across 12 vectors. Then the crowd fills in what automation misses: context, relationships, pattern shifts that only a human observer would notice.
-</p>
+<p>Submit a target. The system pulls publicly available data and maps behavioral patterns, communication style, network position, and influence vulnerability across 12 vectors. Then the crowd fills in what automation misses: context, relationships, pattern shifts that only a human observer would notice.</p>
 
-<p>
-Every fragment is timestamped, categorized, and weighted. The composite profile improves with each contribution. What was scattered across forum threads and group chats becomes structured, searchable intelligence.
-</p>
-
-<hr>
+<p>Every fragment is timestamped, categorized, and weighted. The composite profile improves with each contribution.</p>
 
 <h2>The 12 Vectors</h2>
 
-<table class="vuln-table">
+<table class="vectors">
 <tr><th>Code</th><th>Vector</th></tr>
 <tr><td>FE-001</td><td>Narrative Framing</td></tr>
 <tr><td>FE-002</td><td>Repetition Saturation</td></tr>
@@ -149,22 +89,12 @@ Every fragment is timestamped, categorized, and weighted. The composite profile 
 <tr><td>FE-011</td><td>Cognitive Overload</td></tr>
 <tr><td>FE-012</td><td>Existential Threat Framing</td></tr>
 </table>
+<p style="font-size:10px;color:#4a2a10;">Influence taxonomy: <a href="https://seithar.com">Seithar Group</a></p>
 
-<p class="credit">Influence taxonomy: <a href="https://seithar.com">Seithar Group</a></p>
-
-<hr>
-
-<div class="nav">
-[ <a href="index.html">Home</a> ]
-[ <a href="scanner.html">Scanner</a> ]
-[ <a href="profile.html">Profile</a> ]
-[ <a href="https://github.com/Mirai8888/fleshengine">Source</a> ]
 </div>
-
-<hr>
-
-<div class="footer">人肉搜索 &mdash; human-powered intelligence at machine scale</div>
-
+<div id="footer">
+  人肉搜索 // FLESHENGINE // &copy; 2024-2026
+</div>
 </div>
 </body>
 </html>

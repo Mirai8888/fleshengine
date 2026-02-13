@@ -3,615 +3,437 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FLESHENGINE — 人肉搜索 — Distributed Cognitive Profiling</title>
-<meta name="description" content="Human flesh search engine for cognitive profiling. Distributed intelligence collection with structured vulnerability mapping.">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<title>FLESHENGINE — 人肉搜索</title>
+<meta name="description" content="Human flesh search engine. Distributed intelligence collection and cognitive profiling.">
 <style>
-:root {
-  --bg: #2a1408;
-  --bg-deep: #1e0e05;
-  --bg-card: #38160d;
-  --text: #fee6cf;
-  --text-dim: #c8882a;
-  --gold: #bd965d;
-  --gold-bright: #cca800;
-  --gold-dark: #a57125;
-  --link: #db956a;
-  --link-visited: #c8882a;
-  --border: #907e2f;
-  --border-dim: #5a3a1a;
-  --green: #6b8a3d;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  font-family: 'EB Garamond', 'Times New Roman', Georgia, serif;
-  font-size: 18px;
-  line-height: 1.6;
-  background: var(--bg);
-  color: var(--text);
+  background: #2a1408;
+  color: #e8d5b5;
+  font-family: 'Trebuchet MS', Verdana, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
 }
-a { color: var(--link); text-decoration: none; }
-a:visited { color: var(--link-visited); }
-a:hover { color: var(--text); }
-.container { max-width: 860px; margin: 0 auto; padding: 28px 28px; }
+a { color: #d4a76a; }
+a:visited { color: #b8894a; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid #4a2a10; margin: 12px 0; }
 
-/* HEADER */
-.site-title {
-  font-family: 'Cinzel', serif;
-  font-size: 40px;
-  font-weight: 700;
-  letter-spacing: 6px;
-  color: var(--gold);
-  margin-bottom: 6px;
+#wrapper {
+  width: 760px;
+  margin: 0 auto;
+  padding: 0;
 }
-.site-subtitle {
-  font-size: 18px;
-  font-style: italic;
-  color: var(--text-dim);
-  margin-bottom: 8px;
+#header {
+  background: #1a0a02;
+  border-bottom: 2px solid #6b4420;
+  padding: 16px 20px;
 }
-.site-desc {
-  font-size: 17px;
-  color: var(--gold-dark);
-  letter-spacing: 1px;
+#header h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 28px;
+  font-weight: normal;
+  color: #c8a060;
+  margin: 0;
+  letter-spacing: 4px;
 }
-
-/* DIVIDERS */
-hr {
-  border: 0;
-  border-top: 1px solid var(--border-dim);
-  margin: 32px 0;
-}
-
-/* SECTION HEADERS */
-h2 {
-  font-family: 'Cinzel', serif;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 18px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-dim);
-}
-
-/* SUBMIT BOX */
-.submit-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  padding: 24px 28px;
-}
-.submit-row {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-input[type="text"] {
-  font-family: 'Courier New', monospace;
-  font-size: 16px;
-  background: var(--bg-deep);
-  color: var(--text);
-  border: 1px solid var(--border);
-  padding: 12px 16px;
-  flex: 1;
-  min-width: 280px;
-}
-input[type="text"]::placeholder { color: var(--gold-dark); }
-input[type="text"]:focus { outline: none; border-color: var(--gold); }
-input[type="submit"], button {
-  font-family: 'Cinzel', serif;
+#header .subtitle {
   font-size: 12px;
-  font-weight: 700;
-  background: var(--border-dim);
-  color: var(--gold);
-  border: 1px solid var(--border);
-  padding: 12px 24px;
+  color: #8a6a3a;
+  margin-top: 2px;
+}
+#nav {
+  background: #3a1a08;
+  border-bottom: 1px solid #4a2a10;
+  padding: 4px 20px;
+  font-size: 11px;
+}
+#nav a {
+  color: #a07840;
+  margin-right: 12px;
+  text-decoration: none;
+}
+#nav a:hover { color: #e8d5b5; }
+
+#content {
+  padding: 16px 20px;
+}
+#sidebar {
+  float: right;
+  width: 220px;
+  padding-left: 16px;
+}
+#main {
+  margin-right: 240px;
+}
+
+h2 {
+  font-family: Georgia, serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: #c8a060;
+  border-bottom: 1px solid #4a2a10;
+  padding-bottom: 4px;
+  margin: 16px 0 8px 0;
+}
+h3 {
+  font-size: 13px;
+  font-weight: bold;
+  color: #a07840;
+  margin: 10px 0 4px 0;
+}
+
+/* SUBMIT */
+#submit-box {
+  background: #1a0a02;
+  border: 1px solid #4a2a10;
+  padding: 12px;
+  margin-bottom: 14px;
+}
+#submit-box input[type="text"] {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  background: #0e0600;
+  color: #e8d5b5;
+  border: 1px solid #6b4420;
+  padding: 6px 8px;
+  width: 380px;
+}
+#submit-box input[type="submit"] {
+  font-family: Verdana, sans-serif;
+  font-size: 11px;
+  background: #3a1a08;
+  color: #c8a060;
+  border: 1px solid #6b4420;
+  padding: 6px 14px;
   cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  transition: all 0.2s;
 }
-input[type="submit"]:hover, button:hover {
-  background: var(--gold);
-  color: var(--bg-deep);
-}
-.submit-note {
-  margin-top: 12px;
-  font-size: 14px;
-  color: var(--gold-dark);
-  font-style: italic;
+#submit-box input[type="submit"]:hover {
+  background: #4a2a10;
 }
 #submit-status {
   display: none;
-  margin-top: 16px;
-  padding: 14px 18px;
-  background: var(--bg-deep);
-  border: 1px solid var(--border-dim);
-  font-size: 15px;
+  margin-top: 8px;
+  padding: 6px 8px;
+  font-size: 12px;
+  border: 1px solid #4a2a10;
+  background: #1a0a02;
 }
-#submit-status.success { color: var(--green); border-color: var(--green); }
-#submit-status.error { color: #a83020; border-color: #a83020; }
+.status-ok { color: #7a9a4a; }
+.status-err { color: #a04030; }
+.status-info { color: #a07840; }
 
-/* PIPELINE */
-.pipeline { display: grid; gap: 0; }
-.pipe-step {
-  background: var(--bg-card);
-  border: 1px solid var(--border-dim);
-  padding: 16px 20px;
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: 16px;
-  margin-bottom: -1px;
+/* PROFILE LIST */
+table.profiles {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
 }
-.pipe-num {
-  font-family: 'Cinzel', serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--gold);
-  text-align: center;
-  padding-top: 2px;
+table.profiles th {
+  background: #1a0a02;
+  color: #a07840;
+  text-align: left;
+  padding: 4px 8px;
+  border: 1px solid #4a2a10;
+  font-size: 11px;
+  font-weight: bold;
 }
-.pipe-title {
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 4px;
+table.profiles td {
+  padding: 4px 8px;
+  border: 1px solid #3a1a08;
+  vertical-align: top;
 }
-.pipe-desc {
-  font-size: 16px;
-  color: var(--text-dim);
-  line-height: 1.5;
+table.profiles tr:hover {
+  background: #1a0a02;
 }
-
-/* PROFILES LIST */
-.profiles-grid { display: grid; gap: 14px; }
-.profile-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-dim);
-  padding: 16px 20px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 12px;
-  cursor: pointer;
-  transition: border-color 0.2s;
-  text-decoration: none;
-  color: var(--text);
-}
-.profile-card:hover { border-color: var(--gold); }
-.profile-handle {
-  font-family: 'Courier New', monospace;
-  font-size: 17px;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-.profile-vectors {
-  font-size: 13px;
-  color: var(--gold-dark);
-  letter-spacing: 1px;
-}
-.profile-right { text-align: right; }
-.threat-score {
-  font-family: 'Cinzel', serif;
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--gold-bright);
-}
-.threat-label {
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gold-dark);
-}
-.profile-meta {
-  font-size: 13px;
-  color: var(--gold-dark);
-  margin-top: 4px;
-}
-.status-active { color: var(--green); }
-.empty-state {
-  background: var(--bg-card);
-  border: 1px solid var(--border-dim);
-  padding: 32px 24px;
-  text-align: center;
-  color: var(--gold-dark);
-  font-style: italic;
-  font-size: 16px;
-}
+table.profiles a { text-decoration: none; }
+.score-high { color: #c04030; font-weight: bold; }
+.score-med { color: #c89030; }
+.score-low { color: #8a6a3a; }
 
 /* FRAGMENTS */
 .fragment {
-  background: var(--bg-card);
-  border: 1px solid var(--border-dim);
-  border-left: 3px solid var(--border);
-  padding: 14px 18px;
-  margin-bottom: 12px;
-}
-.fragment-header {
+  border-left: 2px solid #4a2a10;
+  padding: 4px 0 4px 10px;
+  margin: 6px 0;
   font-size: 12px;
-  color: var(--gold-dark);
+}
+.fragment .meta {
+  color: #6b4420;
   font-family: 'Courier New', monospace;
-  margin-bottom: 6px;
+  font-size: 10px;
 }
-.fragment-body {
-  font-size: 16px;
-  color: var(--text-dim);
+.fragment .body {
+  color: #c8a060;
   font-style: italic;
-  line-height: 1.5;
+  margin: 2px 0;
 }
-.fragment-confidence {
-  font-size: 11px;
+.fragment .conf {
+  font-size: 10px;
+  color: #6b4420;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 8px;
 }
-.conf-high { color: var(--gold-bright); }
-.conf-medium { color: var(--gold-dark); }
 
-/* STATS BAR */
-.stats-bar {
-  display: flex;
-  gap: 32px;
-  font-size: 14px;
-  color: var(--gold-dark);
-  flex-wrap: wrap;
+/* SIDEBAR */
+.sidebar-box {
+  background: #1a0a02;
+  border: 1px solid #4a2a10;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  font-size: 11px;
 }
-.stat-item .stat-val {
-  font-family: 'Cinzel', serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--gold);
+.sidebar-box h3 {
+  font-size: 11px;
+  color: #c8a060;
+  margin: 0 0 6px 0;
+  border-bottom: 1px solid #3a1a08;
+  padding-bottom: 3px;
+}
+.sidebar-box .stat-num {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  color: #c8a060;
   display: block;
 }
-.stat-item .stat-label {
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+.sidebar-box .stat-label {
+  font-size: 10px;
+  color: #6b4420;
 }
 
-/* NAV */
-.nav {
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-.nav a {
-  color: var(--gold-dark);
-  margin-right: 10px;
-  transition: color 0.2s;
-}
-.nav a:hover { color: var(--gold); }
-
-/* FOOTER */
-.footer {
-  font-size: 13px;
-  color: var(--border-dim);
-  line-height: 1.6;
-  font-style: italic;
+#footer {
+  background: #1a0a02;
+  border-top: 1px solid #4a2a10;
+  padding: 8px 20px;
+  font-size: 10px;
+  color: #4a2a10;
+  text-align: center;
+  margin-top: 16px;
 }
 
-/* LOADING */
-.loading { color: var(--gold-dark); font-style: italic; }
-.loading::after {
-  content: '';
-  animation: dots 1.5s steps(3) infinite;
+/* PIPELINE */
+table.pipeline {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 8px 0;
 }
-@keyframes dots {
-  0% { content: ''; }
-  33% { content: '.'; }
-  66% { content: '..'; }
-  100% { content: '...'; }
+table.pipeline td {
+  padding: 6px 8px;
+  border: 1px solid #3a1a08;
+  vertical-align: top;
+}
+table.pipeline td.num {
+  width: 24px;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  color: #c8a060;
+  background: #1a0a02;
+}
+table.pipeline td.step {
+  color: #a07840;
+  font-weight: bold;
+  width: 140px;
 }
 
-@media (max-width: 600px) {
-  input[type="text"] { width: 100%; }
-  .submit-row { flex-direction: column; }
-  .profile-card { grid-template-columns: 1fr; }
-  .profile-right { text-align: left; }
-  .stats-bar { gap: 20px; }
-}
+.clear { clear: both; }
 </style>
 </head>
 <body>
-<div class="container">
 
-<div class="site-title">FLESHENGINE</div>
-<div class="site-subtitle">人肉搜索</div>
-<div class="site-desc">Distributed cognitive profiling for the open internet.</div>
+<div id="wrapper">
 
-<hr>
+<div id="header">
+  <h1>人肉搜索</h1>
+  <div class="subtitle">FLESHENGINE &mdash; distributed cognitive profiling</div>
+</div>
 
-<h2>Submit Target</h2>
+<div id="nav">
+  <a href="index.html">Home</a>
+  <a href="scanner.html">Scanner</a>
+  <a href="about.html">About</a>
+  <a href="https://github.com/Mirai8888/fleshengine">Source</a>
+</div>
 
-<div class="submit-box">
-<form id="submit-form" onsubmit="submitTarget(event)">
-  <div class="submit-row">
-    <input type="text" id="target-input" placeholder="@handle or URL" autofocus>
-    <input type="submit" value="Submit">
+<div id="content">
+
+<div id="sidebar">
+
+  <div class="sidebar-box">
+    <h3>Database</h3>
+    <span class="stat-num" id="stat-targets">0</span>
+    <span class="stat-label">targets indexed</span>
+    <br><br>
+    <span class="stat-num" id="stat-fragments">0</span>
+    <span class="stat-label">fragments collected</span>
   </div>
-  <div class="submit-note">Enter a public Twitter/X handle or profile URL. The automated scan takes 2-5 minutes.</div>
-</form>
-<div id="submit-status"></div>
+
+  <div class="sidebar-box">
+    <h3>How It Works</h3>
+    <table class="pipeline">
+      <tr><td class="num">1</td><td class="step">Submit</td><td>Post a target handle or URL</td></tr>
+      <tr><td class="num">2</td><td class="step">Scan</td><td>Automated public data extraction</td></tr>
+      <tr><td class="num">3</td><td class="step">Map</td><td>12-vector influence vulnerability assessment</td></tr>
+      <tr><td class="num">4</td><td class="step">Collect</td><td>Human observers contribute fragments</td></tr>
+      <tr><td class="num">5</td><td class="step">Profile</td><td>Composite intelligence brief</td></tr>
+    </table>
+  </div>
+
+  <div class="sidebar-box">
+    <h3>Recent Activity</h3>
+    <div id="sidebar-activity"><span style="color:#6b4420">No activity yet.</span></div>
+  </div>
+
 </div>
 
-<hr>
+<div id="main">
 
-<h2>How It Works</h2>
+  <h2>Submit Target</h2>
 
-<div class="pipeline">
-<div class="pipe-step">
-  <div class="pipe-num">1</div>
-  <div><div class="pipe-title">Target Submitted</div>
-  <div class="pipe-desc">Anyone can submit a public account for analysis.</div></div>
-</div>
-<div class="pipe-step">
-  <div class="pipe-num">2</div>
-  <div><div class="pipe-title">Automated Scan</div>
-  <div class="pipe-desc">Public data extraction, communication pattern analysis, network position mapping.</div></div>
-</div>
-<div class="pipe-step">
-  <div class="pipe-num">3</div>
-  <div><div class="pipe-title">Vulnerability Mapping</div>
-  <div class="pipe-desc">12-vector influence vulnerability assessment across behavioral and narrative dimensions.</div></div>
-</div>
-<div class="pipe-step">
-  <div class="pipe-num">4</div>
-  <div><div class="pipe-title">Distributed Collection</div>
-  <div class="pipe-desc">Human observers contribute behavioral fragments, relationship dynamics, narrative pattern shifts.</div></div>
-</div>
-<div class="pipe-step">
-  <div class="pipe-num">5</div>
-  <div><div class="pipe-title">Composite Profile</div>
-  <div class="pipe-desc">Automated analysis merged with human intelligence into a living profile that updates continuously.</div></div>
-</div>
-</div>
+  <div id="submit-box">
+    <form id="submit-form" onsubmit="submitTarget(event)">
+      <input type="text" id="target-input" placeholder="@handle or URL" autofocus>
+      <input type="submit" value="Submit">
+    </form>
+    <div id="submit-status"></div>
+  </div>
 
-<hr>
+  <h2>Indexed Targets</h2>
 
-<h2>Recent Profiles</h2>
+  <table class="profiles" id="profiles-table">
+    <tr>
+      <th>Target</th>
+      <th>Score</th>
+      <th>Vectors</th>
+      <th>Fragments</th>
+      <th>Status</th>
+    </tr>
+  </table>
+  <div id="profiles-empty" style="color:#6b4420; font-size:12px; padding:8px 0;">No targets indexed yet. Submit the first one above.</div>
 
-<div id="profiles-container">
-  <div class="empty-state" id="profiles-empty">No profiles yet. Submit the first target above.</div>
-  <div class="profiles-grid" id="profiles-grid" style="display:none"></div>
+  <h2>Recent Fragments</h2>
+
+  <div id="fragments-list">
+    <div style="color:#6b4420; font-size:12px;">No fragments submitted yet.</div>
+  </div>
+
 </div>
 
-<hr>
-
-<h2>Recent Fragments</h2>
-
-<div id="fragments-container">
-  <div class="empty-state" id="fragments-empty">No fragments yet. Observations will appear here as contributors submit them.</div>
-  <div id="fragments-list" style="display:none"></div>
+<div class="clear"></div>
 </div>
 
-<hr>
-
-<div class="stats-bar" id="stats-bar" style="display:none">
-  <div class="stat-item"><span class="stat-val" id="stat-targets">0</span><span class="stat-label">Targets</span></div>
-  <div class="stat-item"><span class="stat-val" id="stat-fragments">0</span><span class="stat-label">Fragments</span></div>
-  <div class="stat-item"><span class="stat-val" id="stat-contributors">0</span><span class="stat-label">Contributors</span></div>
-</div>
-
-<hr>
-
-<div class="nav">
-[ <a href="index.html">Home</a> ]
-[ <a href="scanner.html">Influence Scanner</a> ]
-[ <a href="about.html">About</a> ]
-[ <a href="https://github.com/Mirai8888/fleshengine">Source</a> ]
-</div>
-
-<hr>
-
-<div class="footer">
-人肉搜索 // FLESHENGINE<br>
-every public account is a readable surface<br>
-the crowd sees what the algorithm misses
+<div id="footer">
+  人肉搜索 // FLESHENGINE // the crowd sees what the algorithm misses<br>
+  &copy; 2024-2026
 </div>
 
 </div>
 
 <script>
-// ============================================================
-// SUPABASE CONFIG - Replace these with your project values
-// ============================================================
-const SUPABASE_URL = 'https://kwrrdptfpqgiwktbgefb.supabase.co';  // e.g. 'https://xxxxx.supabase.co'
-const SUPABASE_ANON_KEY = 'sb_publishable_uRPJlC4dcLKvbGKLMp8u1g_FkIQH6Or';  // your anon/public key
-
+const SUPABASE_URL = 'https://kwrrdptfpqgiwktbgefb.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_uRPJlC4dcLKvbGKLMp8u1g_FkIQH6Or';
 let supabase = null;
 
-// Initialize Supabase client (loaded from CDN)
-function initSupabase() {
-  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-    console.log('Supabase not configured. Running in demo mode.');
-    return false;
-  }
-  // Will be initialized after CDN script loads
-  return true;
-}
-
-// ============================================================
-// SUBMIT TARGET
-// ============================================================
 async function submitTarget(e) {
   e.preventDefault();
   const input = document.getElementById('target-input');
   const status = document.getElementById('submit-status');
   let val = input.value.trim();
   if (!val) return;
-
-  // Normalize: extract handle from URL
-  val = val.replace(/^https?:\/\/(www\.)?(twitter|x)\.com\//, '');
-  val = val.replace(/^@/, '');
+  val = val.replace(/^https?:\/\/(www\.)?(twitter|x)\.com\//, '').replace(/^@/, '').replace(/\/.*$/, '');
   if (!val) return;
 
   status.style.display = 'block';
-  status.className = '';
-  status.textContent = 'Submitting target...';
+  status.className = 'status-info';
+  status.textContent = 'Submitting...';
 
   if (!supabase) {
-    // No backend yet - show message
-    status.className = 'error';
-    status.innerHTML = 'Database not yet connected. <a href="https://github.com/Mirai8888/fleshengine" style="color:var(--link)">See setup instructions.</a>';
+    status.className = 'status-err';
+    status.textContent = 'Database not connected.';
     return;
   }
 
   try {
-    // Check if target already exists
-    const { data: existing } = await supabase
-      .from('targets')
-      .select('id, handle')
-      .eq('handle', val.toLowerCase())
-      .single();
-
+    const { data: existing } = await supabase.from('targets').select('id').eq('handle', val.toLowerCase()).single();
     if (existing) {
-      status.className = '';
-      status.innerHTML = 'Target <strong>@' + val + '</strong> already exists. <a href="profile.html?t=' + existing.id + '" style="color:var(--link)">View profile.</a>';
+      status.className = 'status-info';
+      status.innerHTML = 'Target already indexed. <a href="profile.html?t=' + existing.id + '">View profile</a>';
       input.value = '';
       return;
     }
-
-    // Insert new target
-    const { data, error } = await supabase
-      .from('targets')
-      .insert({ handle: val.toLowerCase(), display_handle: val, status: 'queued' })
-      .select()
-      .single();
-
+    const { data, error } = await supabase.from('targets').insert({ handle: val.toLowerCase(), display_handle: val, status: 'queued' }).select().single();
     if (error) throw error;
-
-    status.className = 'success';
-    status.innerHTML = 'Target <strong>@' + val + '</strong> submitted. Profile will be available once the initial scan completes.';
+    status.className = 'status-ok';
+    status.innerHTML = 'Target <b>' + val + '</b> submitted and queued for scanning. <a href="profile.html?t=' + data.id + '">View profile</a>';
     input.value = '';
     loadProfiles();
+    loadStats();
   } catch (err) {
-    status.className = 'error';
-    status.textContent = 'Error: ' + (err.message || 'Failed to submit target.');
+    status.className = 'status-err';
+    status.textContent = 'Error: ' + (err.message || 'Submission failed.');
   }
 }
 
-// ============================================================
-// LOAD PROFILES
-// ============================================================
 async function loadProfiles() {
   if (!supabase) return;
-
   try {
-    const { data, error } = await supabase
-      .from('targets')
-      .select('id, handle, display_handle, status, threat_score, top_vectors, fragment_count, created_at')
-      .order('created_at', { ascending: false })
-      .limit(20);
-
-    if (error) throw error;
-    if (!data || data.length === 0) return;
-
+    const { data } = await supabase.from('targets').select('*').order('created_at', { ascending: false }).limit(30);
+    if (!data || !data.length) return;
     document.getElementById('profiles-empty').style.display = 'none';
-    const grid = document.getElementById('profiles-grid');
-    grid.style.display = 'grid';
-    grid.innerHTML = '';
-
+    const table = document.getElementById('profiles-table');
+    // Remove old rows (keep header)
+    while (table.rows.length > 1) table.deleteRow(1);
     data.forEach(t => {
-      const card = document.createElement('a');
-      card.href = 'profile.html?t=' + t.id;
-      card.className = 'profile-card';
-      card.style.textDecoration = 'none';
-      card.innerHTML = `
-        <div>
-          <div class="profile-handle">@${t.display_handle || t.handle}</div>
-          <div class="profile-vectors">${t.top_vectors || 'Scan pending'}</div>
-          <div class="profile-meta">${t.fragment_count || 0} fragments &middot; <span class="${t.status === 'active' ? 'status-active' : ''}">${(t.status || 'queued').toUpperCase()}</span></div>
-        </div>
-        <div class="profile-right">
-          <div class="threat-score">${t.threat_score != null ? t.threat_score : '—'}</div>
-          <div class="threat-label">Threat Score</div>
-        </div>
-      `;
-      grid.appendChild(card);
+      const row = table.insertRow();
+      const sc = t.threat_score;
+      const scClass = sc >= 70 ? 'score-high' : sc >= 40 ? 'score-med' : 'score-low';
+      row.innerHTML = '<td><a href="profile.html?t=' + t.id + '">@' + (t.display_handle||t.handle) + '</a></td>' +
+        '<td class="' + scClass + '">' + (sc != null ? sc : '&mdash;') + '</td>' +
+        '<td style="color:#8a6a3a;font-size:11px">' + (t.top_vectors || '&mdash;') + '</td>' +
+        '<td>' + (t.fragment_count || 0) + '</td>' +
+        '<td style="font-size:11px;color:' + (t.status==='active'?'#7a9a4a':'#8a6a3a') + '">' + (t.status||'queued').toUpperCase() + '</td>';
     });
-  } catch (err) {
-    console.error('Failed to load profiles:', err);
-  }
+  } catch(e) { console.error(e); }
 }
 
-// ============================================================
-// LOAD FRAGMENTS
-// ============================================================
 async function loadFragments() {
   if (!supabase) return;
-
   try {
-    const { data, error } = await supabase
-      .from('fragments')
-      .select('id, target_handle, observation_type, body, confidence, created_at, contributor_id')
-      .order('created_at', { ascending: false })
-      .limit(10);
-
-    if (error) throw error;
-    if (!data || data.length === 0) return;
-
-    document.getElementById('fragments-empty').style.display = 'none';
+    const { data } = await supabase.from('fragments').select('*').order('created_at', { ascending: false }).limit(10);
+    if (!data || !data.length) return;
     const list = document.getElementById('fragments-list');
-    list.style.display = 'block';
     list.innerHTML = '';
-
     data.forEach(f => {
-      const ts = new Date(f.created_at).toISOString().replace('T', ' ').substring(0, 19);
-      const el = document.createElement('div');
-      el.className = 'fragment';
-      el.innerHTML = `
-        <div class="fragment-header">[${ts}] CONTRIBUTOR #${(f.contributor_id || '0000').toString().padStart(4, '0')} &rarr; @${f.target_handle}</div>
-        <div class="fragment-body">"${f.body}"</div>
-        <div class="fragment-confidence conf-${f.confidence || 'medium'}">Confidence: ${(f.confidence || 'medium').toUpperCase()}</div>
-      `;
-      list.appendChild(el);
+      const ts = new Date(f.created_at).toISOString().replace('T',' ').substring(0,19);
+      list.innerHTML += '<div class="fragment">' +
+        '<div class="meta">[' + ts + '] ' + f.observation_type + ' &rarr; @' + f.target_handle + '</div>' +
+        '<div class="body">"' + f.body + '"</div>' +
+        '<div class="conf">confidence: ' + (f.confidence||'medium') + '</div></div>';
     });
-  } catch (err) {
-    console.error('Failed to load fragments:', err);
-  }
+  } catch(e) { console.error(e); }
 }
 
-// ============================================================
-// LOAD STATS
-// ============================================================
 async function loadStats() {
   if (!supabase) return;
-
   try {
-    const { count: targetCount } = await supabase.from('targets').select('*', { count: 'exact', head: true });
-    const { count: fragCount } = await supabase.from('fragments').select('*', { count: 'exact', head: true });
-
-    if (targetCount > 0 || fragCount > 0) {
-      document.getElementById('stats-bar').style.display = 'flex';
-      document.getElementById('stat-targets').textContent = targetCount || 0;
-      document.getElementById('stat-fragments').textContent = fragCount || 0;
-    }
-  } catch (err) {
-    console.error('Failed to load stats:', err);
-  }
+    const { count: tc } = await supabase.from('targets').select('*', { count:'exact', head:true });
+    const { count: fc } = await supabase.from('fragments').select('*', { count:'exact', head:true });
+    document.getElementById('stat-targets').textContent = tc || 0;
+    document.getElementById('stat-fragments').textContent = fc || 0;
+  } catch(e) { console.error(e); }
 }
 
-// ============================================================
-// INIT
-// ============================================================
 document.addEventListener('DOMContentLoaded', () => {
-  if (SUPABASE_URL && SUPABASE_ANON_KEY) {
-    // Load Supabase client from CDN
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
-    script.onload = () => {
-      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      loadProfiles();
-      loadFragments();
-      loadStats();
-    };
-    document.head.appendChild(script);
-  }
+  const s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+  s.onload = () => {
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    loadProfiles();
+    loadFragments();
+    loadStats();
+  };
+  document.head.appendChild(s);
 });
 </script>
 </body>
