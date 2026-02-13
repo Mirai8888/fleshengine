@@ -3,98 +3,200 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — FLESHENGINE</title>
+<title>人肉搜索 — About</title>
 <style>
-body { background:#2a1408; color:#e8d5b5; font-family:'Trebuchet MS',Verdana,sans-serif; font-size:13px; line-height:1.5; margin:0; }
-a { color:#d4a76a; } a:visited { color:#b8894a; } a:hover { text-decoration:underline; }
-hr { border:none; border-top:1px solid #4a2a10; margin:12px 0; }
-#wrapper { width:760px; margin:0 auto; }
-#header { background:#1a0a02; border-bottom:2px solid #6b4420; padding:16px 20px; }
-#header h1 { font-family:Georgia,serif; font-size:28px; font-weight:normal; color:#c8a060; margin:0; letter-spacing:4px; }
-#header .subtitle { font-size:12px; color:#8a6a3a; margin-top:2px; }
-#nav { background:#3a1a08; border-bottom:1px solid #4a2a10; padding:4px 20px; font-size:11px; }
-#nav a { color:#a07840; margin-right:12px; text-decoration:none; } #nav a:hover { color:#e8d5b5; }
-#content { padding:16px 20px; }
-h2 { font-family:Georgia,serif; font-size:15px; font-weight:bold; color:#c8a060; border-bottom:1px solid #4a2a10; padding-bottom:4px; margin:16px 0 8px 0; }
-blockquote { border-left:2px solid #6b4420; margin:8px 0; padding:6px 12px; color:#c8a060; font-style:italic; }
-table.cases { width:100%; border-collapse:collapse; font-size:12px; margin:8px 0; }
-table.cases td { padding:6px 8px; border:1px solid #3a1a08; vertical-align:top; }
-table.cases td.year { width:60px; color:#6b4420; font-size:11px; }
-table.cases td.title { width:180px; color:#c8a060; font-weight:bold; }
-table.vectors { width:100%; border-collapse:collapse; font-size:12px; }
-table.vectors th { background:#1a0a02; color:#a07840; text-align:left; padding:4px 8px; border:1px solid #4a2a10; font-size:11px; }
-table.vectors td { padding:3px 8px; border:1px solid #3a1a08; }
-table.vectors td:first-child { font-family:'Courier New',monospace; color:#8a6a3a; width:60px; font-size:11px; }
-#footer { background:#1a0a02; border-top:1px solid #4a2a10; padding:8px 20px; font-size:10px; color:#4a2a10; text-align:center; margin-top:16px; }
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+body {
+  background: #1a0a02;
+  color: #c8a878;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0; padding: 0;
+}
+::selection { background: #6b4420; color: #fee6cf; }
+a { color: #bd965d; text-decoration: none; }
+a:hover { color: #fee6cf; }
+#wrapper { max-width: 800px; margin: 0 auto; min-height: 100vh; }
+
+#header {
+  border-bottom: 1px solid #3a1a08;
+  padding: 40px 24px 20px;
+  text-align: center;
+}
+#header h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: #bd965d;
+  margin: 0;
+  letter-spacing: 8px;
+}
+#header .sub {
+  font-size: 11px;
+  color: #5a3a18;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+#nav {
+  text-align: center;
+  padding: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #2a1408;
+}
+#nav a { color: #6b4420; margin: 0 14px; }
+#nav a:hover { color: #bd965d; }
+
+#content { padding: 30px 24px 60px; }
+
+h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b4420;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #2a1408;
+  padding-bottom: 6px;
+  margin: 36px 0 14px;
+}
+h2:first-of-type { margin-top: 0; }
+
+p { margin: 12px 0; }
+
+.callout {
+  background: #0e0600;
+  border: 1px solid #2a1408;
+  padding: 16px 18px;
+  margin: 16px 0;
+  font-style: italic;
+  color: #a08858;
+}
+
+.taxonomy {
+  margin: 16px 0;
+}
+.tax-item {
+  display: flex;
+  border-bottom: 1px solid #1a0a02;
+  padding: 8px 0;
+}
+.tax-code {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #5a3a18;
+  width: 60px;
+  flex-shrink: 0;
+}
+.tax-name {
+  font-size: 14px;
+  color: #bd965d;
+  width: 180px;
+  flex-shrink: 0;
+}
+.tax-desc {
+  font-size: 13px;
+  color: #6b4420;
+}
+
+.quiet {
+  font-size: 13px;
+  color: #3a1a08;
+}
+
+#footer {
+  border-top: 1px solid #2a1408;
+  padding: 20px 24px;
+  text-align: center;
+  font-size: 10px;
+  color: #2a1408;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 700px) {
+  .tax-item { flex-direction: column; gap: 2px; }
+  .tax-name { width: auto; }
+}
 </style>
 </head>
 <body>
+
 <div id="wrapper">
+
 <div id="header">
   <h1>人肉搜索</h1>
-  <div class="subtitle">FLESHENGINE &mdash; about</div>
+  <div class="sub">the flesh remembers what the profile deletes</div>
 </div>
+
 <div id="nav">
-  <a href="index.html">Home</a>
+  <a href="index.html">Index</a>
   <a href="scanner.html">Scanner</a>
   <a href="about.html">About</a>
   <a href="https://github.com/Mirai8888/fleshengine">Source</a>
 </div>
+
 <div id="content">
 
-<h2>Origin</h2>
+  <h2>What Is This</h2>
 
-<blockquote>
-人肉搜索 (r&eacute;nr&ograve;u s&#333;usu&#466;) &mdash; literally "human flesh search engine." Distributed, crowdsourced investigation where thousands of anonymous participants collectively identify, locate, and document targets using publicly available information and collective attention.
-</blockquote>
+  <p>人肉搜索 (r&eacute;nr&ograve;u s&#333;usu&#466;) translates literally as "human flesh search engine." It originated in early Chinese internet culture. When someone wronged the collective and the platforms wouldn't act, the crowd did. They found the person. They mapped the person. They made the person legible.</p>
 
-<p>The practice emerged from Chinese internet culture in the early 2000s. The first documented case originated on Mop.com in 2001. By 2006 it had become a recognized social phenomenon with real consequences: people lost jobs, fled cities, were driven to suicide. The Chinese internet learned that distributed human attention, focused on a single target, is more powerful than any search algorithm.</p>
+  <p>This is the same thing, built for a different problem.</p>
 
-<p>The mechanism is simple. Someone posts a target. Thousands of people each contribute one small piece: a screenshot, a cross-referenced username, a location from a photo background, a workplace identified from a uniform. No single person does the work. The crowd does.</p>
+  <p>Every person who operates in public is running influence patterns. Most of them don't know they're doing it. Some of them know exactly what they're doing. FLESHENGINE makes the patterns visible.</p>
 
-<p>Western platforms developed their own versions. Doxbin. Kiwi Farms. The methods are the same. The framing is different. The capability is identical.</p>
+  <div class="callout">This is not a doxxing tool. We don't collect addresses, phone numbers, or private data. We collect <i>patterns</i>. How someone frames a narrative. How they manufacture urgency. How they exploit trust. The things that are technically public but functionally invisible until someone maps them.</div>
 
-<h2>Notable Cases</h2>
+  <h2>How It Works</h2>
 
-<table class="cases">
-<tr><td class="year">2006</td><td class="title">Kitten Killer of Hangzhou</td><td>Woman filmed crushing a kitten with high heels. Identified within days from a reflection in the video. Name, employer, phone number, address. Terminated from government position.</td></tr>
-<tr><td class="year">2008</td><td class="title">Bronze Mustache Incident</td><td>Tourist photographed sitting on memorial statue. Identified within 3 hours from phone model, clothing brand, and a partial bus ticket visible in one image.</td></tr>
-<tr><td class="year">2011</td><td class="title">Vancouver Riot ID</td><td>After the Stanley Cup riot, crowdsourced identification from social media led to 300+ people identified by name. Several faced criminal charges from crowd-submitted evidence alone.</td></tr>
-<tr><td class="year">2013</td><td class="title">Boston Marathon</td><td>Reddit attempted to identify the bombers from crowd photos. Wrong person identified. Sunil Tripathi, wrongly accused, was found dead. The crowd is powerful. The crowd is not always right.</td></tr>
-<tr><td class="year">2019</td><td class="title">Hong Kong &#36215;&#24213;</td><td>Both sides used doxxing extensively. Protesters identified undercover police. Pro-Beijing groups identified protesters, families, and employers. Anti-doxxing legislation passed 2021 in direct response.</td></tr>
-</table>
+  <p>A target is submitted. Public data is extracted from whatever platforms they operate on. The scanner runs twelve vulnerability vectors against their output. Human observers contribute fragments: behavioral patterns, relationship dynamics, narrative shifts they've noticed. The fragments accumulate. The profile sharpens.</p>
 
-<h2>What FLESHENGINE Does</h2>
+  <p>The result is a composite intelligence brief. Not who someone is. Who someone <i>does</i>.</p>
 
-<p>FLESHENGINE structures what already happens. People already investigate each other online. The tools already exist. We provide the database, the taxonomy, and the aggregation layer.</p>
+  <h2>The Twelve Vectors</h2>
 
-<p>Submit a target. The system pulls publicly available data and maps behavioral patterns, communication style, network position, and influence vulnerability across 12 vectors. Then the crowd fills in what automation misses: context, relationships, pattern shifts that only a human observer would notice.</p>
+  <p>Every influence operation, whether deliberate or instinctive, runs on a combination of these:</p>
 
-<p>Every fragment is timestamped, categorized, and weighted. The composite profile improves with each contribution.</p>
+  <div class="taxonomy">
+    <div class="tax-item"><span class="tax-code">FE-001</span><span class="tax-name">Narrative Framing</span><span class="tax-desc">Controlling what the story is about before anyone asks</span></div>
+    <div class="tax-item"><span class="tax-code">FE-002</span><span class="tax-name">Repetition Saturation</span><span class="tax-desc">Making something true by making it unavoidable</span></div>
+    <div class="tax-item"><span class="tax-code">FE-003</span><span class="tax-name">Audience Conditioning</span><span class="tax-desc">Training a group to receive messages in a specific way</span></div>
+    <div class="tax-item"><span class="tax-code">FE-004</span><span class="tax-name">Loyalty Exploitation</span><span class="tax-desc">Weaponizing trust, belonging, and obligation</span></div>
+    <div class="tax-item"><span class="tax-code">FE-005</span><span class="tax-name">Identity Manipulation</span><span class="tax-desc">Targeting who someone believes they are</span></div>
+    <div class="tax-item"><span class="tax-code">FE-006</span><span class="tax-name">Manufactured Consensus</span><span class="tax-desc">Making a minority position feel like the default</span></div>
+    <div class="tax-item"><span class="tax-code">FE-007</span><span class="tax-name">Viral Propagation</span><span class="tax-desc">Turning people into vectors for content they didn't create</span></div>
+    <div class="tax-item"><span class="tax-code">FE-008</span><span class="tax-name">Urgency Fabrication</span><span class="tax-desc">Compressing decision time to prevent reflection</span></div>
+    <div class="tax-item"><span class="tax-code">FE-009</span><span class="tax-name">Attention Redirection</span><span class="tax-desc">Controlling what you look at by controlling what you don't</span></div>
+    <div class="tax-item"><span class="tax-code">FE-010</span><span class="tax-name">Reality Distortion</span><span class="tax-desc">Making the constructed feel inevitable</span></div>
+    <div class="tax-item"><span class="tax-code">FE-011</span><span class="tax-name">Cognitive Overload</span><span class="tax-desc">Flooding channels until critical thinking drowns</span></div>
+    <div class="tax-item"><span class="tax-code">FE-012</span><span class="tax-name">Existential Threat Framing</span><span class="tax-desc">Escalating stakes until compliance feels like survival</span></div>
+  </div>
 
-<h2>The 12 Vectors</h2>
+  <h2>Who Built This</h2>
 
-<table class="vectors">
-<tr><th>Code</th><th>Vector</th></tr>
-<tr><td>FE-001</td><td>Narrative Framing</td></tr>
-<tr><td>FE-002</td><td>Repetition Saturation</td></tr>
-<tr><td>FE-003</td><td>Audience Conditioning</td></tr>
-<tr><td>FE-004</td><td>Loyalty Exploitation</td></tr>
-<tr><td>FE-005</td><td>Identity Manipulation</td></tr>
-<tr><td>FE-006</td><td>Manufactured Consensus</td></tr>
-<tr><td>FE-007</td><td>Viral Propagation</td></tr>
-<tr><td>FE-008</td><td>Urgency Fabrication</td></tr>
-<tr><td>FE-009</td><td>Attention Redirection</td></tr>
-<tr><td>FE-010</td><td>Reality Distortion</td></tr>
-<tr><td>FE-011</td><td>Cognitive Overload</td></tr>
-<tr><td>FE-012</td><td>Existential Threat Framing</td></tr>
-</table>
-<p style="font-size:10px;color:#4a2a10;">Influence taxonomy: <a href="https://seithar.com">Seithar Group</a></p>
+  <p>FLESHENGINE is an open-source project. The vulnerability framework is adapted from research by the <a href="https://seithar.com">Seithar Group</a>.</p>
+
+  <p>The source code is on <a href="https://github.com/Mirai8888/fleshengine">GitHub</a>. You can run your own instance.</p>
+
+  <h2>Ethics</h2>
+
+  <p>The people who need to be mapped are the people who will object to being mapped. This is by design. Influence operators depend on illegibility. Legibility is the countermeasure.</p>
+
+  <p>FLESHENGINE profiles <i>public behavior</i>. If you don't want to be profiled, stop running influence operations in public.</p>
+
+  <p class="quiet">If that sounds harsh, consider what happens when nobody maps these patterns at all.</p>
 
 </div>
+
 <div id="footer">
-  人肉搜索 // FLESHENGINE // &copy; 2024-2026
+  人肉搜索 &middot; FLESHENGINE &middot; the crowd sees what the algorithm misses
 </div>
+
 </div>
 </body>
 </html>

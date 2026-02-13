@@ -3,241 +3,253 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FLESHENGINE — 人肉搜索</title>
-<meta name="description" content="Human flesh search engine. Distributed intelligence collection and cognitive profiling.">
+<title>人肉搜索</title>
+<meta name="description" content="You were not supposed to find this.">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
 body {
-  background: #2a1408;
-  color: #e8d5b5;
-  font-family: 'Trebuchet MS', Verdana, Arial, sans-serif;
-  font-size: 13px;
-  line-height: 1.5;
+  background: #1a0a02;
+  color: #c8a878;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 15px;
+  line-height: 1.6;
   margin: 0;
   padding: 0;
 }
-a { color: #d4a76a; }
-a:visited { color: #b8894a; }
-a:hover { text-decoration: underline; }
-hr { border: none; border-top: 1px solid #4a2a10; margin: 12px 0; }
+::selection { background: #6b4420; color: #fee6cf; }
+a { color: #bd965d; text-decoration: none; }
+a:visited { color: #907e2f; }
+a:hover { color: #fee6cf; }
 
 #wrapper {
-  width: 760px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0;
+  min-height: 100vh;
 }
+
 #header {
-  background: #1a0a02;
-  border-bottom: 2px solid #6b4420;
-  padding: 16px 20px;
+  border-bottom: 1px solid #3a1a08;
+  padding: 40px 24px 20px;
+  text-align: center;
 }
 #header h1 {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 28px;
-  font-weight: normal;
-  color: #c8a060;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: #bd965d;
   margin: 0;
-  letter-spacing: 4px;
+  letter-spacing: 8px;
 }
-#header .subtitle {
-  font-size: 12px;
-  color: #8a6a3a;
-  margin-top: 2px;
-}
-#nav {
-  background: #3a1a08;
-  border-bottom: 1px solid #4a2a10;
-  padding: 4px 20px;
+#header .sub {
   font-size: 11px;
+  color: #5a3a18;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-top: 6px;
 }
-#nav a {
-  color: #a07840;
-  margin-right: 12px;
-  text-decoration: none;
+
+#nav {
+  text-align: center;
+  padding: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #2a1408;
 }
-#nav a:hover { color: #e8d5b5; }
+#nav a { color: #6b4420; margin: 0 14px; }
+#nav a:hover { color: #bd965d; }
 
 #content {
-  padding: 16px 20px;
-}
-#sidebar {
-  float: right;
-  width: 220px;
-  padding-left: 16px;
-}
-#main {
-  margin-right: 240px;
+  padding: 30px 24px;
 }
 
 h2 {
-  font-family: Georgia, serif;
-  font-size: 15px;
-  font-weight: bold;
-  color: #c8a060;
-  border-bottom: 1px solid #4a2a10;
-  padding-bottom: 4px;
-  margin: 16px 0 8px 0;
-}
-h3 {
-  font-size: 13px;
-  font-weight: bold;
-  color: #a07840;
-  margin: 10px 0 4px 0;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b4420;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #2a1408;
+  padding-bottom: 6px;
+  margin: 30px 0 14px;
 }
 
 /* SUBMIT */
 #submit-box {
-  background: #1a0a02;
-  border: 1px solid #4a2a10;
-  padding: 12px;
-  margin-bottom: 14px;
+  background: #0e0600;
+  border: 1px solid #2a1408;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+#submit-box .prompt {
+  font-size: 12px;
+  color: #5a3a18;
+  margin-bottom: 8px;
+  font-style: italic;
 }
 #submit-box input[type="text"] {
   font-family: 'Courier New', monospace;
-  font-size: 13px;
-  background: #0e0600;
-  color: #e8d5b5;
-  border: 1px solid #6b4420;
-  padding: 6px 8px;
-  width: 380px;
+  font-size: 14px;
+  background: #0a0400;
+  color: #c8a878;
+  border: 1px solid #3a1a08;
+  padding: 8px 10px;
+  width: 70%;
 }
-#submit-box input[type="submit"] {
-  font-family: Verdana, sans-serif;
+#submit-box input[type="text"]::placeholder { color: #3a1a08; }
+#submit-box input[type="text"]:focus { outline: none; border-color: #6b4420; }
+#submit-box button {
+  font-family: 'Cinzel', serif;
   font-size: 11px;
-  background: #3a1a08;
-  color: #c8a060;
-  border: 1px solid #6b4420;
-  padding: 6px 14px;
+  letter-spacing: 2px;
+  background: none;
+  color: #6b4420;
+  border: 1px solid #3a1a08;
+  padding: 8px 18px;
   cursor: pointer;
+  text-transform: uppercase;
+  margin-left: 8px;
 }
-#submit-box input[type="submit"]:hover {
-  background: #4a2a10;
-}
+#submit-box button:hover { color: #bd965d; border-color: #6b4420; }
 #submit-status {
   display: none;
-  margin-top: 8px;
-  padding: 6px 8px;
-  font-size: 12px;
-  border: 1px solid #4a2a10;
-  background: #1a0a02;
+  margin-top: 10px;
+  font-size: 13px;
+  padding: 8px;
+  border-left: 2px solid #3a1a08;
 }
-.status-ok { color: #7a9a4a; }
-.status-err { color: #a04030; }
-.status-info { color: #a07840; }
+.s-ok { color: #6b8a3a; }
+.s-err { color: #8a3a2a; }
+.s-info { color: #6b4420; }
 
-/* PROFILE LIST */
-table.profiles {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
+/* TARGETS TABLE */
+.targets-list { margin: 0; }
+.target-row {
+  display: block;
+  border-bottom: 1px solid #1a0a02;
+  padding: 10px 0;
 }
-table.profiles th {
-  background: #1a0a02;
-  color: #a07840;
-  text-align: left;
-  padding: 4px 8px;
-  border: 1px solid #4a2a10;
+.target-row:hover { background: #0e0600; }
+.target-row a { display: block; }
+.target-handle {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: #bd965d;
+}
+.target-meta {
   font-size: 11px;
-  font-weight: bold;
+  color: #5a3a18;
+  margin-top: 2px;
 }
-table.profiles td {
-  padding: 4px 8px;
-  border: 1px solid #3a1a08;
-  vertical-align: top;
+.target-score {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
 }
-table.profiles tr:hover {
-  background: #1a0a02;
+.score-high { color: #8a3a2a; }
+.score-med { color: #a07840; }
+.score-low { color: #5a3a18; }
+
+.empty-state {
+  color: #3a1a08;
+  font-style: italic;
+  font-size: 13px;
+  padding: 14px 0;
 }
-table.profiles a { text-decoration: none; }
-.score-high { color: #c04030; font-weight: bold; }
-.score-med { color: #c89030; }
-.score-low { color: #8a6a3a; }
 
 /* FRAGMENTS */
 .fragment {
-  border-left: 2px solid #4a2a10;
-  padding: 4px 0 4px 10px;
-  margin: 6px 0;
-  font-size: 12px;
+  border-left: 2px solid #2a1408;
+  padding: 6px 0 6px 14px;
+  margin: 10px 0;
 }
-.fragment .meta {
-  color: #6b4420;
+.fragment .ts {
   font-family: 'Courier New', monospace;
   font-size: 10px;
+  color: #3a1a08;
+}
+.fragment .type {
+  font-size: 10px;
+  color: #5a3a18;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 .fragment .body {
-  color: #c8a060;
+  color: #c8a878;
   font-style: italic;
-  margin: 2px 0;
-}
-.fragment .conf {
-  font-size: 10px;
-  color: #6b4420;
-  text-transform: uppercase;
+  margin: 3px 0;
+  font-size: 14px;
 }
 
 /* SIDEBAR */
-.sidebar-box {
-  background: #1a0a02;
-  border: 1px solid #4a2a10;
-  padding: 8px 10px;
-  margin-bottom: 10px;
-  font-size: 11px;
+.columns { display: flex; gap: 30px; }
+.col-main { flex: 1; min-width: 0; }
+.col-side { width: 200px; flex-shrink: 0; }
+
+.side-box {
+  background: #0e0600;
+  border: 1px solid #2a1408;
+  padding: 14px;
+  margin-bottom: 14px;
+  font-size: 12px;
 }
-.sidebar-box h3 {
-  font-size: 11px;
-  color: #c8a060;
-  margin: 0 0 6px 0;
-  border-bottom: 1px solid #3a1a08;
-  padding-bottom: 3px;
-}
-.sidebar-box .stat-num {
-  font-family: Georgia, serif;
-  font-size: 20px;
-  color: #c8a060;
-  display: block;
-}
-.sidebar-box .stat-label {
+.side-box h3 {
+  font-family: 'Cinzel', serif;
   font-size: 10px;
-  color: #6b4420;
+  color: #5a3a18;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 0 0 8px;
 }
+.stat-num {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  color: #bd965d;
+  display: block;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 10px;
+  color: #3a1a08;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pipeline-step {
+  padding: 4px 0;
+  border-bottom: 1px solid #1a0a02;
+  font-size: 11px;
+}
+.pipeline-step .num {
+  font-family: 'Cinzel', serif;
+  color: #6b4420;
+  font-size: 13px;
+  margin-right: 6px;
+}
+.pipeline-step .label { color: #5a3a18; }
 
 #footer {
-  background: #1a0a02;
-  border-top: 1px solid #4a2a10;
-  padding: 8px 20px;
+  border-top: 1px solid #2a1408;
+  padding: 20px 24px;
+  text-align: center;
   font-size: 10px;
-  color: #4a2a10;
-  text-align: center;
-  margin-top: 16px;
+  color: #2a1408;
+  letter-spacing: 2px;
 }
 
-/* PIPELINE */
-table.pipeline {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-  margin: 8px 0;
-}
-table.pipeline td {
-  padding: 6px 8px;
-  border: 1px solid #3a1a08;
-  vertical-align: top;
-}
-table.pipeline td.num {
-  width: 24px;
-  text-align: center;
-  font-family: Georgia, serif;
-  font-size: 14px;
-  color: #c8a060;
-  background: #1a0a02;
-}
-table.pipeline td.step {
-  color: #a07840;
-  font-weight: bold;
-  width: 140px;
-}
+/* loading pulse */
+@keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+.loading { animation: pulse 1.5s ease-in-out infinite; color: #3a1a08; }
 
-.clear { clear: both; }
+@media (max-width: 700px) {
+  .columns { flex-direction: column-reverse; }
+  .col-side { width: 100%; }
+  #submit-box input[type="text"] { width: 100%; box-sizing: border-box; }
+  #submit-box button { margin: 8px 0 0; width: 100%; }
+}
 </style>
 </head>
 <body>
@@ -246,94 +258,94 @@ table.pipeline td.step {
 
 <div id="header">
   <h1>人肉搜索</h1>
-  <div class="subtitle">FLESHENGINE &mdash; distributed cognitive profiling</div>
+  <div class="sub">the flesh remembers what the profile deletes</div>
 </div>
 
 <div id="nav">
-  <a href="index.html">Home</a>
+  <a href="index.html">Index</a>
   <a href="scanner.html">Scanner</a>
   <a href="about.html">About</a>
   <a href="https://github.com/Mirai8888/fleshengine">Source</a>
 </div>
 
 <div id="content">
+<div class="columns">
 
-<div id="sidebar">
-
-  <div class="sidebar-box">
-    <h3>Database</h3>
-    <span class="stat-num" id="stat-targets">0</span>
-    <span class="stat-label">targets indexed</span>
-    <br><br>
-    <span class="stat-num" id="stat-fragments">0</span>
-    <span class="stat-label">fragments collected</span>
-  </div>
-
-  <div class="sidebar-box">
-    <h3>How It Works</h3>
-    <table class="pipeline">
-      <tr><td class="num">1</td><td class="step">Submit</td><td>Post a target handle or URL</td></tr>
-      <tr><td class="num">2</td><td class="step">Scan</td><td>Automated public data extraction</td></tr>
-      <tr><td class="num">3</td><td class="step">Map</td><td>12-vector influence vulnerability assessment</td></tr>
-      <tr><td class="num">4</td><td class="step">Collect</td><td>Human observers contribute fragments</td></tr>
-      <tr><td class="num">5</td><td class="step">Profile</td><td>Composite intelligence brief</td></tr>
-    </table>
-  </div>
-
-  <div class="sidebar-box">
-    <h3>Recent Activity</h3>
-    <div id="sidebar-activity"><span style="color:#6b4420">No activity yet.</span></div>
-  </div>
-
-</div>
-
-<div id="main">
-
-  <h2>Submit Target</h2>
+<div class="col-main">
 
   <div id="submit-box">
+    <div class="prompt">Someone you need to understand. A handle. A URL. A name they thought they buried.</div>
     <form id="submit-form" onsubmit="submitTarget(event)">
       <input type="text" id="target-input" placeholder="@handle or URL" autofocus>
-      <input type="submit" value="Submit">
+      <button type="submit">Submit</button>
     </form>
     <div id="submit-status"></div>
   </div>
 
-  <h2>Indexed Targets</h2>
+  <h2>Indexed</h2>
+  <div id="targets-container">
+    <div class="empty-state" id="targets-empty">Nothing here yet. The database is patient.</div>
+  </div>
 
-  <table class="profiles" id="profiles-table">
-    <tr>
-      <th>Target</th>
-      <th>Score</th>
-      <th>Vectors</th>
-      <th>Fragments</th>
-      <th>Status</th>
-    </tr>
-  </table>
-  <div id="profiles-empty" style="color:#6b4420; font-size:12px; padding:8px 0;">No targets indexed yet. Submit the first one above.</div>
-
-  <h2>Recent Fragments</h2>
-
-  <div id="fragments-list">
-    <div style="color:#6b4420; font-size:12px;">No fragments submitted yet.</div>
+  <h2>Fragments</h2>
+  <div id="fragments-container">
+    <div class="empty-state">No fragments collected. Someone will talk eventually.</div>
   </div>
 
 </div>
 
-<div class="clear"></div>
+<div class="col-side">
+
+  <div class="side-box">
+    <h3>Database</h3>
+    <span class="stat-num" id="stat-targets">
+      <span class="loading">&mdash;</span>
+    </span>
+    <span class="stat-label">targets indexed</span>
+    <div style="height:12px"></div>
+    <span class="stat-num" id="stat-fragments">
+      <span class="loading">&mdash;</span>
+    </span>
+    <span class="stat-label">fragments collected</span>
+  </div>
+
+  <div class="side-box">
+    <h3>Pipeline</h3>
+    <div class="pipeline-step"><span class="num">I</span> <span class="label">Target submitted</span></div>
+    <div class="pipeline-step"><span class="num">II</span> <span class="label">Public data extracted</span></div>
+    <div class="pipeline-step"><span class="num">III</span> <span class="label">Vulnerability surface mapped</span></div>
+    <div class="pipeline-step"><span class="num">IV</span> <span class="label">Human observers contribute</span></div>
+    <div class="pipeline-step"><span class="num">V</span> <span class="label">Composite profile rendered</span></div>
+  </div>
+
+  <div class="side-box">
+    <h3>Recent</h3>
+    <div id="sidebar-recent"><span style="color:#3a1a08; font-style:italic;">Waiting.</span></div>
+  </div>
+
+</div>
+
+</div>
 </div>
 
 <div id="footer">
-  人肉搜索 // FLESHENGINE // the crowd sees what the algorithm misses<br>
-  &copy; 2024-2026
+  人肉搜索 &middot; FLESHENGINE &middot; the crowd sees what the algorithm misses
 </div>
 
 </div>
 
 <script>
-const SUPABASE_URL = 'https://kwrrdptfpqgiwktbgefb.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_uRPJlC4dcLKvbGKLMp8u1g_FkIQH6Or';
-let supabase = null;
+const API = 'https://kwrrdptfpqgiwktbgefb.supabase.co/rest/v1';
+const KEY = 'sb_publishable_uRPJlC4dcLKvbGKLMp8u1g_FkIQH6Or';
+const H = { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
+
+async function q(path, opts) {
+  const r = await fetch(API + path, { headers: H, ...opts });
+  if (!r.ok) throw new Error(r.statusText);
+  const ct = r.headers.get('content-type');
+  if (ct && ct.includes('json')) return r.json();
+  return null;
+}
 
 async function submitTarget(e) {
   e.preventDefault();
@@ -345,96 +357,107 @@ async function submitTarget(e) {
   if (!val) return;
 
   status.style.display = 'block';
-  status.className = 'status-info';
+  status.className = 's-info';
   status.textContent = 'Submitting...';
 
-  if (!supabase) {
-    status.className = 'status-err';
-    status.textContent = 'Database not connected.';
-    return;
-  }
-
   try {
-    const { data: existing } = await supabase.from('targets').select('id').eq('handle', val.toLowerCase()).single();
-    if (existing) {
-      status.className = 'status-info';
-      status.innerHTML = 'Target already indexed. <a href="profile.html?t=' + existing.id + '">View profile</a>';
+    const existing = await q('/targets?handle=eq.' + encodeURIComponent(val.toLowerCase()) + '&select=id&limit=1');
+    if (existing && existing.length) {
+      status.className = 's-info';
+      status.innerHTML = 'Already indexed. <a href="profile.html?t=' + existing[0].id + '">View profile &rarr;</a>';
       input.value = '';
       return;
     }
-    const { data, error } = await supabase.from('targets').insert({ handle: val.toLowerCase(), display_handle: val, status: 'queued' }).select().single();
-    if (error) throw error;
-    status.className = 'status-ok';
-    status.innerHTML = 'Target <b>' + val + '</b> submitted and queued for scanning. <a href="profile.html?t=' + data.id + '">View profile</a>';
+    const data = await q('/targets', {
+      method: 'POST',
+      body: JSON.stringify({ handle: val.toLowerCase(), display_handle: val, status: 'queued' })
+    });
+    status.className = 's-ok';
+    status.innerHTML = 'Queued. <a href="profile.html?t=' + data[0].id + '">Watch it build &rarr;</a>';
     input.value = '';
-    loadProfiles();
+    loadTargets();
     loadStats();
   } catch (err) {
-    status.className = 'status-err';
-    status.textContent = 'Error: ' + (err.message || 'Submission failed.');
+    status.className = 's-err';
+    status.textContent = 'Failed: ' + err.message;
   }
 }
 
-async function loadProfiles() {
-  if (!supabase) return;
+async function loadTargets() {
   try {
-    const { data } = await supabase.from('targets').select('*').order('created_at', { ascending: false }).limit(30);
+    const data = await q('/targets?select=*&order=created_at.desc&limit=30');
     if (!data || !data.length) return;
-    document.getElementById('profiles-empty').style.display = 'none';
-    const table = document.getElementById('profiles-table');
-    // Remove old rows (keep header)
-    while (table.rows.length > 1) table.deleteRow(1);
+    document.getElementById('targets-empty').style.display = 'none';
+    const c = document.getElementById('targets-container');
+    let html = '';
     data.forEach(t => {
-      const row = table.insertRow();
       const sc = t.threat_score;
       const scClass = sc >= 70 ? 'score-high' : sc >= 40 ? 'score-med' : 'score-low';
-      row.innerHTML = '<td><a href="profile.html?t=' + t.id + '">@' + (t.display_handle||t.handle) + '</a></td>' +
-        '<td class="' + scClass + '">' + (sc != null ? sc : '&mdash;') + '</td>' +
-        '<td style="color:#8a6a3a;font-size:11px">' + (t.top_vectors || '&mdash;') + '</td>' +
-        '<td>' + (t.fragment_count || 0) + '</td>' +
-        '<td style="font-size:11px;color:' + (t.status==='active'?'#7a9a4a':'#8a6a3a') + '">' + (t.status||'queued').toUpperCase() + '</td>';
+      const scText = sc != null ? sc + '/100' : 'pending';
+      html += '<div class="target-row"><a href="profile.html?t=' + t.id + '">' +
+        '<span class="target-handle">@' + (t.display_handle || t.handle) + '</span>' +
+        '<span class="target-meta">' +
+        '<span class="target-score ' + scClass + '">' + scText + '</span>' +
+        (t.top_vectors ? ' · ' + t.top_vectors : '') +
+        ' · ' + (t.fragment_count || 0) + ' fragments' +
+        ' · <span style="text-transform:uppercase">' + (t.status || 'queued') + '</span>' +
+        '</span></a></div>';
     });
-  } catch(e) { console.error(e); }
+    // Keep the empty-state div but hidden, then append
+    c.innerHTML = '<div class="empty-state" id="targets-empty" style="display:none"></div>' + html;
+  } catch(e) { console.error('loadTargets:', e); }
 }
 
 async function loadFragments() {
-  if (!supabase) return;
   try {
-    const { data } = await supabase.from('fragments').select('*').order('created_at', { ascending: false }).limit(10);
+    const data = await q('/fragments?select=*&order=created_at.desc&limit=10');
     if (!data || !data.length) return;
-    const list = document.getElementById('fragments-list');
-    list.innerHTML = '';
+    const c = document.getElementById('fragments-container');
+    let html = '';
     data.forEach(f => {
-      const ts = new Date(f.created_at).toISOString().replace('T',' ').substring(0,19);
-      list.innerHTML += '<div class="fragment">' +
-        '<div class="meta">[' + ts + '] ' + f.observation_type + ' &rarr; @' + f.target_handle + '</div>' +
+      const ts = new Date(f.created_at).toISOString().replace('T',' ').substring(0,16);
+      html += '<div class="fragment">' +
+        '<span class="ts">' + ts + '</span> <span class="type">' + f.observation_type + '</span> &rarr; <span style="color:#bd965d">@' + f.target_handle + '</span>' +
         '<div class="body">"' + f.body + '"</div>' +
-        '<div class="conf">confidence: ' + (f.confidence||'medium') + '</div></div>';
+        '</div>';
     });
-  } catch(e) { console.error(e); }
+    c.innerHTML = html;
+  } catch(e) { console.error('loadFragments:', e); }
 }
 
 async function loadStats() {
-  if (!supabase) return;
   try {
-    const { count: tc } = await supabase.from('targets').select('*', { count:'exact', head:true });
-    const { count: fc } = await supabase.from('fragments').select('*', { count:'exact', head:true });
-    document.getElementById('stat-targets').textContent = tc || 0;
-    document.getElementById('stat-fragments').textContent = fc || 0;
-  } catch(e) { console.error(e); }
+    const tr = await fetch(API + '/targets?select=id', { headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Prefer': 'count=exact' } });
+    const fr = await fetch(API + '/fragments?select=id', { headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Prefer': 'count=exact' } });
+    const tc = tr.headers.get('content-range');
+    const fc = fr.headers.get('content-range');
+    const parseCount = (cr) => { if (!cr) return 0; const m = cr.match(/\/(\d+)/); return m ? parseInt(m[1]) : 0; };
+    document.getElementById('stat-targets').textContent = parseCount(tc);
+    document.getElementById('stat-fragments').textContent = parseCount(fc);
+  } catch(e) {
+    document.getElementById('stat-targets').textContent = '?';
+    document.getElementById('stat-fragments').textContent = '?';
+  }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const s = document.createElement('script');
-  s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
-  s.onload = () => {
-    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    loadProfiles();
-    loadFragments();
-    loadStats();
-  };
-  document.head.appendChild(s);
-});
+async function loadRecent() {
+  try {
+    const data = await q('/targets?select=display_handle,created_at&order=created_at.desc&limit=5');
+    if (!data || !data.length) return;
+    const el = document.getElementById('sidebar-recent');
+    el.innerHTML = data.map(t => {
+      const ago = Math.floor((Date.now() - new Date(t.created_at).getTime()) / 60000);
+      const when = ago < 60 ? ago + 'm ago' : Math.floor(ago/60) + 'h ago';
+      return '<div style="padding:2px 0;font-size:11px;color:#5a3a18;">@' + t.display_handle + ' <span style="color:#3a1a08">' + when + '</span></div>';
+    }).join('');
+  } catch(e) {}
+}
+
+// Init
+loadTargets();
+loadFragments();
+loadStats();
+loadRecent();
 </script>
 </body>
 </html>

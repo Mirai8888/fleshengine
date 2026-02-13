@@ -3,117 +3,311 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FLESHENGINE — Scanner</title>
+<title>人肉搜索 — Scanner</title>
 <style>
-body { background:#2a1408; color:#e8d5b5; font-family:'Trebuchet MS',Verdana,sans-serif; font-size:13px; line-height:1.5; margin:0; }
-a { color:#d4a76a; } a:visited { color:#b8894a; } a:hover { text-decoration:underline; }
-hr { border:none; border-top:1px solid #4a2a10; margin:12px 0; }
-#wrapper { width:760px; margin:0 auto; }
-#header { background:#1a0a02; border-bottom:2px solid #6b4420; padding:16px 20px; }
-#header h1 { font-family:Georgia,serif; font-size:28px; font-weight:normal; color:#c8a060; margin:0; letter-spacing:4px; }
-#header .subtitle { font-size:12px; color:#8a6a3a; margin-top:2px; }
-#nav { background:#3a1a08; border-bottom:1px solid #4a2a10; padding:4px 20px; font-size:11px; }
-#nav a { color:#a07840; margin-right:12px; text-decoration:none; } #nav a:hover { color:#e8d5b5; }
-#content { padding:16px 20px; }
-h2 { font-family:Georgia,serif; font-size:15px; font-weight:bold; color:#c8a060; border-bottom:1px solid #4a2a10; padding-bottom:4px; margin:16px 0 8px 0; }
-textarea { font-family:'Courier New',monospace; font-size:13px; background:#0e0600; color:#e8d5b5; border:1px solid #6b4420; padding:8px; width:100%; resize:vertical; }
-textarea:focus { outline:none; border-color:#c8a060; }
-button { font-family:Verdana,sans-serif; font-size:11px; background:#3a1a08; color:#c8a060; border:1px solid #6b4420; padding:6px 14px; cursor:pointer; margin-right:6px; }
-button:hover { background:#4a2a10; }
-#results { display:none; }
-.score-box { background:#1a0a02; border:1px solid #4a2a10; padding:10px 12px; margin:8px 0; }
-.score-box .big { font-family:Georgia,serif; font-size:24px; font-weight:bold; }
-.score-box .detail { font-size:12px; color:#8a6a3a; }
-.result-item { border-left:2px solid #4a2a10; padding:4px 0 4px 10px; margin:4px 0; font-size:12px; }
-.result-item .code { font-family:'Courier New',monospace; font-size:11px; }
-.result-item .ctx { font-family:'Courier New',monospace; font-size:10px; color:#8a6a3a; font-style:italic; }
-.sev-medium { color:#c89030; }
-.sev-high { color:#c8a060; }
-.sev-critical { color:#c04030; }
-#footer { background:#1a0a02; border-top:1px solid #4a2a10; padding:8px 20px; font-size:10px; color:#4a2a10; text-align:center; margin-top:16px; }
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+body {
+  background: #1a0a02;
+  color: #c8a878;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0; padding: 0;
+}
+::selection { background: #6b4420; color: #fee6cf; }
+a { color: #bd965d; text-decoration: none; }
+a:hover { color: #fee6cf; }
+#wrapper { max-width: 800px; margin: 0 auto; min-height: 100vh; }
+
+#header {
+  border-bottom: 1px solid #3a1a08;
+  padding: 40px 24px 20px;
+  text-align: center;
+}
+#header h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: #bd965d;
+  margin: 0;
+  letter-spacing: 8px;
+}
+#header .sub {
+  font-size: 11px;
+  color: #5a3a18;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+#nav {
+  text-align: center;
+  padding: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #2a1408;
+}
+#nav a { color: #6b4420; margin: 0 14px; }
+#nav a:hover { color: #bd965d; }
+
+#content { padding: 30px 24px; }
+
+h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b4420;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #2a1408;
+  padding-bottom: 6px;
+  margin: 30px 0 14px;
+}
+
+.intro {
+  font-style: italic;
+  color: #6b4420;
+  font-size: 14px;
+  margin-bottom: 20px;
+  border-left: 2px solid #2a1408;
+  padding-left: 14px;
+}
+
+textarea {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 15px;
+  background: #0e0600;
+  color: #c8a878;
+  border: 1px solid #2a1408;
+  padding: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 180px;
+  resize: vertical;
+}
+textarea::placeholder { color: #3a1a08; }
+textarea:focus { outline: none; border-color: #6b4420; }
+
+button {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  background: none;
+  color: #6b4420;
+  border: 1px solid #3a1a08;
+  padding: 8px 18px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+button:hover { color: #bd965d; border-color: #6b4420; }
+
+#results {
+  margin-top: 24px;
+  display: none;
+}
+.result-summary {
+  background: #0e0600;
+  border: 1px solid #2a1408;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.result-score {
+  font-family: 'Cinzel', serif;
+  font-size: 42px;
+  color: #bd965d;
+  line-height: 1;
+}
+.result-score.high { color: #8a3a2a; }
+.result-score.med { color: #a07840; }
+.result-label {
+  font-size: 10px;
+  color: #5a3a18;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.detection {
+  background: #0e0600;
+  border: 1px solid #2a1408;
+  padding: 12px 14px;
+  margin: 8px 0;
+}
+.detection .code {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: #5a3a18;
+}
+.detection .name {
+  font-size: 14px;
+  color: #bd965d;
+  margin: 2px 0;
+}
+.detection .name.high { color: #8a3a2a; }
+.detection .desc {
+  font-size: 13px;
+  color: #6b4420;
+  font-style: italic;
+}
+.detection .matches {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #5a3a18;
+}
+.detection .match-item {
+  border-left: 2px solid #2a1408;
+  padding-left: 10px;
+  margin: 4px 0;
+}
+
+.examples {
+  margin-top: 20px;
+}
+.example-btn {
+  font-family: 'EB Garamond', serif;
+  font-size: 12px;
+  background: none;
+  color: #5a3a18;
+  border: 1px solid #2a1408;
+  padding: 4px 10px;
+  cursor: pointer;
+  margin: 0 4px 4px 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.example-btn:hover { color: #bd965d; border-color: #6b4420; }
+
+#footer {
+  border-top: 1px solid #2a1408;
+  padding: 20px 24px;
+  text-align: center;
+  font-size: 10px;
+  color: #2a1408;
+  letter-spacing: 2px;
+}
 </style>
 </head>
 <body>
+
 <div id="wrapper">
+
 <div id="header">
   <h1>人肉搜索</h1>
-  <div class="subtitle">FLESHENGINE &mdash; influence scanner</div>
+  <div class="sub">the flesh remembers what the profile deletes</div>
 </div>
+
 <div id="nav">
-  <a href="index.html">Home</a>
+  <a href="index.html">Index</a>
   <a href="scanner.html">Scanner</a>
   <a href="about.html">About</a>
   <a href="https://github.com/Mirai8888/fleshengine">Source</a>
 </div>
+
 <div id="content">
 
-<h2>Influence Scanner</h2>
-<p>Paste text. Identify influence vectors. Runs in your browser. Nothing transmitted.</p>
+  <h2>Influence Scanner</h2>
 
-<textarea id="scan-input" rows="14" placeholder="paste content here..."></textarea>
-<br><br>
-<button onclick="runScan()">Analyze</button>
-<button onclick="loadExample()">Load Example</button>
+  <div class="intro">Paste any text. A tweet, an article, a message someone sent you at 3 AM. The scanner identifies which vectors are active. It runs entirely in your browser. Nothing leaves your machine.</div>
 
-<div id="results">
-<hr>
-<h2>Results</h2>
-<div class="score-box" id="score-box"></div>
-<h2>Detected Vectors</h2>
-<div id="vectors-display"></div>
+  <textarea id="scan-input" placeholder="Paste the text you want analyzed..."></textarea>
+  <button onclick="runScan()">Analyze</button>
+
+  <div class="examples">
+    <button class="example-btn" onclick="loadExample(0)">Propaganda excerpt</button>
+    <button class="example-btn" onclick="loadExample(1)">Recruitment message</button>
+    <button class="example-btn" onclick="loadExample(2)">Fear campaign</button>
+    <button class="example-btn" onclick="loadExample(3)">Conspiracy thread</button>
+    <button class="example-btn" onclick="loadExample(4)">Corporate manipulation</button>
+  </div>
+
+  <div id="results">
+    <div class="result-summary">
+      <div class="result-score" id="r-score">0</div>
+      <div class="result-label">vectors detected</div>
+    </div>
+    <div id="detections"></div>
+  </div>
+
 </div>
 
+<div id="footer">
+  人肉搜索 &middot; FLESHENGINE &middot; the crowd sees what the algorithm misses
 </div>
-<div id="footer">人肉搜索 // FLESHENGINE // &copy; 2024-2026</div>
+
 </div>
 
 <script>
-const FE={
-'FE-001':{name:'Narrative Framing',sev:'medium',kw:['narrative','framing','reframe','story','believe','truth claim','manufactured consent','echo chamber']},
-'FE-002':{name:'Repetition Saturation',sev:'medium',kw:['repetition','always','never','every time','constant','drumbeat','saturate','flood']},
-'FE-003':{name:'Audience Conditioning',sev:'high',kw:['prime','prepare','condition','normalize','desensitize','gradual','incremental','seed']},
-'FE-004':{name:'Loyalty Exploitation',sev:'high',kw:['loyalty','pledge','oath','commitment','sacrifice','devotion','belong','identity']},
-'FE-005':{name:'Identity Manipulation',sev:'critical',kw:['us vs them','tribe','in-group','out-group','traitor','real identity','true believer']},
-'FE-006':{name:'Manufactured Consensus',sev:'high',kw:['everyone knows','most people','studies show','experts agree','the science','overwhelming']},
-'FE-007':{name:'Viral Propagation',sev:'critical',kw:['share this','spread the word','viral','tell everyone','wake up','red pill','open your eyes']},
-'FE-008':{name:'Urgency Fabrication',sev:'high',kw:['urgent','running out of time','now or never','before it\'s too late','ticking clock','deadline']},
-'FE-009':{name:'Attention Redirection',sev:'critical',kw:['look here not there','distract','deflect','whatabout','pivot','nothing to see']},
-'FE-010':{name:'Reality Distortion',sev:'critical',kw:['reality','what\'s really happening','hidden truth','they don\'t want you to know','cover up','false flag']},
-'FE-011':{name:'Cognitive Overload',sev:'critical',kw:['can\'t think','overwhelm','confusion','contradiction','gaslight','doubt yourself']},
-'FE-012':{name:'Existential Threat Framing',sev:'critical',kw:['survival','extinction','end times','apocalypse','civilization','future of humanity','no choice']}
-};
-function runScan(){
-const text=document.getElementById('scan-input').value;
-if(!text.trim())return;
-const results={};let total=0;
-for(const[code,pat]of Object.entries(FE)){
-const escaped=pat.kw.map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
-const re=new RegExp('\\b('+escaped.join('|')+')\\b','gi');
-let m,count=0,examples=[];
-while((m=re.exec(text))!==null){count++;if(examples.length<2){examples.push(text.substring(Math.max(0,m.index-25),Math.min(text.length,m.index+m[0].length+25)).trim());}}
-if(count>0){results[code]={name:pat.name,sev:pat.sev,count,examples};total+=count;}
+const EXAMPLES = [
+  "The mainstream media won't tell you this, but everyone who's paying attention already knows. The evidence is overwhelming and undeniable. Share this before they take it down. They're actively suppressing this information because it threatens everything they've built. Wake up. Time is running out.",
+  "Hey, I noticed you've been posting some really interesting stuff lately. You clearly get it in a way most people don't. We have a private group of people who think like you. No pressure, but I think you'd be a perfect fit. Most people aren't ready for this kind of conversation. You are.",
+  "BREAKING: New data confirms what experts feared. The situation is worse than anyone predicted. Your family is at risk RIGHT NOW. The government is covering up the real numbers. You have 48 hours to prepare. Share this with everyone you love before it's too late. This is not a drill.",
+  "Think about it. Every single time, the same pattern. The same people. The same connections. Exposed exposed exposed. They told you it was a conspiracy theory. Now look. Follow the money. Connect the dots. Nothing is coincidence. Once you see it you can't unsee it. The sleeping masses will catch up eventually.",
+  "At our company, we don't just have employees. We have a family. When you join us, you join a movement that's changing the world. Our founder's visionary leadership has created a culture of radical transparency and unconditional trust. We ask a lot because we give everything. Those who can't keep up simply weren't meant for greatness."
+];
+
+const FE = [
+  { code:'FE-001', name:'Narrative Framing', patterns:[/mainstream media/i,/they don'?t want you to know/i,/the real story/i,/what they'?re not telling/i,/hidden truth/i,/cover[- ]?up/i,/the narrative/i,/official story/i,/suppressing/i,/won'?t tell you/i] },
+  { code:'FE-002', name:'Repetition Saturation', patterns:[/exposed exposed/i,/\b(\w+)\s+\1\s+\1\b/i,/again and again/i,/over and over/i,/exposed exposed/i] },
+  { code:'FE-003', name:'Audience Conditioning', patterns:[/everyone knows/i,/people who think like/i,/already knows/i,/if you understand/i,/people who get it/i,/paying attention/i,/those who see/i,/the awake/i,/ready for this/i,/most people aren'?t/i] },
+  { code:'FE-004', name:'Loyalty Exploitation', patterns:[/family/i,/trust/i,/loyalty/i,/one of us/i,/betray/i,/unconditional/i,/movement/i,/true believer/i,/you'?re special/i,/perfect fit/i] },
+  { code:'FE-005', name:'Identity Manipulation', patterns:[/you clearly get it/i,/not like (the )?others/i,/meant for greatness/i,/you'?re different/i,/real .*(patriot|american|thinker)/i,/your identity/i,/who you really are/i,/you understand/i] },
+  { code:'FE-006', name:'Manufactured Consensus', patterns:[/everyone (agrees|knows|sees)/i,/millions of people/i,/the people have spoken/i,/undeniable/i,/overwhelming/i,/no one disagrees/i,/obvious to anyone/i,/evidence is overwhelming/i] },
+  { code:'FE-007', name:'Viral Propagation', patterns:[/share this/i,/spread the word/i,/retweet/i,/tell everyone/i,/before they (delete|remove|take)/i,/going viral/i,/must see/i,/tag someone/i,/before it'?s too late/i] },
+  { code:'FE-008', name:'Urgency Fabrication', patterns:[/right now/i,/breaking/i,/urgent/i,/act now/i,/time is running out/i,/48 hours/i,/last chance/i,/this is not a drill/i,/immediately/i,/emergency/i] },
+  { code:'FE-009', name:'Attention Redirection', patterns:[/look over here/i,/distract/i,/what they don'?t want you (to see|looking at)/i,/pay no attention/i,/focus on/i,/the real issue/i,/think about it/i,/follow the money/i,/connect the dots/i] },
+  { code:'FE-010', name:'Reality Distortion', patterns:[/nothing is (a )?coincidence/i,/once you see it/i,/can'?t unsee/i,/the matrix/i,/simulation/i,/illusion/i,/open your eyes/i,/wake up/i,/red pill/i,/conspiracy theory.*now look/i] },
+  { code:'FE-011', name:'Cognitive Overload', patterns:[/exposed exposed exposed/i,/exposed\s/i,/exposed/gi,/bombshell/i,/shocking/i,/you won'?t believe/i,/mind[- ]?blow/i,/jaw[- ]?drop/i] },
+  { code:'FE-012', name:'Existential Threat Framing', patterns:[/your family is at risk/i,/children are in danger/i,/end of .*(world|civilization|society)/i,/extinction/i,/survive/i,/threat to everything/i,/threatens everything/i,/worse than anyone/i] },
+];
+
+function runScan() {
+  const text = document.getElementById('scan-input').value.trim();
+  if (!text) return;
+
+  const hits = [];
+  FE.forEach(v => {
+    const matched = [];
+    v.patterns.forEach(p => {
+      const m = text.match(p);
+      if (m) matched.push(m[0]);
+    });
+    if (matched.length) {
+      hits.push({ ...v, matches: [...new Set(matched)] });
+    }
+  });
+
+  const resultsEl = document.getElementById('results');
+  const scoreEl = document.getElementById('r-score');
+  const detectEl = document.getElementById('detections');
+
+  scoreEl.textContent = hits.length;
+  scoreEl.className = 'result-score' + (hits.length >= 6 ? ' high' : hits.length >= 3 ? ' med' : '');
+
+  detectEl.innerHTML = '';
+  if (!hits.length) {
+    detectEl.innerHTML = '<div style="color:#5a3a18;font-style:italic;padding:10px 0;">No vectors detected. Either this text is clean, or the patterns are more subtle than the scanner can catch. Trust your instincts.</div>';
+  } else {
+    hits.forEach(h => {
+      let html = '<div class="detection">';
+      html += '<span class="code">' + h.code + '</span>';
+      html += '<div class="name' + (h.matches.length >= 3 ? ' high' : '') + '">' + h.name + '</div>';
+      html += '<div class="matches">';
+      h.matches.forEach(m => {
+        html += '<div class="match-item">"' + m + '"</div>';
+      });
+      html += '</div></div>';
+      detectEl.innerHTML += html;
+    });
+  }
+
+  resultsEl.style.display = 'block';
 }
-const words=text.split(/\s+/).length||1;
-const density=total/words;
-const vectors=Object.keys(results).length;
-const hasCrit=Object.values(results).some(r=>r.sev==='critical');
-const score=Math.min(100,Math.round((density*2000)+(vectors*5)+(hasCrit?15:0)));
-const lvl=score<20?'LOW':score<45?'MEDIUM':score<70?'HIGH':'CRITICAL';
-const lvlClass=score<20?'sev-medium':score<45?'sev-medium':score<70?'sev-high':'sev-critical';
-document.getElementById('score-box').innerHTML='<span class="big '+lvlClass+'">'+score+'</span><span class="detail"> /100 ['+lvl+'] &mdash; '+vectors+'/12 vectors, '+total+' matches, '+words+' words</span>';
-const vd=document.getElementById('vectors-display');vd.innerHTML='';
-const sorted=Object.entries(results).sort((a,b)=>b[1].count-a[1].count);
-for(const[code,info]of sorted){
-let html='<div class="result-item"><span class="code sev-'+info.sev+'">'+code+'</span> '+info.name+' <span style="color:#6b4420">[x'+info.count+'] ['+info.sev+']</span>';
-for(const ex of info.examples){html+='<br><span class="ctx">"...'+ex.replace(/</g,'&lt;')+'..."</span>';}
-html+='</div>';vd.innerHTML+=html;
-}
-if(!sorted.length){vd.innerHTML='<p style="color:#6b4420">No vectors detected.</p>';}
-document.getElementById('results').style.display='block';
-}
-function loadExample(){
-document.getElementById('scan-input').value="URGENT: Share this before they take it down. The hidden truth about what's really happening is being covered up by the mainstream narrative. Everyone knows the experts are lying to us. We are running out of time. This is about the survival of civilization itself. Wake up and open your eyes. They don't want you to know the reality of the situation. You're either with us or against us. True believers must spread the word and pledge their loyalty. The science is settled and most people already understand this. Before it's too late, tell everyone you know. This is not a drill. Our identity as a people is under existential threat and there is no choice but to act now.";
-runScan();
+
+function loadExample(n) {
+  document.getElementById('scan-input').value = EXAMPLES[n];
+  runScan();
 }
 </script>
 </body>
