@@ -3,215 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FLESHENGINE — TARGET: @narrative_ops</title>
+<title>FLESHENGINE — Target Profile</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #2a1408;
-  --bg-deep: #1e0e05;
-  --bg-card: #38160d;
-  --text: #fee6cf;
-  --text-dim: #c8882a;
-  --gold: #bd965d;
-  --gold-bright: #cca800;
-  --gold-dark: #a57125;
-  --link: #db956a;
-  --link-visited: #c8882a;
-  --border: #907e2f;
-  --border-dim: #5a3a1a;
-  --green: #6b8a3d;
-  --warn: #c87830;
-  --crit: #a83020;
+  --bg: #2a1408; --bg-deep: #1e0e05; --bg-card: #38160d;
+  --text: #fee6cf; --text-dim: #c8882a;
+  --gold: #bd965d; --gold-bright: #cca800; --gold-dark: #a57125;
+  --link: #db956a; --link-visited: #c8882a;
+  --border: #907e2f; --border-dim: #5a3a1a;
+  --green: #6b8a3d; --warn: #c87830; --crit: #a83020;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: 'EB Garamond', 'Times New Roman', Georgia, serif;
-  font-size: 15px;
-  line-height: 1.6;
-  background: var(--bg);
-  color: var(--text);
-}
+body { font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.6; background: var(--bg); color: var(--text); }
 a { color: var(--link); text-decoration: none; }
 a:visited { color: var(--link-visited); }
 a:hover { color: var(--text); }
-.container { max-width: 820px; margin: 0 auto; padding: 20px 24px; }
-hr { border: 0; border-top: 1px solid var(--border-dim); margin: 28px 0; }
-h1 {
-  font-family: 'Cinzel', serif;
-  font-size: 22px; font-weight: 700;
-  letter-spacing: 4px; color: var(--gold);
-}
+.container { max-width: 860px; margin: 0 auto; padding: 28px; }
+hr { border: 0; border-top: 1px solid var(--border-dim); margin: 32px 0; }
+h1 { font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700; letter-spacing: 4px; color: var(--gold); }
 h1 .handle { font-family: 'Courier New', monospace; color: var(--text); }
-h2 {
-  font-family: 'Cinzel', serif;
-  font-size: 14px; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 16px;
-  padding-bottom: 6px; border-bottom: 1px solid var(--border-dim);
-}
-.nav {
-  font-family: 'Cinzel', serif;
-  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 12px;
-}
-.nav a { color: var(--gold-dark); margin-right: 8px; }
+h2 { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; padding-bottom: 8px; border-bottom: 1px solid var(--border-dim); }
+.nav { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+.nav a { color: var(--gold-dark); margin-right: 10px; }
 .nav a:hover { color: var(--gold); }
 
-/* META CARD */
-.meta-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  padding: 18px 22px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 20px;
-}
-.meta-rows { display: grid; gap: 6px; }
-.meta-row { display: flex; gap: 12px; font-size: 14px; }
-.meta-label { color: var(--gold-dark); min-width: 130px; }
+.meta-card { background: var(--bg-card); border: 1px solid var(--border); padding: 20px 24px; display: grid; grid-template-columns: 1fr auto; gap: 20px; }
+.meta-rows { display: grid; gap: 8px; }
+.meta-row { display: flex; gap: 14px; font-size: 16px; }
+.meta-label { color: var(--gold-dark); min-width: 140px; }
 .meta-value { color: var(--text); }
 .meta-value.active { color: var(--green); }
 .score-box { text-align: center; }
-.score-num {
-  font-family: 'Cinzel', serif;
-  font-size: 48px; font-weight: 700;
-  color: var(--gold-bright);
-  line-height: 1;
-}
-.score-label {
-  font-size: 10px; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--gold-dark);
-  margin-top: 4px;
-}
+.score-num { font-family: 'Cinzel', serif; font-size: 52px; font-weight: 700; color: var(--gold-bright); line-height: 1; }
+.score-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dark); margin-top: 4px; }
 
-/* VULNERABILITY BARS */
-.vuln-grid { display: grid; gap: 6px; }
-.vuln-row {
-  display: grid;
-  grid-template-columns: 200px 1fr 40px;
-  gap: 12px;
-  align-items: center;
-  font-size: 13px;
-}
-.vuln-code { color: var(--gold-dark); font-family: 'Courier New', monospace; font-size: 11px; }
+.vuln-grid { display: grid; gap: 8px; }
+.vuln-row { display: grid; grid-template-columns: 220px 1fr 44px; gap: 14px; align-items: center; font-size: 15px; }
+.vuln-code { color: var(--gold-dark); font-family: 'Courier New', monospace; font-size: 12px; }
 .vuln-name { color: var(--text-dim); }
-.vuln-bar-outer {
-  background: var(--bg-deep);
-  height: 14px;
-  border: 1px solid var(--border-dim);
-  position: relative;
-}
+.vuln-bar-outer { background: var(--bg-deep); height: 16px; border: 1px solid var(--border-dim); }
 .vuln-bar-inner { height: 100%; transition: width 0.5s; }
-.vuln-score { color: var(--text); text-align: right; font-size: 12px; font-weight: 600; }
+.vuln-score { color: var(--text); text-align: right; font-size: 14px; font-weight: 600; }
 .bar-low { background: var(--border-dim); }
 .bar-med { background: var(--warn); }
 .bar-high { background: var(--gold-bright); }
 .bar-crit { background: #a83020; }
 
-/* COMM STYLE */
-.comm-row {
-  display: grid;
-  grid-template-columns: 200px 50px 1fr;
-  gap: 12px;
-  align-items: center;
-  font-size: 13px;
-  margin-bottom: 4px;
-}
-.comm-name { color: var(--text-dim); }
-.comm-weight { color: var(--text); text-align: right; font-size: 12px; }
-.comm-bar-outer {
-  background: var(--bg-deep);
-  height: 10px;
-  border: 1px solid var(--border-dim);
-}
-.comm-bar-inner { height: 100%; background: var(--gold); }
-
-/* NETWORK CARD */
-.network-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-dim);
-  padding: 16px 20px;
-  font-size: 13px;
-  line-height: 1.8;
-}
-.network-card .label { color: var(--gold-dark); }
-.network-card .val { color: var(--text); }
-.network-card .alert { color: var(--gold-bright); font-weight: 600; }
-
-/* FRAGMENTS */
-.fragment {
-  background: var(--bg-card);
-  border: 1px solid var(--border-dim);
-  border-left: 3px solid var(--border);
-  padding: 12px 16px;
-  margin-bottom: 10px;
-}
-.fragment-header {
-  font-size: 11px; color: var(--gold-dark);
-  font-family: 'Courier New', monospace; margin-bottom: 6px;
-}
-.fragment-body { font-size: 13px; color: var(--text-dim); font-style: italic; line-height: 1.5; }
-.fragment-confidence { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; }
+.fragment { background: var(--bg-card); border: 1px solid var(--border-dim); border-left: 3px solid var(--border); padding: 14px 18px; margin-bottom: 12px; }
+.fragment-header { font-size: 12px; color: var(--gold-dark); font-family: 'Courier New', monospace; margin-bottom: 6px; }
+.fragment-body { font-size: 16px; color: var(--text-dim); font-style: italic; line-height: 1.5; }
+.fragment-confidence { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; }
 .conf-high { color: var(--gold-bright); }
 .conf-medium { color: var(--gold-dark); }
 .conf-low { color: var(--border); }
 
-/* CONTRIBUTE FORM */
-.contribute-form {
-  background: var(--bg-card);
-  border: 1px solid var(--border-dim);
-  padding: 18px 22px;
-}
-.form-row { display: grid; grid-template-columns: 110px 1fr; gap: 12px; margin-bottom: 10px; align-items: start; }
-.form-label { font-size: 12px; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 1px; padding-top: 8px; }
+.contribute-form { background: var(--bg-card); border: 1px solid var(--border-dim); padding: 20px 24px; }
+.form-row { display: grid; grid-template-columns: 120px 1fr; gap: 14px; margin-bottom: 12px; align-items: start; }
+.form-label { font-size: 13px; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 1px; padding-top: 10px; }
 textarea, input[type="url"], input[type="text"], select {
-  font-family: 'Courier New', monospace;
-  font-size: 13px;
-  background: var(--bg-deep);
-  color: var(--text);
-  border: 1px solid var(--border-dim);
-  padding: 8px 10px;
-  width: 100%;
+  font-family: 'Courier New', monospace; font-size: 15px;
+  background: var(--bg-deep); color: var(--text);
+  border: 1px solid var(--border-dim); padding: 10px 12px; width: 100%;
 }
 textarea { resize: vertical; }
-select { width: auto; min-width: 200px; }
+select { width: auto; min-width: 220px; }
 textarea:focus, input:focus, select:focus { outline: none; border-color: var(--gold); }
 input[type="submit"] {
-  font-family: 'Cinzel', serif;
-  font-size: 11px; font-weight: 700;
-  background: var(--border-dim);
-  color: var(--gold);
-  border: 1px solid var(--border);
-  padding: 10px 20px;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 3px;
+  font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700;
+  background: var(--border-dim); color: var(--gold);
+  border: 1px solid var(--border); padding: 12px 24px;
+  cursor: pointer; text-transform: uppercase; letter-spacing: 3px;
 }
 input[type="submit"]:hover { background: var(--gold); color: var(--bg-deep); }
-#frag-msg {
-  display: none;
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  color: var(--green);
-  padding: 12px;
-  background: var(--bg-deep);
-  border: 1px solid var(--border-dim);
-  margin-top: 12px;
-}
+#frag-msg { display: none; font-size: 15px; padding: 14px; background: var(--bg-deep); border: 1px solid var(--border-dim); margin-top: 14px; }
+#frag-msg.success { color: var(--green); border-color: var(--green); }
+#frag-msg.error { color: #a83020; border-color: #a83020; }
 
-/* ASSESSMENT */
-.assessment {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  padding: 18px 22px;
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--text-dim);
-}
+.assessment { background: var(--bg-card); border: 1px solid var(--border); padding: 20px 24px; font-size: 17px; line-height: 1.7; color: var(--text-dim); }
 .assessment strong { color: var(--text); }
-.assessment .crit { color: var(--gold-bright); font-weight: 600; }
 
-.footer { font-size: 11px; color: var(--border-dim); font-style: italic; }
+.empty-state { background: var(--bg-card); border: 1px solid var(--border-dim); padding: 36px 28px; text-align: center; color: var(--gold-dark); font-style: italic; font-size: 17px; }
+.footer { font-size: 13px; color: var(--border-dim); font-style: italic; }
+
+@media (max-width: 600px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .vuln-row { grid-template-columns: 1fr; gap: 4px; }
+  .form-row { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -226,20 +105,20 @@ input[type="submit"]:hover { background: var(--gold); color: var(--bg-deep); }
 
 <hr>
 
-<h1>TARGET: <span class="handle">@narrative_ops</span></h1>
+<h1>TARGET: <span class="handle" id="target-handle">Loading...</span></h1>
 
 <br>
 
-<div class="meta-card">
+<div class="meta-card" id="meta-card">
   <div class="meta-rows">
-    <div class="meta-row"><span class="meta-label">Status</span><span class="meta-value active">Active Collection</span></div>
-    <div class="meta-row"><span class="meta-label">Fragments</span><span class="meta-value">1,203</span></div>
-    <div class="meta-row"><span class="meta-label">Contributors</span><span class="meta-value">47</span></div>
-    <div class="meta-row"><span class="meta-label">First Scan</span><span class="meta-value">2026-01-15 09:22:41 UTC</span></div>
-    <div class="meta-row"><span class="meta-label">Last Update</span><span class="meta-value" style="font-family:'Courier New',monospace;font-size:13px">2026-02-13 01:47:22 UTC</span></div>
+    <div class="meta-row"><span class="meta-label">Status</span><span class="meta-value" id="meta-status">—</span></div>
+    <div class="meta-row"><span class="meta-label">Fragments</span><span class="meta-value" id="meta-fragments">0</span></div>
+    <div class="meta-row"><span class="meta-label">Contributors</span><span class="meta-value" id="meta-contributors">0</span></div>
+    <div class="meta-row"><span class="meta-label">Submitted</span><span class="meta-value" id="meta-created">—</span></div>
+    <div class="meta-row"><span class="meta-label">Last Update</span><span class="meta-value" id="meta-updated">—</span></div>
   </div>
   <div class="score-box">
-    <div class="score-num">88</div>
+    <div class="score-num" id="meta-score">—</div>
     <div class="score-label">Threat Score</div>
   </div>
 </div>
@@ -248,90 +127,15 @@ input[type="submit"]:hover { background: var(--gold); color: var(--bg-deep); }
 
 <h2>Influence Vulnerability Surface</h2>
 
-<div class="vuln-grid">
-  <div class="vuln-row"><div><span class="vuln-code">FE-001</span> <span class="vuln-name">Narrative Framing</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-med" style="width:71%"></div></div><div class="vuln-score">71</div></div>
-  <div class="vuln-row"><div><span class="vuln-code">FE-002</span> <span class="vuln-name">Repetition Saturation</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-crit" style="width:85%"></div></div><div class="vuln-score">85</div></div>
-  <div class="vuln-row"><div><span class="vuln-code">FE-003</span> <span class="vuln-name">Audience Conditioning</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-med" style="width:62%"></div></div><div class="vuln-score">62</div></div>
-  <div class="vuln-row"><div><span class="vuln-code">FE-004</span> <span class="vuln-name">Loyalty Exploitation</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-low" style="width:31%"></div></div><div class="vuln-score">31</div></div>
-  <div class="vuln-row"><div><span class="vuln-code">FE-005</span> <span class="vuln-name">Identity Manipulation</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-med" style="width:68%"></div></div><div class="vuln-score">68</div></div>
-  <div class="vuln-row"><div><span class="vuln-code">FE-006</span> <span class="vuln-name">Manufactured Consensus</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-crit" style="width:82%"></div></div><div class="vuln-score">82</div></div>
-  <div class="vuln-row"><div><span class="vuln-code">FE-007</span> <span class="vuln-name">Viral Propagation</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-crit" style="width:92%"></div></div><div class="vuln-score">92</div></div>
-  <div class="vuln-row"><div><span class="vuln-code">FE-008</span> <span class="vuln-name">Urgency Fabrication</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-med" style="width:67%"></div></div><div class="vuln-score">67</div></div>
-  <div class="vuln-row"><div><span class="vuln-code">FE-009</span> <span class="vuln-name">Attention Redirection</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-crit" style="width:87%"></div></div><div class="vuln-score">87</div></div>
-  <div class="vuln-row"><div><span class="vuln-code">FE-010</span> <span class="vuln-name">Reality Distortion</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-crit" style="width:89%"></div></div><div class="vuln-score">89</div></div>
-  <div class="vuln-row"><div><span class="vuln-code">FE-011</span> <span class="vuln-name">Cognitive Overload</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-med" style="width:55%"></div></div><div class="vuln-score">55</div></div>
-  <div class="vuln-row"><div><span class="vuln-code">FE-012</span> <span class="vuln-name">Existential Threat Framing</span></div><div class="vuln-bar-outer"><div class="vuln-bar-inner bar-low" style="width:42%"></div></div><div class="vuln-score">42</div></div>
-</div>
-
-<hr>
-
-<h2>Communication Style</h2>
-
-<div>
-  <div class="comm-row"><span class="comm-name">Analytical / Observational</span><span class="comm-weight">0.08</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:8%"></div></div></div>
-  <div class="comm-row"><span class="comm-name">Passionate / Advocacy</span><span class="comm-weight">0.34</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:34%"></div></div></div>
-  <div class="comm-row"><span class="comm-name">Technical / Insider</span><span class="comm-weight">0.12</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:12%"></div></div></div>
-  <div class="comm-row"><span class="comm-name">Contrarian / Provocative</span><span class="comm-weight">0.28</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:28%"></div></div></div>
-  <div class="comm-row"><span class="comm-name">Nurturing / Community</span><span class="comm-weight">0.04</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:4%"></div></div></div>
-  <div class="comm-row"><span class="comm-name">Authoritative / Declarative</span><span class="comm-weight">0.11</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:11%"></div></div></div>
-  <div class="comm-row"><span class="comm-name">Ironic / Detached</span><span class="comm-weight">0.03</span><div class="comm-bar-outer"><div class="comm-bar-inner" style="width:3%"></div></div></div>
-</div>
-
-<hr>
-
-<h2>Network Position</h2>
-
-<div class="network-card">
-  <span class="label">Community:</span> <span class="val">Cluster 2 (Geopolitical / Information Operations)</span><br>
-  <span class="label">PageRank:</span> <span class="val">0.0089</span> (top 4% of mapped network)<br>
-  <span class="label">Betweenness:</span> <span class="val">0.0142</span> <span class="alert">BRIDGE ACCOUNT</span><br>
-  <span class="label">In-Degree:</span> <span class="val">2,847</span> followers within mapped network<br>
-  <span class="label">Out-Degree:</span> <span class="val">412</span> following within mapped network<br>
-  <span class="label">Mutual:</span> <span class="val">89</span> bidirectional connections<br><br>
-  <span class="alert">BRIDGE STATUS: HIGH VALUE TARGET</span><br>
-  <span class="label">Connects:</span> Cluster 2 (Geopolitical) &#8596; Cluster 4 (Crypto/Finance)<br>
-  <span style="margin-left:72px">Cluster 2 (Geopolitical) &#8596; Cluster 1 (Media/Journalism)</span><br><br>
-  <em style="color:var(--gold-dark)">Content from this node bypasses community immune responses in at least 2 adjacent clusters.</em>
-</div>
+<div class="vuln-grid" id="vuln-grid"></div>
 
 <hr>
 
 <h2>Intelligence Fragments</h2>
 
-<div class="fragment">
-  <div class="fragment-header">[2026-02-13 01:47:22] CONTRIBUTOR #4421 &rarr; behavioral_pattern</div>
-  <div class="fragment-body">"Posting frequency increases 340% within 2hrs of any NATO announcement. Content pre-drafted. Coordination probable. Compared timestamps of 14 posts against NATO press release schedule: average lag 23 minutes."</div>
-  <div class="fragment-confidence conf-high">Confidence: HIGH</div>
-</div>
-
-<div class="fragment">
-  <div class="fragment-header">[2026-02-12 19:33:10] CONTRIBUTOR #1102 &rarr; narrative_shift</div>
-  <div class="fragment-body">"Vocabulary pivot detected week of Jan 27. Previously used 'conflict', switched to 'regime operation' across all Ukraine-related content simultaneously. 47 posts analyzed."</div>
-  <div class="fragment-confidence conf-high">Confidence: HIGH</div>
-</div>
-
-<div class="fragment">
-  <div class="fragment-header">[2026-02-12 14:05:33] CONTRIBUTOR #0091 &rarr; relationship_dynamic</div>
-  <div class="fragment-body">"Amplifies @media_bureau_7 content within 15min of posting. Never interacts publicly. No mutual follows visible. Parallel posting on same topics 3x this week."</div>
-  <div class="fragment-confidence conf-medium">Confidence: MEDIUM</div>
-</div>
-
-<div class="fragment">
-  <div class="fragment-header">[2026-02-11 22:18:44] CONTRIBUTOR #3309 &rarr; tone_analysis</div>
-  <div class="fragment-body">"Emotional register shifts from analytical to urgent when topic = energy policy. Specific trigger: any mention of Nordstream. 8 instances documented."</div>
-  <div class="fragment-confidence conf-high">Confidence: HIGH</div>
-</div>
-
-<div class="fragment">
-  <div class="fragment-header">[2026-02-10 16:42:01] CONTRIBUTOR #2847 &rarr; network_activity</div>
-  <div class="fragment-body">"Gained 340 followers in 48hrs following retweet by @policy_think_dc. Follower accounts show creation date clustering (60% created Oct-Nov 2025). Possible synthetic amplification network."</div>
-  <div class="fragment-confidence conf-medium">Confidence: MEDIUM</div>
-</div>
-
-<div class="fragment">
-  <div class="fragment-header">[2026-02-09 08:11:55] CONTRIBUTOR #0444 &rarr; behavioral_pattern</div>
-  <div class="fragment-body">"Goes silent 00:00-06:00 UTC consistently except during active geopolitical events. Timezone suggests Eastern Europe or Western Russia. Correlate with other fragments."</div>
-  <div class="fragment-confidence conf-low">Confidence: LOW</div>
+<div id="fragments-container">
+  <div class="empty-state" id="fragments-empty">No fragments submitted yet for this target.</div>
+  <div id="fragments-list" style="display:none"></div>
 </div>
 
 <hr>
@@ -339,55 +143,40 @@ input[type="submit"]:hover { background: var(--gold); color: var(--bg-deep); }
 <h2>Contribute Observation</h2>
 
 <div class="contribute-form">
-<form onsubmit="submitFragment(event)">
+<form id="fragment-form" onsubmit="submitFragment(event)">
+  <input type="hidden" id="frag-target-id" value="">
+  <input type="hidden" id="frag-target-handle" value="">
   <div class="form-row"><span class="form-label">Type</span>
     <select id="obs-type">
-      <option value="behavioral_pattern">behavioral_pattern</option>
-      <option value="relationship_dynamic">relationship_dynamic</option>
-      <option value="narrative_shift">narrative_shift</option>
-      <option value="tone_analysis">tone_analysis</option>
-      <option value="network_activity">network_activity</option>
-      <option value="other">other</option>
+      <option value="behavioral_pattern">Behavioral Pattern</option>
+      <option value="relationship_dynamic">Relationship Dynamic</option>
+      <option value="narrative_shift">Narrative Shift</option>
+      <option value="tone_analysis">Tone Analysis</option>
+      <option value="network_activity">Network Activity</option>
+      <option value="other">Other</option>
     </select>
   </div>
-  <div class="form-row"><span class="form-label">Observation</span><textarea id="obs-text" rows="4" maxlength="500" placeholder="Describe what you observed (500 char max)"></textarea></div>
-  <div class="form-row"><span class="form-label">Evidence</span><input type="url" id="obs-evidence" placeholder="Link to specific post or content"></div>
-  <div class="form-row"><span class="form-label">Timeframe</span><input type="text" id="obs-time" placeholder="When was this observed"></div>
+  <div class="form-row"><span class="form-label">Observation</span><textarea id="obs-text" rows="4" maxlength="1000" placeholder="Describe what you observed"></textarea></div>
+  <div class="form-row"><span class="form-label">Evidence</span><input type="url" id="obs-evidence" placeholder="Link to specific post or content (optional)"></div>
+  <div class="form-row"><span class="form-label">Timeframe</span><input type="text" id="obs-time" placeholder="When was this observed (optional)"></div>
   <div class="form-row"><span class="form-label">Confidence</span>
     <select id="obs-conf">
-      <option value="low">low</option>
-      <option value="medium" selected>medium</option>
-      <option value="high">high</option>
+      <option value="low">Low</option>
+      <option value="medium" selected>Medium</option>
+      <option value="high">High</option>
     </select>
   </div>
-  <div style="margin-top:14px"><input type="submit" value="Submit Fragment"></div>
+  <div style="margin-top:16px"><input type="submit" value="Submit Fragment"></div>
 </form>
-<div id="frag-msg">&#9608; FRAGMENT RECORDED. CONTRIBUTOR ID ASSIGNED. AGGREGATION PENDING.</div>
+<div id="frag-msg"></div>
 </div>
 
 <hr>
 
-<h2>Composite Assessment</h2>
+<h2>Assessment</h2>
 
-<div class="assessment">
-Target <strong>@narrative_ops</strong> presents a <span class="crit">HIGH</span> influence threat profile.<br><br>
-
-<strong>Primary Assessment:</strong> Account operates as an information distribution node with characteristics consistent with coordinated influence activity. High FE-007 (Viral Propagation) score indicates content is engineered for maximum propagation. Elevated FE-010 (Reality Distortion) suggests active reality-construction operations targeting geopolitical narratives.<br><br>
-
-Bridge status makes this account a priority monitoring target: content injected here propagates across community boundaries with reduced immune response from receiving clusters.<br><br>
-
-<strong>Engagement Vectors (automated):</strong><br>
-&bull; Geopolitical framing susceptibility (FE-001 entry point)<br>
-&bull; Energy policy emotional trigger (confirmed by fragments)<br>
-&bull; Contrarian identity reinforcement (FE-004/FE-005)<br><br>
-
-<strong>Recommended Collection Priorities:</strong><br>
-&bull; Confirm coordination with @media_bureau_7 (3 fragments, needs corroboration)<br>
-&bull; Map follower acquisition source (synthetic amplification hypothesis unconfirmed)<br>
-&bull; Timezone/activity pattern analysis (1 fragment, low confidence)<br><br>
-
-Profile confidence: <strong>HIGH</strong> (1,203 fragments, 47 contributors)<br>
-Last composite update: 2026-02-13 02:00:00 UTC
+<div class="assessment" id="assessment">
+  <em style="color:var(--gold-dark)">Assessment will be generated once sufficient data has been collected.</em>
 </div>
 
 <hr>
@@ -400,16 +189,206 @@ Last composite update: 2026-02-13 02:00:00 UTC
 </div>
 
 <hr>
-
-<div class="footer">人肉搜索 // FLESHENGINE v0.1</div>
+<div class="footer">人肉搜索 // FLESHENGINE</div>
 
 </div>
 
 <script>
-function submitFragment(e) {
-  e.preventDefault();
-  document.getElementById('frag-msg').style.display = 'block';
+const SUPABASE_URL = '';
+const SUPABASE_ANON_KEY = '';
+let supabase = null;
+
+const FE_CODES = [
+  { code: 'FE-001', name: 'Narrative Framing' },
+  { code: 'FE-002', name: 'Repetition Saturation' },
+  { code: 'FE-003', name: 'Audience Conditioning' },
+  { code: 'FE-004', name: 'Loyalty Exploitation' },
+  { code: 'FE-005', name: 'Identity Manipulation' },
+  { code: 'FE-006', name: 'Manufactured Consensus' },
+  { code: 'FE-007', name: 'Viral Propagation' },
+  { code: 'FE-008', name: 'Urgency Fabrication' },
+  { code: 'FE-009', name: 'Attention Redirection' },
+  { code: 'FE-010', name: 'Reality Distortion' },
+  { code: 'FE-011', name: 'Cognitive Overload' },
+  { code: 'FE-012', name: 'Existential Threat Framing' },
+];
+
+function barClass(val) {
+  if (val >= 80) return 'bar-crit';
+  if (val >= 55) return 'bar-med';
+  if (val >= 30) return 'bar-low';
+  return 'bar-low';
 }
+
+function renderVulnGrid(target) {
+  const grid = document.getElementById('vuln-grid');
+  grid.innerHTML = '';
+  FE_CODES.forEach((fe, i) => {
+    const key = 'fe_' + String(i + 1).padStart(3, '0');
+    const val = target[key] || 0;
+    grid.innerHTML += `
+      <div class="vuln-row">
+        <div><span class="vuln-code">${fe.code}</span> <span class="vuln-name">${fe.name}</span></div>
+        <div class="vuln-bar-outer"><div class="vuln-bar-inner ${barClass(val)}" style="width:${val}%"></div></div>
+        <div class="vuln-score">${val}</div>
+      </div>`;
+  });
+}
+
+function fmtDate(d) {
+  if (!d) return '—';
+  return new Date(d).toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+}
+
+async function loadProfile() {
+  const params = new URLSearchParams(window.location.search);
+  const targetId = params.get('t');
+
+  if (!targetId) {
+    document.getElementById('target-handle').textContent = 'No target specified';
+    return;
+  }
+
+  if (!supabase) {
+    document.getElementById('target-handle').textContent = 'Database not connected';
+    return;
+  }
+
+  try {
+    const { data: target, error } = await supabase
+      .from('targets')
+      .select('*')
+      .eq('id', targetId)
+      .single();
+
+    if (error || !target) {
+      document.getElementById('target-handle').textContent = 'Target not found';
+      return;
+    }
+
+    // Set page title
+    document.title = 'FLESHENGINE — @' + (target.display_handle || target.handle);
+    document.getElementById('target-handle').textContent = '@' + (target.display_handle || target.handle);
+
+    // Meta card
+    const statusEl = document.getElementById('meta-status');
+    statusEl.textContent = (target.status || 'queued').toUpperCase();
+    if (target.status === 'active') statusEl.classList.add('active');
+    document.getElementById('meta-fragments').textContent = target.fragment_count || 0;
+    document.getElementById('meta-contributors').textContent = target.contributor_count || 0;
+    document.getElementById('meta-created').textContent = fmtDate(target.created_at);
+    document.getElementById('meta-updated').textContent = fmtDate(target.updated_at);
+    document.getElementById('meta-score').textContent = target.threat_score != null ? target.threat_score : '—';
+
+    // Vulnerability grid
+    renderVulnGrid(target);
+
+    // Assessment
+    if (target.assessment) {
+      document.getElementById('assessment').innerHTML = target.assessment;
+    }
+
+    // Fragment form hidden fields
+    document.getElementById('frag-target-id').value = target.id;
+    document.getElementById('frag-target-handle').value = target.handle;
+
+    // Load fragments
+    loadFragments(target.id);
+
+  } catch (err) {
+    console.error(err);
+    document.getElementById('target-handle').textContent = 'Error loading profile';
+  }
+}
+
+async function loadFragments(targetId) {
+  try {
+    const { data, error } = await supabase
+      .from('fragments')
+      .select('*')
+      .eq('target_id', targetId)
+      .order('created_at', { ascending: false })
+      .limit(50);
+
+    if (error) throw error;
+    if (!data || data.length === 0) return;
+
+    document.getElementById('fragments-empty').style.display = 'none';
+    const list = document.getElementById('fragments-list');
+    list.style.display = 'block';
+    list.innerHTML = '';
+
+    data.forEach(f => {
+      const ts = fmtDate(f.created_at);
+      const el = document.createElement('div');
+      el.className = 'fragment';
+      el.innerHTML = `
+        <div class="fragment-header">[${ts}] ${f.observation_type}</div>
+        <div class="fragment-body">"${f.body}"</div>
+        ${f.evidence_url ? '<div style="font-size:13px;margin-top:4px"><a href="' + f.evidence_url + '">Evidence link</a></div>' : ''}
+        <div class="fragment-confidence conf-${f.confidence || 'medium'}">Confidence: ${(f.confidence || 'medium').toUpperCase()}</div>
+      `;
+      list.appendChild(el);
+    });
+  } catch (err) {
+    console.error('Failed to load fragments:', err);
+  }
+}
+
+async function submitFragment(e) {
+  e.preventDefault();
+  const msg = document.getElementById('frag-msg');
+  const targetId = document.getElementById('frag-target-id').value;
+  const targetHandle = document.getElementById('frag-target-handle').value;
+  const body = document.getElementById('obs-text').value.trim();
+
+  if (!body) { msg.className = 'error'; msg.style.display = 'block'; msg.textContent = 'Observation text is required.'; return; }
+  if (!targetId) { msg.className = 'error'; msg.style.display = 'block'; msg.textContent = 'No target loaded.'; return; }
+
+  if (!supabase) {
+    msg.className = 'error'; msg.style.display = 'block'; msg.textContent = 'Database not connected.'; return;
+  }
+
+  msg.style.display = 'block'; msg.className = ''; msg.textContent = 'Submitting...';
+
+  try {
+    const { error } = await supabase.from('fragments').insert({
+      target_id: targetId,
+      target_handle: targetHandle,
+      observation_type: document.getElementById('obs-type').value,
+      body: body,
+      evidence_url: document.getElementById('obs-evidence').value.trim() || null,
+      timeframe: document.getElementById('obs-time').value.trim() || null,
+      confidence: document.getElementById('obs-conf').value,
+    });
+
+    if (error) throw error;
+
+    msg.className = 'success';
+    msg.textContent = 'Fragment submitted. Thank you for your contribution.';
+    document.getElementById('obs-text').value = '';
+    document.getElementById('obs-evidence').value = '';
+    document.getElementById('obs-time').value = '';
+    loadFragments(targetId);
+  } catch (err) {
+    msg.className = 'error';
+    msg.textContent = 'Error: ' + (err.message || 'Failed to submit fragment.');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+    script.onload = () => {
+      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      loadProfile();
+    };
+    document.head.appendChild(script);
+  } else {
+    document.getElementById('target-handle').textContent = 'Database not configured';
+  }
+});
 </script>
 </body>
 </html>
